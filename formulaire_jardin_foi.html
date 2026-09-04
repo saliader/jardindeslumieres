@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jardin des Lumières</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --green:        #4a7c2f;
+    --green-dark:   #3a6224;
+    --green-light:  rgba(74,124,47,0.12);
+    --bg:           #f7f8f5;
+    --surface:      #ffffff;
+    --surface-2:    #f0f2ec;
+    --border:       #d8ddd0;
+    --border-focus: #4a7c2f;
+    --text:         #1e2418;
+    --text-muted:   #6b7560;
+    --error:        #b94040;
+    --star:         #b45e2f;
+  }
+
+  body {
+    background: var(--bg);
+    margin: 0;
+    padding: 2rem 1rem 4rem;
+    font-family: 'Lato', sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .form-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+  .deco { font-size: 24px; letter-spacing: 4px; opacity: 0.7; margin-bottom: 0.6rem; }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+    letter-spacing: 0.01em;
+  }
+  .header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .card:focus-within { border-color: var(--green); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 18px 18px 0 0;
+  }
+  .card.c1::before { background: linear-gradient(90deg, #e8c4d8, #c4d8a8); }
+  .card.c2::before { background: linear-gradient(90deg, #c4d8a8, #a8c4d8); }
+  .card.c3::before { background: linear-gradient(90deg, #f2d48a, #c4d8a8); }
+  .card.c4::before { background: linear-gradient(90deg, #d8c4e8, #e8c4d8); }
+  .card.c5::before { background: linear-gradient(90deg, #f2e8a8, #e8d4c4); }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── Fields ── */
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0.75rem; }
+  .field { margin-bottom: 0.75rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  label.lbl {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .star { color: var(--star); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--green-light);
+    background: #fff;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 95px;
+    line-height: 1.65;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 34px;
+    cursor: pointer;
+  }
+
+  .err {
+    display: none;
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 4px;
+  }
+
+  /* ── Submit ── */
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .submit-btn:hover { background: var(--green-dark); }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn:disabled { background: #9aab8e; cursor: not-allowed; }
+
+  /* ── Progress bar ── */
+  .bar-wrap {
+    display: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .bar-inner {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    animation: slide 1.6s ease-in-out infinite;
+  }
+  @keyframes slide {
+    0%   { width: 0%;  margin-left: 0;    }
+    50%  { width: 65%; margin-left: 17%;  }
+    100% { width: 0%;  margin-left: 100%; }
+  }
+
+  .engagement-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .engagement-label:hover { border-color: var(--green); }
+  .engagement-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--green);
+    cursor: pointer;
+  }
+  .engagement-label em { font-style: italic; }
+
+  .err-global {
+    display: none;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--error);
+    margin-top: 10px;
+  }
+
+  /* ── Success ── */
+  .success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .success .flower { font-size: 52px; display: block; margin-bottom: 1rem; }
+  .success h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+  .success p { color: var(--text-muted); font-size: 15px; margin: 0; }
+
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="form-wrap">
+
+  <div class="header">
+    <div class="deco">🌸 🌿 🌼 🌿 🌸</div>
+    <h1>Jardin des lumières</h1>
+    <p>Plante · Sème · Récolte</p>
+  </div>
+
+  <div id="form-body">
+
+    <div class="card c1">
+      <p class="card-title"><span>🌺</span> Qui es-tu ?</p>
+      <div class="row">
+        <div class="field">
+          <label class="lbl" for="prenom">Prénom <span class="star">*</span></label>
+          <input type="text" id="prenom" placeholder="Votre prénom" />
+          <div class="err" id="err-prenom">Ce champ est requis.</div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="tel">Téléphone <span class="star">*</span></label>
+          <input type="tel" id="tel" placeholder="+213 6 00 00 00 00" />
+          <div class="err" id="err-tel">Ce champ est requis.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card c2">
+      <p class="card-title"><span>🌿</span> Ancienneté aux assises</p>
+      <div class="field">
+        <label class="lbl" for="anciennete">Depuis combien de temps participes-tu ?</label>
+        <select id="anciennete">
+          <option value="">— Choisissez —</option>
+          <option value="Moins d'un an">Moins d'un an</option>
+          <option value="1 à 3 ans">1 à 3 ans</option>
+          <option value="3 à 5 ans">3 à 5 ans</option>
+          <option value="Depuis le début">Depuis le début</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card c2" style="--c2-grad: #a8d8c4, #c4e8a8;">
+      <p class="card-title"><span>🕊️</span> Ton parcours de foi</p>
+      <div class="field">
+        <label class="lbl" for="converti">Es-tu converti(e) à l'islam ? <span class="star">*</span></label>
+        <select id="converti" onchange="toggleConversionDate()">
+          <option value="">— Choisissez —</option>
+          <option value="Non, de naissance">Non, musulman(e) de naissance</option>
+          <option value="Oui">Oui, converti(e)</option>
+        </select>
+        <div class="err" id="err-converti">Ce champ est requis.</div>
+      </div>
+      <div class="field" id="field-duree-conversion" style="display:none;">
+        <label class="lbl" for="dureeConversion">Depuis combien de temps ?</label>
+        <select id="dureeConversion">
+          <option value="">— Choisissez —</option>
+          <option value="Moins d'un an">Moins d'un an</option>
+          <option value="1 à 3 ans">1 à 3 ans</option>
+          <option value="3 à 5 ans">3 à 5 ans</option>
+          <option value="5 à 10 ans">5 à 10 ans</option>
+          <option value="Plus de 10 ans">Plus de 10 ans</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card c3">
+      <p class="card-title"><span>🌼</span> Tes points forts</p>
+      <div class="field">
+        <label class="lbl" for="forts">Ce qui te caractérise</label>
+        <input type="text" id="forts" placeholder="Ex : patience, générosité…" />
+      </div>
+    </div>
+
+    <div class="card c4">
+      <p class="card-title"><span>🌷</span> Ton point faible</p>
+      <div class="field">
+        <label class="lbl" for="faible">La graine à semer <span class="star">*</span></label>
+        <textarea id="faible" placeholder="Partage ce sur quoi tu souhaites travailler…"></textarea>
+        <div class="err" id="err-faible">Ce champ est requis.</div>
+      </div>
+    </div>
+
+    <div class="card c5">
+      <p class="card-title"><span>🌻</span> Ce que tu espères</p>
+      <div class="field">
+        <label class="lbl" for="espoir">Ce que tu attends / souhaites améliorer <span class="star">*</span></label>
+        <textarea id="espoir" placeholder="Qu'est-ce que tu veux voir fleurir dans ta foi ?"></textarea>
+        <div class="err" id="err-espoir">Ce champ est requis.</div>
+      </div>
+    </div>
+
+    <label class="engagement-label" for="engagement">
+      <input type="checkbox" id="engagement" onchange="toggleSubmit()" />
+      <span>Je m'engage à m'investir pleinement dans le <em>Jardin des lumières</em> 🌿</span>
+    </label>
+    <div class="err" id="err-engagement" style="text-align:center; margin-bottom:0.5rem;">Cet engagement est requis pour planter ta réponse.</div>
+
+    <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+      🌸 Planter ma réponse dans le jardin
+    </button>
+    <div class="bar-wrap" id="bar"><div class="bar-inner"></div></div>
+    <div class="err-global" id="err-global"></div>
+
+  </div><!-- /form-body -->
+
+  <div class="success" id="success">
+    <span class="flower">🌸</span>
+    <h2>Ta fleur est plantée !</h2>
+    <p>On va l'entretenir ensemble, incha Allah 🌿</p>
+  </div>
+
+</div><!-- /form-wrap -->
+
+<script>
+  // =====================================================
+  //  ⚙️  REMPLACEZ CETTE URL par celle de votre Web App
+  //  (après avoir déployé le Apps Script dans votre Sheet)
+  // =====================================================
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzV4FW4GPLndvxJUwpK6YhW-BvQctRYPK-u3sYO191ZReWoawc-1wtQvLby7rF6YUIR/exec';
+
+  /*
+  ============================================================
+  CODE À METTRE DANS GOOGLE APPS SCRIPT (côté Google Sheet)
+  ============================================================
+
+  function doGet(e) {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+    // Première fois : créer les en-têtes
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        'Date', 'Prénom', 'Téléphone', 'Ancienneté',
+        'Conversion', 'Points forts', 'Point faible',
+        'Espoir', 'Engagement'
+      ]);
+    }
+
+    const p = e.parameter;
+    sheet.appendRow([
+      p.date        || '',
+      p.prenom      || '',
+      p.tel         || '',
+      p.anciennete  || '',
+      p.conversion  || '',
+      p.forts       || '',
+      p.faible      || '',
+      p.espoir      || '',
+      p.engagement  || ''
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  ⚠️  Après avoir collé ce code dans Apps Script :
+  1. Déployer → Nouveau déploiement → Type : Application Web
+  2. Exécuter en tant que : Moi
+  3. Accès autorisé à : Tout le monde
+  4. Copier l'URL et remplacer SCRIPT_URL ci-dessus
+  ============================================================
+  */
+
+  function show(id, visible) {
+    document.getElementById(id).style.display = visible ? 'block' : 'none';
+  }
+
+  function toggleConversionDate() {
+    const val = document.getElementById('converti').value;
+    document.getElementById('field-duree-conversion').style.display =
+      val === 'Oui' ? 'block' : 'none';
+    if (val !== 'Oui') document.getElementById('dureeConversion').value = '';
+  }
+
+  function toggleSubmit() {
+    const checked = document.getElementById('engagement').checked;
+    if (checked) show('err-engagement', false);
+  }
+
+  async function handleSubmit() {
+    const prenom        = document.getElementById('prenom').value.trim();
+    const tel           = document.getElementById('tel').value.trim();
+    const anciennete    = document.getElementById('anciennete').value;
+    const converti      = document.getElementById('converti').value;
+    const dureeConversion = document.getElementById('dureeConversion').value;
+    const forts         = document.getElementById('forts').value.trim();
+    const faible        = document.getElementById('faible').value.trim();
+    const espoir        = document.getElementById('espoir').value.trim();
+    const engagement    = document.getElementById('engagement').checked;
+
+    // Validation
+    let ok = true;
+    if (!prenom)    { show('err-prenom', true);    ok = false; } else show('err-prenom', false);
+    if (!tel)       { show('err-tel', true);        ok = false; } else show('err-tel', false);
+    if (!converti)  { show('err-converti', true);   ok = false; } else show('err-converti', false);
+    if (!faible)    { show('err-faible', true);     ok = false; } else show('err-faible', false);
+    if (!espoir)    { show('err-espoir', true);     ok = false; } else show('err-espoir', false);
+    if (!engagement){ show('err-engagement', true); ok = false; } else show('err-engagement', false);
+    if (!ok) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = '🌱 En train de planter…';
+    show('bar', true);
+    show('err-global', false);
+
+    let conversionInfo = converti;
+    if (converti === 'Oui' && dureeConversion) conversionInfo += ` — ${dureeConversion}`;
+
+    const payload = {
+      date:          new Date().toLocaleDateString('fr-FR'),
+      prenom,
+      tel,
+      anciennete:    anciennete    || 'Non renseigné',
+      conversion:    conversionInfo || 'Non renseigné',
+      forts:         forts         || 'Non renseigné',
+      faible,
+      espoir,
+      engagement:    'Oui — Je m\'engage à m\'investir pleinement'
+    };
+
+    try {
+      // Avec Google Apps Script, le mode no-cors ignore le body JSON.
+      // La seule méthode fiable : envoyer les données en GET via les paramètres URL.
+      // Le Apps Script doit lire avec e.parameter.xxx dans doGet()
+      const params = new URLSearchParams(payload);
+      await fetch(SCRIPT_URL + '?' + params.toString(), {
+        method: 'GET',
+        mode: 'no-cors'
+      });
+
+      show('bar', false);
+      show('form-body', false);
+      show('success', true);
+
+    } catch (e) {
+      show('bar', false);
+      btn.disabled = false;
+      btn.textContent = '🌸 Planter ma réponse dans le jardin';
+      const el = document.getElementById('err-global');
+      el.textContent = 'Une erreur est survenue. Vérifie ta connexion et réessaie.';
+      show('err-global', true);
+    }
+  }
+</script>
+</body>
+</html>

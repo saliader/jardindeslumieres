@@ -267,13 +267,13 @@
       <p class="card-title"><span>🌺</span> Qui es-tu ?</p>
       <div class="row">
         <div class="field">
-          <label class="lbl" for="prenom">Prénom <span class="star">*</span></label>
-          <input type="text" id="prenom" placeholder="Votre prénom" />
+          <label class="lbl" for="Prenom">Prénom <span class="star">*</span></label>
+          <input type="text" id="Prenom" placeholder="Votre prénom" />
           <div class="err" id="err-prenom">Ce champ est requis.</div>
         </div>
         <div class="field">
-          <label class="lbl" for="tel">Téléphone <span class="star">*</span></label>
-          <input type="tel" id="tel" placeholder="+213 6 00 00 00 00" />
+          <label class="lbl" for="Tel">Téléphone <span class="star">*</span></label>
+          <input type="tel" id="Tel" placeholder="+213 6 00 00 00 00" />
           <div class="err" id="err-tel">Ce champ est requis.</div>
         </div>
       </div>
@@ -282,8 +282,8 @@
     <div class="card c2">
       <p class="card-title"><span>🌿</span> Ancienneté aux assises</p>
       <div class="field">
-        <label class="lbl" for="anciennete">Depuis combien de temps participes-tu ?</label>
-        <select id="anciennete">
+        <label class="lbl" for="Anciennete">Depuis combien de temps participes-tu ?</label>
+        <select id="Anciennete">
           <option value="">— Choisissez —</option>
           <option value="Moins d'un an">Moins d'un an</option>
           <option value="1 à 3 ans">1 à 3 ans</option>
@@ -296,8 +296,8 @@
     <div class="card c2" style="--c2-grad: #a8d8c4, #c4e8a8;">
       <p class="card-title"><span>🕊️</span> Ton parcours de foi</p>
       <div class="field">
-        <label class="lbl" for="converti">Es-tu converti(e) à l'islam ? <span class="star">*</span></label>
-        <select id="converti" onchange="toggleConversionDate()">
+        <label class="lbl" for="Converti">Es-tu converti(e) à l'islam ? <span class="star">*</span></label>
+        <select id="Converti" onchange="toggleConversionDate()">
           <option value="">— Choisissez —</option>
           <option value="Non, de naissance">Non, musulman(e) de naissance</option>
           <option value="Oui">Oui, converti(e)</option>
@@ -305,8 +305,8 @@
         <div class="err" id="err-converti">Ce champ est requis.</div>
       </div>
       <div class="field" id="field-duree-conversion" style="display:none;">
-        <label class="lbl" for="dureeConversion">Depuis combien de temps ?</label>
-        <select id="dureeConversion">
+        <label class="lbl" for="DureeConversion">Depuis combien de temps ?</label>
+        <select id="DureeConversion">
           <option value="">— Choisissez —</option>
           <option value="Moins d'un an">Moins d'un an</option>
           <option value="1 à 3 ans">1 à 3 ans</option>
@@ -319,30 +319,39 @@
 
     <div class="card c3">
       <p class="card-title"><span>🌼</span> Tes points forts</p>
-      <div class="field">
-        <label class="lbl" for="forts">Ce qui te caractérise</label>
-        <input type="text" id="forts" placeholder="Ex : patience, générosité…" />
+      <div class="field" id="field-Points-forts" style="display:none;">
+        <label class="lbl" for="Pointsforts">Ce qui te caractérise</label>
+        <input type="text" id="Pointsforts" placeholder="Ex : patience, générosité…" />
       </div>
     </div>
 
     <div class="card c4">
       <p class="card-title"><span>🌷</span> Ton point faible</p>
-      <div class="field">
-        <label class="lbl" for="faible">La graine à semer <span class="star">*</span></label>
-        <textarea id="faible" placeholder="Partage ce sur quoi tu souhaites travailler…"></textarea>
+      <div class="field" id="field-Point-faible" style="display:none;">
+        <label class="lbl" for="Pointfaible">La graine à semer <span class="star">*</span></label>
+        <textarea id="Pointfaible" placeholder="Partage ce sur quoi tu souhaites travailler…"></textarea>
         <div class="err" id="err-faible">Ce champ est requis.</div>
       </div>
     </div>
 
     <div class="card c5">
       <p class="card-title"><span>🌻</span> Ce que tu espères</p>
-      <div class="field">
-        <label class="lbl" for="espoir">Ce que tu attends / souhaites améliorer <span class="star">*</span></label>
-        <textarea id="espoir" placeholder="Qu'est-ce que tu veux voir fleurir dans ta foi ?"></textarea>
+      <div class="field" id="field-Mes-envies" style="display:none;">
+        <label class="lbl" for="Mesenvies">Ce que tu attends / souhaites améliorer <span class="star">*</span></label>
+        <textarea id="Mesenvies" placeholder="Qu'est-ce que tu veux voir fleurir dans ta foi ?"></textarea>
         <div class="err" id="err-espoir">Ce champ est requis.</div>
       </div>
     </div>
 
+   <div class="card c5">
+      <p class="card-title"><span>🌻</span>Tes objectifs 2027</p>
+      <div class="field">
+        <label class="lbl" for="objectifs">Liste les <span class="star">*</span></label>
+        <textarea id="objectifs" placeholder="Je note ici mes objectifs pour 2027"></textarea>
+        <div class="err" id="err-espoir">Ce champ est requis.</div>
+      </div>
+    </div>
+   
     <label class="engagement-label" for="engagement">
       <input type="checkbox" id="engagement" onchange="toggleSubmit()" />
       <span>Je m'engage à m'investir pleinement dans le <em>Jardin des lumières</em> 🌿</span>

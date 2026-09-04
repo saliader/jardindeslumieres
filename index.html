@@ -330,7 +330,7 @@
       <div class="field">
         <label class="lbl" for="Pointfaible">La graine à semer <span class="star">*</span></label>
         <textarea id="Pointfaible" placeholder="Partage ce sur quoi tu souhaites travailler…"></textarea>
-        <div class="err" id="err-faible">Ce champ est requis.</div>
+        <div class="err" id="err-pointfaible">Ce champ est requis.</div>
       </div>
     </div>
 
@@ -339,7 +339,7 @@
       <div class="field">
         <label class="lbl" for="Mesenvies">Ce que tu attends / souhaites améliorer <span class="star">*</span></label>
         <textarea id="Mesenvies" placeholder="Qu'est-ce que tu veux voir fleurir dans ta foi ?"></textarea>
-        <div class="err" id="err-envies">Ce champ est requis.</div>
+        <div class="err" id="err-mesenvies">Ce champ est requis.</div>
       </div>
     </div>
 
@@ -348,7 +348,7 @@
       <div class="field">
         <label class="lbl" for="objectifs">Liste les <span class="star">*</span></label>
         <textarea id="objectifs" placeholder="Je note ici mes objectifs pour 2027"></textarea>
-        <div class="err" id="err-objectif">Ce champ est requis.</div>
+        <div class="err" id="err-objectifs">Ce champ est requis.</div>
       </div>
     </div>
    
@@ -459,7 +459,7 @@
     if (!tel)       { show('err-tel', true);        ok = false; } else show('err-tel', false);
     if (!converti)  { show('err-converti', true);   ok = false; } else show('err-converti', false);
     if (!faible)    { show('err-faible', true);     ok = false; } else show('err-faible', false);
-    if (!envies)    { show('err-espoir', true);     ok = false; } else show('err-envies', false);
+    if (!envies)    { show('err-envies', true);     ok = false; } else show('err-envies', false);
     if (!objectifs) { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
     if (!engagement){ show('err-engagement', true); ok = false; } else show('err-engagement', false);
     if (!ok) return;

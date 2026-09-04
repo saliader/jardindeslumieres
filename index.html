@@ -379,7 +379,7 @@
   //  ⚙️  REMPLACEZ CETTE URL par celle de votre Web App
   //  (après avoir déployé le Apps Script dans votre Sheet)
   // =====================================================
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzV4FW4GPLndvxJUwpK6YhW-BvQctRYPK-u3sYO191ZReWoawc-1wtQvLby7rF6YUIR/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylTVyw9v8vs2TPv0DipTWZ24zoCvpUJRHB8-BIRc-hvaKb6cfvtx1ODTsNVP_Lvql9';
 
   /*
   ============================================================
@@ -394,7 +394,7 @@
       sheet.appendRow([
         'Date', 'Prénom', 'Téléphone', 'Ancienneté',
         'Conversion', 'Points forts', 'Point faible',
-        'Espoir', 'Engagement'
+        'Envies', 'Objectifs','Engagements'
       ]);
     }
 
@@ -407,8 +407,9 @@
       p.conversion  || '',
       p.forts       || '',
       p.faible      || '',
-      p.espoir      || '',
-      p.engagement  || ''
+      p.envies      || '',
+      p.objectifs   || '',
+      p.engagements  || ''
     ]);
 
     return ContentService
@@ -448,7 +449,8 @@
     const dureeConversion = document.getElementById('dureeConversion').value;
     const forts         = document.getElementById('forts').value.trim();
     const faible        = document.getElementById('faible').value.trim();
-    const espoir        = document.getElementById('espoir').value.trim();
+    const envies        = document.getElementById('envies').value.trim();
+    const objectifs     = document.getElementById('objectifs').value.trim();
     const engagement    = document.getElementById('engagement').checked;
 
     // Validation
@@ -457,7 +459,8 @@
     if (!tel)       { show('err-tel', true);        ok = false; } else show('err-tel', false);
     if (!converti)  { show('err-converti', true);   ok = false; } else show('err-converti', false);
     if (!faible)    { show('err-faible', true);     ok = false; } else show('err-faible', false);
-    if (!espoir)    { show('err-espoir', true);     ok = false; } else show('err-espoir', false);
+    if (!envies)    { show('err-espoir', true);     ok = false; } else show('err-envies', false);
+    if (!objectifs) { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
     if (!engagement){ show('err-engagement', true); ok = false; } else show('err-engagement', false);
     if (!ok) return;
 
@@ -478,7 +481,8 @@
       conversion:    conversionInfo || 'Non renseigné',
       forts:         forts         || 'Non renseigné',
       faible,
-      espoir,
+      envies,
+      objectifs,
       engagement:    'Oui — Je m\'engage à m\'investir pleinement'
     };
 

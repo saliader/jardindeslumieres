@@ -23,9 +23,7 @@
     --radius: 18px;
     --shadow: 0 4px 24px rgba(74,124,89,0.08);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -35,8 +33,6 @@
       radial-gradient(ellipse at 10% 10%, rgba(122,171,136,0.12) 0%, transparent 50%),
       radial-gradient(ellipse at 90% 90%, rgba(201,145,58,0.08) 0%, transparent 50%);
   }
-
-  /* HEADER */
   header {
     text-align: center;
     padding: 44px 24px 28px;
@@ -44,318 +40,75 @@
     border-bottom: 1px solid var(--border);
     box-shadow: 0 2px 12px rgba(74,124,89,0.06);
   }
-
-  .header-flowers {
-    font-size: 22px;
-    letter-spacing: 6px;
-    margin-bottom: 10px;
-  }
-
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 5vw, 38px);
-    font-weight: 600;
-    color: var(--green);
-    line-height: 1.2;
-  }
-
-  header h1 em {
-    font-style: italic;
-    color: var(--rose);
-  }
-
-  .header-tagline {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 300;
-  }
-
-  /* LOADING */
-  #loading {
-    text-align: center;
-    padding: 80px 24px;
-    color: var(--text-muted);
-  }
-
-  .spinner {
-    width: 32px; height: 32px;
-    border: 2px solid var(--border);
-    border-top-color: var(--green);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 14px;
-  }
+  .header-flowers { font-size: 22px; letter-spacing: 6px; margin-bottom: 10px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 38px); font-weight: 600; color: var(--green); }
+  header h1 em { font-style: italic; color: var(--rose); }
+  .header-tagline { font-size: 13px; color: var(--text-muted); margin-top: 6px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+  #loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
+  .spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* NAV */
   #nav-bar {
-    display: none;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 20px 24px;
-    justify-content: center;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    display: none; flex-wrap: wrap; gap: 10px; padding: 20px 24px;
+    justify-content: center; background: var(--white); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
   }
-
   .nav-btn {
-    background: var(--bg);
-    border: 1.5px solid var(--border);
-    color: var(--text-muted);
-    padding: 7px 18px;
-    border-radius: 40px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    background: var(--bg); border: 1.5px solid var(--border); color: var(--text-muted);
+    padding: 7px 18px; border-radius: 40px; font-family: 'Nunito', sans-serif;
+    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s;
   }
-
-  .nav-btn:hover {
-    border-color: var(--green-light);
-    color: var(--green);
-    background: var(--green-pale);
-  }
-
-  .nav-btn.active {
-    background: var(--green);
-    color: white;
-    border-color: var(--green);
-    font-weight: 600;
-  }
-
-  /* FICHE */
-  #fiche-container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 36px 20px 72px;
-    display: none;
-  }
-
-  /* En-tête fiche */
+  .nav-btn:hover { border-color: var(--green-light); color: var(--green); background: var(--green-pale); }
+  .nav-btn.active { background: var(--green); color: white; border-color: var(--green); font-weight: 600; }
+  #fiche-container { max-width: 680px; margin: 0 auto; padding: 36px 20px 72px; display: none; }
   .fiche-top {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px 28px 22px;
-    margin-bottom: 16px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 28px 22px; margin-bottom: 16px; box-shadow: var(--shadow);
+    text-align: center; position: relative; overflow: hidden;
   }
-
   .fiche-top::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
     background: linear-gradient(90deg, var(--green), var(--green-light), var(--rose));
   }
-
   .avatar {
-    width: 74px; height: 74px;
-    border-radius: 50%;
+    width: 74px; height: 74px; border-radius: 50%;
     background: linear-gradient(135deg, var(--green-pale), var(--rose-pale));
-    border: 2px solid var(--green-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    color: var(--green);
-    margin: 0 auto 14px;
+    border: 2px solid var(--green-light); display: flex; align-items: center;
+    justify-content: center; font-family: 'Playfair Display', serif;
+    font-size: 30px; color: var(--green); margin: 0 auto 14px;
   }
-
-  .fiche-top h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--green);
-  }
-
-  .fiche-top .date {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
-
+  .fiche-top h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--green); }
+  .fiche-top .date { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
   .badge-engagement {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--green-pale);
-    border: 1px solid rgba(74,124,89,0.3);
-    color: var(--green);
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 12.5px;
-    font-weight: 600;
-    margin-top: 10px;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--green-pale); border: 1px solid rgba(74,124,89,0.3);
+    color: var(--green); padding: 5px 14px; border-radius: 20px;
+    font-size: 12.5px; font-weight: 600; margin-top: 10px;
   }
-
-  /* Grille infos */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .info-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    box-shadow: var(--shadow);
-  }
-
-  .info-card .ic-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .info-card .ic-value {
-    font-size: 14.5px;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  .info-card .ic-value.big {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    color: var(--green);
-    font-weight: 600;
-  }
-
-  /* Sections */
-  .section {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 24px;
-    margin-bottom: 14px;
-    box-shadow: var(--shadow);
-  }
-
-  .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .section-title .emoji { font-size: 16px; }
-
-  .section p {
-    font-size: 14.5px;
-    line-height: 1.8;
-    color: var(--text);
-    white-space: pre-line;
-  }
-
-  /* Tags */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .info-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .info-card .ic-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .info-card .ic-value { font-size: 14.5px; color: var(--text); line-height: 1.4; }
+  .info-card .ic-value.big { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--green); font-weight: 600; }
+  .section { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .section-title { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section p { font-size: 14.5px; line-height: 1.8; color: var(--text); white-space: pre-line; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .tag {
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 13.5px;
-    font-weight: 500;
-  }
-
-  .tag.fort {
-    background: var(--green-pale);
-    border: 1px solid rgba(74,124,89,0.25);
-    color: var(--green);
-  }
-
-  .tag.faible {
-    background: var(--rose-pale);
-    border: 1px solid rgba(201,123,138,0.25);
-    color: var(--rose);
-  }
-
-  /* Objectifs */
+  .tag { padding: 5px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 500; }
+  .tag.fort { background: var(--green-pale); border: 1px solid rgba(74,124,89,0.25); color: var(--green); }
+  .tag.faible { background: var(--rose-pale); border: 1px solid rgba(201,123,138,0.25); color: var(--rose); }
   .objectifs-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .objectifs-list li {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--text);
-  }
-
-  .obj-dot {
-    flex-shrink: 0;
-    margin-top: 7px;
-    width: 8px; height: 8px;
-    background: var(--green-light);
-    border-radius: 50%;
-  }
-
-  /* Navigation prev/next */
-  .fiche-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 28px;
-    gap: 12px;
-  }
-
+  .objectifs-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--text); }
+  .obj-dot { flex-shrink: 0; margin-top: 8px; width: 8px; height: 8px; background: var(--green-light); border-radius: 50%; }
+  .fiche-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
   .nav-arrow {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    color: var(--text-muted);
-    padding: 10px 22px;
-    border-radius: 40px;
-    font-size: 14px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: var(--white); border: 1.5px solid var(--border); color: var(--text-muted);
+    padding: 10px 22px; border-radius: 40px; font-size: 14px;
+    font-family: 'Nunito', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s;
   }
-
-  .nav-arrow:hover:not(:disabled) {
-    border-color: var(--green);
-    color: var(--green);
-    background: var(--green-pale);
-  }
-
+  .nav-arrow:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
   .nav-arrow:disabled { opacity: 0.35; cursor: default; }
-
-  .counter {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  #error-msg {
-    text-align: center;
-    padding: 60px 24px;
-    color: var(--rose);
-    display: none;
-  }
-
+  .counter { font-size: 13px; color: var(--text-muted); }
+  #error-msg { text-align: center; padding: 60px 24px; color: var(--rose); display: none; }
   @media (max-width: 480px) {
     .info-grid { grid-template-columns: 1fr; }
     #fiche-container { padding: 20px 14px 60px; }
@@ -370,15 +123,9 @@
   <p class="header-tagline">Plante · Sème · Récolte · 2026</p>
 </header>
 
-<div id="loading">
-  <div class="spinner"></div>
-  Chargement des fleurs…
-</div>
-
-<div id="error-msg">🌧️ Impossible de charger les données. Vérifie que le CSV est bien publié.</div>
-
+<div id="loading"><div class="spinner"></div>Chargement des fleurs…</div>
+<div id="error-msg">🌧️ Impossible de charger les données.</div>
 <div id="nav-bar"></div>
-
 <div id="fiche-container"></div>
 
 <script>
@@ -387,36 +134,62 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nz
 let participants = [];
 let current = 0;
 
+// Parser CSV robuste qui gère les retours à la ligne dans les cellules
 function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = parseRow(lines[0]);
-  return lines.slice(1).map(line => {
-    const values = parseRow(line);
-    const obj = {};
-    headers.forEach((h, i) => obj[h.trim()] = (values[i] || '').trim());
-    return obj;
-  }).filter(p => p['Prénom']);
-}
+  const records = [];
+  let headers = null;
+  let i = 0;
 
-function parseRow(line) {
-  const result = [];
-  let cur = '', inQuote = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') {
-      if (inQuote && line[i+1] === '"') { cur += '"'; i++; }
-      else inQuote = !inQuote;
-    } else if (c === ',' && !inQuote) {
-      result.push(cur); cur = '';
-    } else cur += c;
+  function parseRecord() {
+    const fields = [];
+    while (i < text.length) {
+      if (text[i] === '"') {
+        // Champ entre guillemets
+        i++; // skip opening quote
+        let field = '';
+        while (i < text.length) {
+          if (text[i] === '"') {
+            if (text[i+1] === '"') { field += '"'; i += 2; } // guillemet échappé
+            else { i++; break; } // guillemet fermant
+          } else {
+            field += text[i++];
+          }
+        }
+        fields.push(field.trim());
+      } else {
+        // Champ sans guillemets
+        let field = '';
+        while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
+          field += text[i++];
+        }
+        fields.push(field.trim());
+      }
+      // après chaque champ : virgule = suivant, \r\n ou \n = fin de ligne
+      if (i < text.length && text[i] === ',') { i++; continue; }
+      if (i < text.length && (text[i] === '\n' || text[i] === '\r')) {
+        if (text[i] === '\r' && text[i+1] === '\n') i++;
+        i++;
+        break;
+      }
+      break;
+    }
+    return fields;
   }
-  result.push(cur);
-  return result;
+
+  headers = parseRecord();
+  while (i < text.length) {
+    const values = parseRecord();
+    if (values.length === 0 || (values.length === 1 && values[0] === '')) continue;
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h.trim()] = values[idx] || ''; });
+    if (obj['Prénom'] && obj['Prénom'].trim()) records.push(obj);
+  }
+  return records;
 }
 
 function parseObjectifs(text) {
   if (!text) return [];
-  return text.split(/\n|\r/)
+  return text.split(/\n/)
     .map(l => l.replace(/^\d+\s*[-–.)\s]\s*/, '').trim())
     .filter(Boolean);
 }
@@ -430,12 +203,11 @@ function renderFiche(idx) {
   current = idx;
   const p = participants[idx];
   const container = document.getElementById('fiche-container');
-
   const engagé = p['Engagement'] && p['Engagement'].toLowerCase().includes('oui');
   const objectifs = parseObjectifs(p['Objectifs 2027']);
   const pointsForts = parseTags(p['Points forts']);
   const pointsFaibles = parseTags(p['Point faible']);
-  const initiale = p['Prénom'].charAt(0).toUpperCase();
+  const initiale = (p['Prénom'] || '?').charAt(0).toUpperCase();
 
   container.innerHTML = `
     <div class="fiche-top">
@@ -465,35 +237,33 @@ function renderFiche(idx) {
     </div>
 
     <div class="section">
-      <div class="section-title"><span class="emoji">📖</span> Relation au Coran</div>
+      <div class="section-title">📖 Relation au Coran</div>
       <p>${p['Lecture Coran'] || '—'}</p>
     </div>
 
     ${pointsForts.length ? `
     <div class="section">
-      <div class="section-title"><span class="emoji">🌼</span> Points forts</div>
+      <div class="section-title">🌼 Points forts</div>
       <div class="tags">${pointsForts.map(t => `<span class="tag fort">${t}</span>`).join('')}</div>
     </div>` : ''}
 
     ${pointsFaibles.length ? `
     <div class="section">
-      <div class="section-title"><span class="emoji">🌷</span> Graine à semer</div>
-      <div class="tags">${pointsFaibles.map(t => `<span class="tag faible">${t}</span>`).join('')}</div>
+      <div class="section-title">🌷 Graine à semer</div>
+      <p>${p['Point faible']}</p>
     </div>` : ''}
 
     ${p['Espoirs / attentes'] ? `
     <div class="section">
-      <div class="section-title"><span class="emoji">🌻</span> Espoirs & attentes</div>
+      <div class="section-title">🌻 Espoirs & attentes</div>
       <p>${p['Espoirs / attentes']}</p>
     </div>` : ''}
 
     ${objectifs.length ? `
     <div class="section">
-      <div class="section-title"><span class="emoji">🌺</span> Objectifs 2027</div>
+      <div class="section-title">🌺 Objectifs 2027</div>
       <ul class="objectifs-list">
-        ${objectifs.map(o => `
-          <li><span class="obj-dot"></span><span>${o}</span></li>
-        `).join('')}
+        ${objectifs.map(o => `<li><span class="obj-dot"></span><span>${o}</span></li>`).join('')}
       </ul>
     </div>` : ''}
 
@@ -504,10 +274,7 @@ function renderFiche(idx) {
     </div>
   `;
 
-  document.querySelectorAll('.nav-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', i === idx);
-  });
-
+  document.querySelectorAll('.nav-btn').forEach((btn, i) => btn.classList.toggle('active', i === idx));
   container.style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -523,11 +290,9 @@ async function loadData() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
     participants = parseCSV(text);
-
     document.getElementById('loading').style.display = 'none';
 
     if (!participants.length) {
-      document.getElementById('error-msg').textContent = '🌧️ Aucune participante trouvée.';
       document.getElementById('error-msg').style.display = 'block';
       return;
     }

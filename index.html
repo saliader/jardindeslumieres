@@ -59,6 +59,7 @@
   .card.c3::before { background: linear-gradient(90deg, #f2d48a, #c4d8a8); }
   .card.c4::before { background: linear-gradient(90deg, #d8c4e8, #e8c4d8); }
   .card.c5::before { background: linear-gradient(90deg, #f2e8a8, #e8d4c4); }
+  .card.c6::before { background: linear-gradient(90deg, #c4e0d8, #a8d4c4); }
 
   .card-title {
     font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600;
@@ -76,7 +77,7 @@
   }
   .star { color: var(--star); margin-left: 2px; }
 
-  input[type="text"], input[type="tel"], select, textarea {
+  input[type="text"], input[type="tel"], input[type="number"], select, textarea {
     width: 100%; background: var(--surface-2); border: 1px solid var(--border);
     border-radius: 10px; padding: 10px 13px; font-family: 'Lato', sans-serif;
     font-size: 15px; color: var(--text); outline: none; appearance: none;
@@ -92,6 +93,27 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 13px center;
     padding-right: 34px; cursor: pointer;
+  }
+
+  /* Radio lecture Coran */
+  .radio-group {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .radio-option {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 14px; cursor: pointer;
+    font-size: 15px; color: var(--text);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .radio-option:has(input:checked) {
+    border-color: var(--green);
+    background: var(--green-light);
+  }
+  .radio-option input[type="radio"] {
+    width: 18px; height: 18px; flex-shrink: 0;
+    accent-color: var(--green); cursor: pointer;
+    appearance: auto;
   }
 
   .err { display: none; font-size: 12px; color: var(--error); margin-top: 4px; }
@@ -215,6 +237,35 @@
       </div>
     </div>
 
+    <!-- NOUVELLE CARTE : Coran -->
+    <div class="card c6">
+      <p class="card-title"><span>📖</span> Ta relation au Coran</p>
+
+      <div class="field">
+        <label class="lbl">Ma lecture du Coran <span class="star">*</span></label>
+        <div class="radio-group" id="radio-coran">
+          <label class="radio-option">
+            <input type="radio" name="lectureCoran" value="Lecture fluide" />
+            <span>J'ai une lecture fluide</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="lectureCoran" value="Lecture avec difficulté" />
+            <span>Je lis avec difficulté</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="lectureCoran" value="Je ne lis jamais" />
+            <span>Je ne lis jamais</span>
+          </label>
+        </div>
+        <div class="err" id="err-coran">Ce champ est requis.</div>
+      </div>
+
+      <div class="field" style="margin-top: 0.75rem;">
+        <label class="lbl" for="sourates">Nombre de sourates apprises par cœur</label>
+        <input type="number" id="sourates" placeholder="Ex : 5" min="0" max="114" />
+      </div>
+    </div>
+
     <div class="card c3">
       <p class="card-title"><span>🌼</span> Tes points forts</p>
       <div class="field">
@@ -292,12 +343,19 @@
     if (checked) show('err-engagement', false);
   }
 
+  function getSelectedRadio(name) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    return sel ? sel.value : '';
+  }
+
   async function handleSubmit() {
     const prenom          = document.getElementById('prenom').value.trim();
     const tel             = document.getElementById('tel').value.trim();
     const anciennete      = document.getElementById('anciennete').value;
     const converti        = document.getElementById('converti').value;
     const dureeConversion = document.getElementById('dureeConversion').value;
+    const lectureCoran    = getSelectedRadio('lectureCoran');
+    const sourates        = document.getElementById('sourates').value.trim();
     const forts           = document.getElementById('forts').value.trim();
     const faible          = document.getElementById('faible').value.trim();
     const envies          = document.getElementById('envies').value.trim();
@@ -305,13 +363,14 @@
     const engagement      = document.getElementById('engagement').checked;
 
     let ok = true;
-    if (!prenom)    { show('err-prenom', true);    ok = false; } else show('err-prenom', false);
-    if (!tel)       { show('err-tel', true);        ok = false; } else show('err-tel', false);
-    if (!converti)  { show('err-converti', true);   ok = false; } else show('err-converti', false);
-    if (!faible)    { show('err-faible', true);     ok = false; } else show('err-faible', false);
-    if (!envies)    { show('err-envies', true);     ok = false; } else show('err-envies', false);
-    if (!objectifs) { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
-    if (!engagement){ show('err-engagement', true); ok = false; } else show('err-engagement', false);
+    if (!prenom)       { show('err-prenom', true);    ok = false; } else show('err-prenom', false);
+    if (!tel)          { show('err-tel', true);        ok = false; } else show('err-tel', false);
+    if (!converti)     { show('err-converti', true);   ok = false; } else show('err-converti', false);
+    if (!lectureCoran) { show('err-coran', true);      ok = false; } else show('err-coran', false);
+    if (!faible)       { show('err-faible', true);     ok = false; } else show('err-faible', false);
+    if (!envies)       { show('err-envies', true);     ok = false; } else show('err-envies', false);
+    if (!objectifs)    { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
+    if (!engagement)   { show('err-engagement', true); ok = false; } else show('err-engagement', false);
     if (!ok) return;
 
     const btn = document.getElementById('submit-btn');
@@ -324,16 +383,18 @@
     if (converti === 'Oui' && dureeConversion) conversionInfo += ` — ${dureeConversion}`;
 
     const payload = {
-      date:       new Date().toLocaleDateString('fr-FR'),
+      date:          new Date().toLocaleDateString('fr-FR'),
       prenom,
       tel,
-      anciennete: anciennete || 'Non renseigné',
-      conversion: conversionInfo || 'Non renseigné',
-      forts:      forts || 'Non renseigné',
+      anciennete:    anciennete || 'Non renseigné',
+      conversion:    conversionInfo || 'Non renseigné',
+      lectureCoran,
+      sourates:      sourates || 'Non renseigné',
+      forts:         forts || 'Non renseigné',
       faible,
       envies,
       objectifs,
-      engagement: "Oui — Je m'engage à m'investir pleinement"
+      engagement:    "Oui — Je m'engage à m'investir pleinement"
     };
 
     try {

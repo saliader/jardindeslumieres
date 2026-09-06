@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jardin des Lumières 2026 — Fiches</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf8f2;
+    --bg2: #fef5ec;
+    --green: #4a7c59;
+    --green-light: #7aab88;
+    --green-pale: #e8f4ec;
+    --rose: #c97b8a;
+    --rose-pale: #fdeef1;
+    --gold: #c9913a;
+    --gold-pale: #fdf3e3;
+    --text: #3a3028;
+    --text-muted: #8a7a6a;
+    --border: #e2d8cc;
+    --white: #ffffff;
+    --radius: 18px;
+    --shadow: 0 4px 24px rgba(74,124,89,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 10% 10%, rgba(122,171,136,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 90%, rgba(201,145,58,0.08) 0%, transparent 50%);
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 44px 24px 28px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(74,124,89,0.06);
+  }
+
+  .header-flowers {
+    font-size: 22px;
+    letter-spacing: 6px;
+    margin-bottom: 10px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: 600;
+    color: var(--green);
+    line-height: 1.2;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .header-tagline {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* LOADING */
+  #loading {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-muted);
+  }
+
+  .spinner {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 14px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* NAV */
+  #nav-bar {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 24px;
+    justify-content: center;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .nav-btn {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+    padding: 7px 18px;
+    border-radius: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-btn:hover {
+    border-color: var(--green-light);
+    color: var(--green);
+    background: var(--green-pale);
+  }
+
+  .nav-btn.active {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+    font-weight: 600;
+  }
+
+  /* FICHE */
+  #fiche-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 36px 20px 72px;
+    display: none;
+  }
+
+  /* En-tête fiche */
+  .fiche-top {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fiche-top::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--green-light), var(--rose));
+  }
+
+  .avatar {
+    width: 74px; height: 74px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-pale), var(--rose-pale));
+    border: 2px solid var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--green);
+    margin: 0 auto 14px;
+  }
+
+  .fiche-top h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  .fiche-top .date {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .badge-engagement {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--green-pale);
+    border: 1px solid rgba(74,124,89,0.3);
+    color: var(--green);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  /* Grille infos */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .info-card .ic-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .info-card .ic-value {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .info-card .ic-value.big {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title .emoji { font-size: 16px; }
+
+  .section p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-line;
+  }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+
+  .tag.fort {
+    background: var(--green-pale);
+    border: 1px solid rgba(74,124,89,0.25);
+    color: var(--green);
+  }
+
+  .tag.faible {
+    background: var(--rose-pale);
+    border: 1px solid rgba(201,123,138,0.25);
+    color: var(--rose);
+  }
+
+  /* Objectifs */
+  .objectifs-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .objectifs-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .obj-dot {
+    flex-shrink: 0;
+    margin-top: 7px;
+    width: 8px; height: 8px;
+    background: var(--green-light);
+    border-radius: 50%;
+  }
+
+  /* Navigation prev/next */
+  .fiche-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    gap: 12px;
+  }
+
+  .nav-arrow {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-arrow:hover:not(:disabled) {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-pale);
+  }
+
+  .nav-arrow:disabled { opacity: 0.35; cursor: default; }
+
+  .counter {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  #error-msg {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--rose);
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr; }
+    #fiche-container { padding: 20px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-flowers">🌸 🌿 🌼 🌿 🌸</div>
+  <h1>Jardin des <em>Lumières</em></h1>
+  <p class="header-tagline">Plante · Sème · Récolte · 2026</p>
+</header>
+
+<div id="loading">
+  <div class="spinner"></div>
+  Chargement des fleurs…
+</div>
+
+<div id="error-msg">🌧️ Impossible de charger les données. Vérifie que le CSV est bien publié.</div>
+
+<div id="nav-bar"></div>
+
+<div id="fiche-container"></div>
+
+<script>
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
+
+let participants = [];
+let current = 0;
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = parseRow(lines[0]);
+  return lines.slice(1).map(line => {
+    const values = parseRow(line);
+    const obj = {};
+    headers.forEach((h, i) => obj[h.trim()] = (values[i] || '').trim());
+    return obj;
+  }).filter(p => p['Prénom']);
+}
+
+function parseRow(line) {
+  const result = [];
+  let cur = '', inQuote = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') {
+      if (inQuote && line[i+1] === '"') { cur += '"'; i++; }
+      else inQuote = !inQuote;
+    } else if (c === ',' && !inQuote) {
+      result.push(cur); cur = '';
+    } else cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+function parseObjectifs(text) {
+  if (!text) return [];
+  return text.split(/\n|\r/)
+    .map(l => l.replace(/^\d+\s*[-–.)\s]\s*/, '').trim())
+    .filter(Boolean);
+}
+
+function parseTags(text) {
+  if (!text) return [];
+  return text.split(/[-–,\n]/).map(t => t.trim()).filter(Boolean);
+}
+
+function renderFiche(idx) {
+  current = idx;
+  const p = participants[idx];
+  const container = document.getElementById('fiche-container');
+
+  const engagé = p['Engagement'] && p['Engagement'].toLowerCase().includes('oui');
+  const objectifs = parseObjectifs(p['Objectifs 2027']);
+  const pointsForts = parseTags(p['Points forts']);
+  const pointsFaibles = parseTags(p['Point faible']);
+  const initiale = p['Prénom'].charAt(0).toUpperCase();
+
+  container.innerHTML = `
+    <div class="fiche-top">
+      <div class="avatar">${initiale}</div>
+      <h2>${p['Prénom']}</h2>
+      <div class="date">🌱 Plantée le ${p['Date'] || '—'}</div>
+      ${engagé ? `<div><span class="badge-engagement">🌿 Engagement confirmé</span></div>` : ''}
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">🌺 Téléphone</div>
+        <div class="ic-value">${p['Téléphone'] || '—'}</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🌿 Ancienneté</div>
+        <div class="ic-value">${p['Ancienneté'] || '—'}</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">🕊️ Parcours</div>
+        <div class="ic-value">${p['Conversion'] || '—'}</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">📖 Sourates apprises</div>
+        <div class="ic-value big">${p['Sourates apprises'] || '—'}</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="emoji">📖</span> Relation au Coran</div>
+      <p>${p['Lecture Coran'] || '—'}</p>
+    </div>
+
+    ${pointsForts.length ? `
+    <div class="section">
+      <div class="section-title"><span class="emoji">🌼</span> Points forts</div>
+      <div class="tags">${pointsForts.map(t => `<span class="tag fort">${t}</span>`).join('')}</div>
+    </div>` : ''}
+
+    ${pointsFaibles.length ? `
+    <div class="section">
+      <div class="section-title"><span class="emoji">🌷</span> Graine à semer</div>
+      <div class="tags">${pointsFaibles.map(t => `<span class="tag faible">${t}</span>`).join('')}</div>
+    </div>` : ''}
+
+    ${p['Espoirs / attentes'] ? `
+    <div class="section">
+      <div class="section-title"><span class="emoji">🌻</span> Espoirs & attentes</div>
+      <p>${p['Espoirs / attentes']}</p>
+    </div>` : ''}
+
+    ${objectifs.length ? `
+    <div class="section">
+      <div class="section-title"><span class="emoji">🌺</span> Objectifs 2027</div>
+      <ul class="objectifs-list">
+        ${objectifs.map(o => `
+          <li><span class="obj-dot"></span><span>${o}</span></li>
+        `).join('')}
+      </ul>
+    </div>` : ''}
+
+    <div class="fiche-nav">
+      <button class="nav-arrow" onclick="goTo(${idx-1})" ${idx===0?'disabled':''}>← Précédente</button>
+      <span class="counter">${idx+1} / ${participants.length}</span>
+      <button class="nav-arrow" onclick="goTo(${idx+1})" ${idx===participants.length-1?'disabled':''}>Suivante →</button>
+    </div>
+  `;
+
+  document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+
+  container.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= participants.length) return;
+  renderFiche(idx);
+}
+
+async function loadData() {
+  try {
+    const res = await fetch(CSV_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    participants = parseCSV(text);
+
+    document.getElementById('loading').style.display = 'none';
+
+    if (!participants.length) {
+      document.getElementById('error-msg').textContent = '🌧️ Aucune participante trouvée.';
+      document.getElementById('error-msg').style.display = 'block';
+      return;
+    }
+
+    const navBar = document.getElementById('nav-bar');
+    navBar.style.display = 'flex';
+    participants.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'nav-btn';
+      btn.innerHTML = `🌸 ${p['Prénom']}`;
+      btn.onclick = () => goTo(i);
+      navBar.appendChild(btn);
+    });
+
+    renderFiche(0);
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error-msg').style.display = 'block';
+    console.error(e);
+  }
+}
+
+loadData();
+</script>
+</body>
+</html>

@@ -91,6 +91,13 @@
     color: var(--green); padding: 5px 14px; border-radius: 20px;
     font-size: 12.5px; font-weight: 600; margin-top: 10px;
   }
+  .badge-conditions {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--gold-pale); border: 1px solid rgba(201,145,58,0.35);
+    color: var(--gold); padding: 5px 14px; border-radius: 20px;
+    font-size: 12.5px; font-weight: 600; margin-top: 10px;
+  }
+  .badges-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 4px; }
   .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
   .info-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
   .info-card .ic-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 5px; }
@@ -211,6 +218,7 @@ function renderFiche(idx) {
   const p = participants[idx];
   const container = document.getElementById('fiche-container');
   const engagé = p['Engagement'] && p['Engagement'].toLowerCase().includes('oui');
+  const conditionsOk = p['Conditions acceptées'] && p['Conditions acceptées'].toLowerCase().includes('oui');
   const objectifs = parseObjectifs(p['Objectifs 2027']);
   const pointsForts = parseTags(p['Points forts']);
   const pointsFaibles = parseTags(p['Point faible']);
@@ -221,7 +229,10 @@ function renderFiche(idx) {
       <div class="avatar">${initiale}</div>
       <h2>${p['Prénom']}</h2>
       <div class="date">🌱 Plantée le ${p['Date'] || '—'}</div>
-      ${engagé ? `<div><span class="badge-engagement">🌿 Engagement confirmé</span></div>` : ''}
+      <div class="badges-row">
+        ${engagé ? `<span class="badge-engagement">🌿 Engagement confirmé</span>` : ''}
+        ${conditionsOk ? `<span class="badge-conditions">📜 Conditions acceptées</span>` : ''}
+      </div>
     </div>
 
     <div class="info-grid">

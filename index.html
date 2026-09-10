@@ -398,14 +398,15 @@
           <p>Si vous réalisez en lisant tout cela que vous n'êtes pas prête actuellement à suivre ce rythme, il n'y a aucun problème. Vous pouvez continuer à profiter du groupe général des Assises des Lumières, et revenir frapper à la porte du Jardin quand vous vous sentirez prête insha'Allah 🤍</p>
 
           <p>Qu'Allah nous accorde la sincérité, la discipline et la constance, et fasse de ce Jardin une cause de rapprochement vers Lui 🤍</p>
+
+          <label class="engagement-label" for="conditionsAcceptees" style="margin: 10px 0 0;">
+            <input type="checkbox" id="conditionsAcceptees" onchange="toggleSubmit()" />
+            <span>J'ai accepté les conditions du jardin</span>
+          </label>
         </div>
       </div>
-      <p class="conditions-hint">Merci de relire le texte ci-dessus avant de cocher la case.</p>
+      <p class="conditions-hint" id="conditions-hint">Déplie et lis les conditions ci-dessus avant de cocher la case.</p>
 
-      <label class="engagement-label" for="conditionsAcceptees" style="margin-bottom:0;">
-        <input type="checkbox" id="conditionsAcceptees" onchange="toggleSubmit()" />
-        <span>J'ai accepté les conditions du jardin</span>
-      </label>
       <div class="err" id="err-conditions" style="text-align:center; margin-top:8px;">Merci de confirmer que tu as lu et accepté les conditions du Jardin.</div>
     </div>
 

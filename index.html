@@ -174,6 +174,13 @@
   }
   .engagement-label em { font-style: italic; }
 
+  /* Case désactivée tant que le panneau n'est pas ouvert */
+  .engagement-label.locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .engagement-label.locked input { pointer-events: none; }
+
   .err-global { display: none; text-align: center; font-size: 13.5px; color: var(--error); margin-top: 10px; }
 
   .success {
@@ -213,9 +220,24 @@
   .conditions-text h3:first-child { margin-top: 12px; }
   .conditions-text p { margin: 0 0 8px; }
   .conditions-text ul { margin: 4px 0 8px; padding-left: 18px; }
+
+  /* Hint sous le panneau rétractable */
   .conditions-hint {
     font-size: 12px; color: var(--text-muted); text-align: center;
     margin: -4px 0 0.6rem; font-style: italic;
+    transition: color 0.3s;
+  }
+  .conditions-hint.unlocked {
+    color: var(--green);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* Séparateur visuel entre le texte et la case à cocher */
+  .conditions-checkbox-row {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 4px;
   }
 
   @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
@@ -288,7 +310,7 @@
       </div>
     </div>
 
-    <!-- NOUVELLE CARTE : Coran -->
+    <!-- Coran -->
     <div class="card c6">
       <p class="card-title"><span>📖</span> Ta relation au Coran</p>
 
@@ -352,13 +374,13 @@
       </div>
     </div>
 
-    <!-- NOUVELLE CARTE : Conditions du Jardin -->
+    <!-- Conditions du Jardin -->
     <div class="card c7">
       <p class="card-title"><span>📜</span> Conditions du Jardin</p>
 
       <div class="conditions-box">
         <button type="button" class="conditions-toggle" id="conditions-toggle-btn" onclick="toggleConditions()">
-          <span>🔎 Relire les conditions du Jardin des Lumières</span>
+          <span>🔎 Lire les conditions du Jardin des Lumières</span>
           <span class="chevron">▾</span>
         </button>
         <div class="conditions-text" id="conditions-text">
@@ -399,15 +421,21 @@
 
           <p>Qu'Allah nous accorde la sincérité, la discipline et la constance, et fasse de ce Jardin une cause de rapprochement vers Lui 🤍</p>
 
-          <label class="engagement-label" for="conditionsAcceptees" style="margin: 10px 0 0;">
-            <input type="checkbox" id="conditionsAcceptees" onchange="toggleSubmit()" />
-            <span>J'ai accepté les conditions du jardin</span>
-          </label>
+          <!-- Case à cocher : visible uniquement après ouverture du panneau -->
+          <div class="conditions-checkbox-row">
+            <label class="engagement-label" id="conditions-label" for="conditionsAcceptees">
+              <input type="checkbox" id="conditionsAcceptees" onchange="toggleSubmit()" />
+              <span>J'ai lu et j'accepte les conditions du Jardin des Lumières</span>
+            </label>
+            <div class="err" id="err-conditions" style="text-align:center; margin-top:4px;">Merci de confirmer que tu as lu et accepté les conditions du Jardin.</div>
+          </div>
         </div>
       </div>
-      <p class="conditions-hint" id="conditions-hint">Déplie et lis les conditions ci-dessus avant de cocher la case.</p>
 
-      <div class="err" id="err-conditions" style="text-align:center; margin-top:8px;">Merci de confirmer que tu as lu et accepté les conditions du Jardin.</div>
+      <!-- Message d'invite tant que le panneau est fermé -->
+      <p class="conditions-hint" id="conditions-hint">
+        ☝️ Déplie et lis les conditions ci-dessus pour pouvoir cocher la case.
+      </p>
     </div>
 
     <label class="engagement-label" for="engagement">
@@ -433,8 +461,10 @@
 </div>
 
 <script>
-  // ⚙️ Remplace par ton URL Apps Script (doit finir par /exec)
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylTVyw9v8vs2TPv0DipTWZ24zoCvpUJRHB8-BIRc-hvaKb6cfvtx1ODTsNVP_Lvql9/exec';
+
+  // Suit si le panneau a déjà été ouvert au moins une fois
+  let conditionsOpened = false;
 
   function show(id, visible) {
     document.getElementById(id).style.display = visible ? 'block' : 'none';
@@ -448,18 +478,26 @@
   }
 
   function toggleConditions() {
-    const txt = document.getElementById('conditions-text');
-    const btn = document.getElementById('conditions-toggle-btn');
+    const txt   = document.getElementById('conditions-text');
+    const btn   = document.getElementById('conditions-toggle-btn');
+    const hint  = document.getElementById('conditions-hint');
     const willOpen = !txt.classList.contains('open');
+
     txt.classList.toggle('open', willOpen);
     btn.classList.toggle('open', willOpen);
+
+    // Dès la première ouverture, on déverrouille la case
+    if (willOpen && !conditionsOpened) {
+      conditionsOpened = true;
+      btn.querySelector('span:first-child').textContent = '🔎 Relire les conditions du Jardin des Lumières';
+      hint.textContent  = '✅ Tu peux maintenant cocher la case ci-dessus.';
+      hint.classList.add('unlocked');
+    }
   }
 
   function toggleSubmit() {
-    const checked = document.getElementById('engagement').checked;
-    if (checked) show('err-engagement', false);
-    const conditions = document.getElementById('conditionsAcceptees').checked;
-    if (conditions) show('err-conditions', false);
+    if (document.getElementById('engagement').checked)          show('err-engagement', false);
+    if (document.getElementById('conditionsAcceptees').checked) show('err-conditions', false);
   }
 
   function getSelectedRadio(name) {
@@ -477,21 +515,44 @@
     const sourates            = document.getElementById('sourates').value.trim();
     const forts               = document.getElementById('forts').value.trim();
     const faible              = document.getElementById('faible').value.trim();
-    const envies               = document.getElementById('envies').value.trim();
+    const envies              = document.getElementById('envies').value.trim();
     const objectifs           = document.getElementById('objectifs').value.trim();
     const conditionsAcceptees = document.getElementById('conditionsAcceptees').checked;
     const engagement          = document.getElementById('engagement').checked;
 
     let ok = true;
-    if (!prenom)              { show('err-prenom', true);     ok = false; } else show('err-prenom', false);
-    if (!tel)                 { show('err-tel', true);        ok = false; } else show('err-tel', false);
-    if (!converti)            { show('err-converti', true);   ok = false; } else show('err-converti', false);
-    if (!lectureCoran)        { show('err-coran', true);      ok = false; } else show('err-coran', false);
-    if (!faible)              { show('err-faible', true);     ok = false; } else show('err-faible', false);
-    if (!envies)              { show('err-envies', true);     ok = false; } else show('err-envies', false);
-    if (!objectifs)           { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
-    if (!conditionsAcceptees) { show('err-conditions', true); ok = false; } else show('err-conditions', false);
-    if (!engagement)          { show('err-engagement', true); ok = false; } else show('err-engagement', false);
+    if (!prenom)    { show('err-prenom', true);    ok = false; } else show('err-prenom', false);
+    if (!tel)       { show('err-tel', true);        ok = false; } else show('err-tel', false);
+    if (!converti)  { show('err-converti', true);   ok = false; } else show('err-converti', false);
+    if (!lectureCoran) { show('err-coran', true);   ok = false; } else show('err-coran', false);
+    if (!faible)    { show('err-faible', true);     ok = false; } else show('err-faible', false);
+    if (!envies)    { show('err-envies', true);     ok = false; } else show('err-envies', false);
+    if (!objectifs) { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
+
+    // Validation conditions : doit avoir ouvert le panneau ET coché
+    if (!conditionsOpened || !conditionsAcceptees) {
+      show('err-conditions', true);
+      // Si le panneau n'a pas été ouvert, on l'ouvre et on scrolle dessus
+      if (!conditionsOpened) {
+        const txt = document.getElementById('conditions-text');
+        const btn = document.getElementById('conditions-toggle-btn');
+        if (!txt.classList.contains('open')) {
+          txt.classList.add('open');
+          btn.classList.add('open');
+          conditionsOpened = true;
+          btn.querySelector('span:first-child').textContent = '🔎 Relire les conditions du Jardin des Lumières';
+          const hint = document.getElementById('conditions-hint');
+          hint.textContent = '✅ Tu peux maintenant cocher la case ci-dessus.';
+          hint.classList.add('unlocked');
+        }
+      }
+      document.getElementById('conditions-text').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      ok = false;
+    } else {
+      show('err-conditions', false);
+    }
+
+    if (!engagement) { show('err-engagement', true); ok = false; } else show('err-engagement', false);
     if (!ok) return;
 
     const btn = document.getElementById('submit-btn');

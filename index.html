@@ -77,6 +77,7 @@
   .card.c4::before { background: linear-gradient(90deg, #d8c4e8, #e8c4d8); }
   .card.c5::before { background: linear-gradient(90deg, #f2e8a8, #e8d4c4); }
   .card.c6::before { background: linear-gradient(90deg, #c4e0d8, #a8d4c4); }
+  .card.c7::before { background: linear-gradient(90deg, #b45e2f, #e8c4d8); }
 
   .card-title {
     font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600;
@@ -185,6 +186,37 @@
     font-weight: 400; color: var(--text); margin: 0 0 0.5rem;
   }
   .success p { color: var(--text-muted); font-size: 15px; margin: 0; }
+
+  /* --- Conditions du Jardin --- */
+  .conditions-box {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 1rem; overflow: hidden;
+  }
+  .conditions-toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; padding: 12px 14px; background: transparent; border: none;
+    cursor: pointer; font-family: 'Lato', sans-serif; font-size: 15px;
+    font-weight: 700; color: var(--green-dark); text-align: left;
+  }
+  .conditions-toggle .chevron { transition: transform 0.2s; font-size: 13px; }
+  .conditions-toggle.open .chevron { transform: rotate(180deg); }
+  .conditions-text {
+    display: none; max-height: 320px; overflow-y: auto;
+    padding: 0 16px 16px; font-size: 13.5px; line-height: 1.7;
+    color: var(--text); border-top: 1px solid var(--border);
+  }
+  .conditions-text.open { display: block; }
+  .conditions-text h3 {
+    font-family: 'Playfair Display', serif; font-weight: 600;
+    font-size: 14.5px; margin: 14px 0 4px;
+  }
+  .conditions-text h3:first-child { margin-top: 12px; }
+  .conditions-text p { margin: 0 0 8px; }
+  .conditions-text ul { margin: 4px 0 8px; padding-left: 18px; }
+  .conditions-hint {
+    font-size: 12px; color: var(--text-muted); text-align: center;
+    margin: -4px 0 0.6rem; font-style: italic;
+  }
 
   @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
 </style>
@@ -320,6 +352,63 @@
       </div>
     </div>
 
+    <!-- NOUVELLE CARTE : Conditions du Jardin -->
+    <div class="card c7">
+      <p class="card-title"><span>📜</span> Conditions du Jardin</p>
+
+      <div class="conditions-box">
+        <button type="button" class="conditions-toggle" id="conditions-toggle-btn" onclick="toggleConditions()">
+          <span>🔎 Relire les conditions du Jardin des Lumières</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="conditions-text" id="conditions-text">
+          <p>Salam aleykunna les filles 🤍</p>
+          <p>Rejoindre Le Jardin des Lumières, ce n'est pas simplement intégrer un groupe WhatsApp supplémentaire. C'est choisir de s'engager dans un cheminement régulier, de prendre les assises au sérieux et de faire les efforts nécessaires pour que ce que nous apprenons ait un véritable impact dans nos vies.</p>
+          <p>Pour que ce nouveau format fonctionne et soit bénéfique à toutes, voici les engagements que nous demandons à chaque sœur du Jardin :</p>
+
+          <h3>1. Être assidue aux assises</h3>
+          <p>Les assises ont lieu chaque semaine et votre présence est importante, qu'elles soient proposées à distance ou en présentiel. Lorsque du présentiel est organisé, les sœurs d'Île-de-France sont fortement encouragées à venir sur place à la mosquée de Chevilly autant que possible. Un empêchement réel peut arriver : il faudra simplement prévenir.</p>
+          <p>En revanche : 2 absences consécutives sans motif recevable, ou 2 absences non justifiées / motif non recevable sur une période de 3 mois, pourront entraîner votre sortie du Jardin. Ce n'est ni une punition ni quelque chose de définitif — vous pourrez demander à réintégrer le groupe insha'Allah 🤍</p>
+
+          <h3>2. Être à l'heure</h3>
+          <p>Au-delà de 10 minutes de retard, l'accès à l'assise pourra vous être refusé (en présentiel, les portes seront fermées 10 min après le démarrage). Être ponctuelle fait partie de l'engagement pris envers Allah, envers la personne en charge de l'assise et envers toutes les sœurs présentes.</p>
+
+          <h3>3. Ne pas seulement assister : apprendre</h3>
+          <p>Pendant l'assise, il vous est demandé d'être réellement dans l'écoute, de prendre des notes si cela vous aide, et de participer aux échanges ou exercices proposés. Il sera attendu de revenir sur le cours après l'assise, de le relire, l'apprendre et de réviser avant la suivante. Le but : être actrice, pas simple spectatrice.</p>
+
+          <h3>4. Mettre en pratique</h3>
+          <p>Des exercices, devoirs, réflexions ou « graines de la semaine » pourront vous être proposés. Il est demandé de jouer le jeu et d'essayer sincèrement de mettre en pratique ce qui est étudié. Il ne s'agit pas d'être parfaite, il s'agit de faire l'effort.</p>
+
+          <h3>5. Être active dans le groupe</h3>
+          <p>Lorsqu'un message important, un rappel ou une consigne est envoyé, il vous sera demandé de réagir au minimum (🤍, 👍, ✅, 🌱…) afin que l'on puisse constater que l'information a bien été prise en compte. Des sœurs actives, pas simplement présentes dans la liste.</p>
+
+          <h3>6. Respecter la fonction de chaque groupe</h3>
+          <ul>
+            <li>🌷 Jardin des Lumières → cours, graines de la semaine, échanges liés aux enseignements</li>
+            <li>🌻 Notes &amp; Dalils → notes de cours, références, dalils</li>
+            <li>✨ Assises des Lumières → échanges généraux, rappels, annonces</li>
+          </ul>
+
+          <h3>7. Préserver un bon comportement entre sœurs</h3>
+          <p>Respecter les autres sœurs et leur parole, ne pas couper ou monopoliser les échanges, préserver la confidentialité des partages personnels, éviter jugements et moqueries, privilégier le conseil avec douceur, et contribuer à une atmosphère qui nous aide toutes à avancer vers Allah.</p>
+
+          <h3>8. Valider son engagement</h3>
+          <p>Toutes les sœurs souhaitant continuer l'aventure au sein du Jardin des Lumières doivent remplir ce formulaire et confirmer avoir lu, compris et être prêtes à respecter ces règles.</p>
+
+          <p>Si vous réalisez en lisant tout cela que vous n'êtes pas prête actuellement à suivre ce rythme, il n'y a aucun problème. Vous pouvez continuer à profiter du groupe général des Assises des Lumières, et revenir frapper à la porte du Jardin quand vous vous sentirez prête insha'Allah 🤍</p>
+
+          <p>Qu'Allah nous accorde la sincérité, la discipline et la constance, et fasse de ce Jardin une cause de rapprochement vers Lui 🤍</p>
+        </div>
+      </div>
+      <p class="conditions-hint">Merci de relire le texte ci-dessus avant de cocher la case.</p>
+
+      <label class="engagement-label" for="conditionsAcceptees" style="margin-bottom:0;">
+        <input type="checkbox" id="conditionsAcceptees" onchange="toggleSubmit()" />
+        <span>J'ai accepté les conditions du jardin</span>
+      </label>
+      <div class="err" id="err-conditions" style="text-align:center; margin-top:8px;">Merci de confirmer que tu as lu et accepté les conditions du Jardin.</div>
+    </div>
+
     <label class="engagement-label" for="engagement">
       <input type="checkbox" id="engagement" onchange="toggleSubmit()" />
       <span>Je m'engage à m'investir pleinement dans le <em>Jardin des lumières</em> 🌿</span>
@@ -357,9 +446,19 @@
     if (val !== 'Oui') document.getElementById('dureeConversion').value = '';
   }
 
+  function toggleConditions() {
+    const txt = document.getElementById('conditions-text');
+    const btn = document.getElementById('conditions-toggle-btn');
+    const willOpen = !txt.classList.contains('open');
+    txt.classList.toggle('open', willOpen);
+    btn.classList.toggle('open', willOpen);
+  }
+
   function toggleSubmit() {
     const checked = document.getElementById('engagement').checked;
     if (checked) show('err-engagement', false);
+    const conditions = document.getElementById('conditionsAcceptees').checked;
+    if (conditions) show('err-conditions', false);
   }
 
   function getSelectedRadio(name) {
@@ -368,28 +467,30 @@
   }
 
   async function handleSubmit() {
-    const prenom          = document.getElementById('prenom').value.trim();
-    const tel             = document.getElementById('tel').value.trim();
-    const anciennete      = document.getElementById('anciennete').value;
-    const converti        = document.getElementById('converti').value;
-    const dureeConversion = document.getElementById('dureeConversion').value;
-    const lectureCoran    = getSelectedRadio('lectureCoran');
-    const sourates        = document.getElementById('sourates').value.trim();
-    const forts           = document.getElementById('forts').value.trim();
-    const faible          = document.getElementById('faible').value.trim();
-    const envies          = document.getElementById('envies').value.trim();
-    const objectifs       = document.getElementById('objectifs').value.trim();
-    const engagement      = document.getElementById('engagement').checked;
+    const prenom              = document.getElementById('prenom').value.trim();
+    const tel                 = document.getElementById('tel').value.trim();
+    const anciennete          = document.getElementById('anciennete').value;
+    const converti            = document.getElementById('converti').value;
+    const dureeConversion     = document.getElementById('dureeConversion').value;
+    const lectureCoran        = getSelectedRadio('lectureCoran');
+    const sourates            = document.getElementById('sourates').value.trim();
+    const forts               = document.getElementById('forts').value.trim();
+    const faible              = document.getElementById('faible').value.trim();
+    const envies               = document.getElementById('envies').value.trim();
+    const objectifs           = document.getElementById('objectifs').value.trim();
+    const conditionsAcceptees = document.getElementById('conditionsAcceptees').checked;
+    const engagement          = document.getElementById('engagement').checked;
 
     let ok = true;
-    if (!prenom)       { show('err-prenom', true);    ok = false; } else show('err-prenom', false);
-    if (!tel)          { show('err-tel', true);        ok = false; } else show('err-tel', false);
-    if (!converti)     { show('err-converti', true);   ok = false; } else show('err-converti', false);
-    if (!lectureCoran) { show('err-coran', true);      ok = false; } else show('err-coran', false);
-    if (!faible)       { show('err-faible', true);     ok = false; } else show('err-faible', false);
-    if (!envies)       { show('err-envies', true);     ok = false; } else show('err-envies', false);
-    if (!objectifs)    { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
-    if (!engagement)   { show('err-engagement', true); ok = false; } else show('err-engagement', false);
+    if (!prenom)              { show('err-prenom', true);     ok = false; } else show('err-prenom', false);
+    if (!tel)                 { show('err-tel', true);        ok = false; } else show('err-tel', false);
+    if (!converti)            { show('err-converti', true);   ok = false; } else show('err-converti', false);
+    if (!lectureCoran)        { show('err-coran', true);      ok = false; } else show('err-coran', false);
+    if (!faible)              { show('err-faible', true);     ok = false; } else show('err-faible', false);
+    if (!envies)              { show('err-envies', true);     ok = false; } else show('err-envies', false);
+    if (!objectifs)           { show('err-objectifs', true);  ok = false; } else show('err-objectifs', false);
+    if (!conditionsAcceptees) { show('err-conditions', true); ok = false; } else show('err-conditions', false);
+    if (!engagement)          { show('err-engagement', true); ok = false; } else show('err-engagement', false);
     if (!ok) return;
 
     const btn = document.getElementById('submit-btn');
@@ -402,18 +503,19 @@
     if (converti === 'Oui' && dureeConversion) conversionInfo += ` — ${dureeConversion}`;
 
     const payload = {
-      date:          new Date().toLocaleDateString('fr-FR'),
+      date:                new Date().toLocaleDateString('fr-FR'),
       prenom,
       tel,
-      anciennete:    anciennete || 'Non renseigné',
-      conversion:    conversionInfo || 'Non renseigné',
+      anciennete:          anciennete || 'Non renseigné',
+      conversion:          conversionInfo || 'Non renseigné',
       lectureCoran,
-      sourates:      sourates || 'Non renseigné',
-      forts:         forts || 'Non renseigné',
+      sourates:            sourates || 'Non renseigné',
+      forts:               forts || 'Non renseigné',
       faible,
       envies,
       objectifs,
-      engagement:    "Oui — Je m'engage à m'investir pleinement"
+      conditionsAcceptees: "Oui — J'ai accepté les conditions du jardin",
+      engagement:          "Oui — Je m'engage à m'investir pleinement"
     };
 
     try {

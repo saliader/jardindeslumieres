@@ -54,18 +54,72 @@
   #loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
   .spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── NAV BAR ── */
   #nav-bar {
-    display: none; flex-wrap: wrap; gap: 10px; padding: 20px 24px;
-    justify-content: center; background: var(--white); border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 10;
+    display: none;
+    padding: 12px 16px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
+
+  /* Select mobile */
+  #nav-select {
+    display: none;
+    width: 100%;
+    padding: 9px 36px 9px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 40px;
+    background-color: var(--bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a7a6a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* Boutons desktop scrollables */
+  #nav-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  #nav-buttons::-webkit-scrollbar { display: none; }
+
   .nav-btn {
-    background: var(--bg); border: 1.5px solid var(--border); color: var(--text-muted);
-    padding: 7px 18px; border-radius: 40px; font-family: 'Nunito', sans-serif;
-    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    flex-shrink: 0;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+    padding: 7px 16px;
+    border-radius: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
   }
   .nav-btn:hover { border-color: var(--green-light); color: var(--green); background: var(--green-pale); }
   .nav-btn.active { background: var(--green); color: white; border-color: var(--green); font-weight: 600; }
+
+  /* Sur mobile : select à la place des boutons */
+  @media (max-width: 540px) {
+    #nav-select { display: block; }
+    #nav-buttons { display: none; }
+  }
+
   #fiche-container { max-width: 680px; margin: 0 auto; padding: 36px 20px 72px; display: none; }
   .fiche-top {
     background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
@@ -139,7 +193,10 @@
 
 <div id="loading"><div class="spinner"></div>Chargement des fleurs…</div>
 <div id="error-msg">🌧️ Impossible de charger les données.</div>
-<div id="nav-bar"></div>
+<div id="nav-bar">
+  <select id="nav-select"></select>
+  <div id="nav-buttons"></div>
+</div>
 <div id="fiche-container"></div>
 
 <script>
@@ -148,7 +205,6 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nz
 let participants = [];
 let current = 0;
 
-// Parser CSV robuste qui gère les retours à la ligne dans les cellules
 function parseCSV(text) {
   const records = [];
   let headers = null;
@@ -158,27 +214,24 @@ function parseCSV(text) {
     const fields = [];
     while (i < text.length) {
       if (text[i] === '"') {
-        // Champ entre guillemets
-        i++; // skip opening quote
+        i++;
         let field = '';
         while (i < text.length) {
           if (text[i] === '"') {
-            if (text[i+1] === '"') { field += '"'; i += 2; } // guillemet échappé
-            else { i++; break; } // guillemet fermant
+            if (text[i+1] === '"') { field += '"'; i += 2; }
+            else { i++; break; }
           } else {
             field += text[i++];
           }
         }
         fields.push(field.trim());
       } else {
-        // Champ sans guillemets
         let field = '';
         while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
           field += text[i++];
         }
         fields.push(field.trim());
       }
-      // après chaque champ : virgule = suivant, \r\n ou \n = fin de ligne
       if (i < text.length && text[i] === ',') { i++; continue; }
       if (i < text.length && (text[i] === '\n' || text[i] === '\r')) {
         if (text[i] === '\r' && text[i+1] === '\n') i++;
@@ -292,7 +345,12 @@ function renderFiche(idx) {
     </div>
   `;
 
+  // Sync boutons desktop
   document.querySelectorAll('.nav-btn').forEach((btn, i) => btn.classList.toggle('active', i === idx));
+  // Sync select mobile
+  const sel = document.getElementById('nav-select');
+  if (sel) sel.value = idx;
+
   container.style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -316,14 +374,27 @@ async function loadData() {
     }
 
     const navBar = document.getElementById('nav-bar');
-    navBar.style.display = 'flex';
+    navBar.style.display = 'block';
+
+    const sel = document.getElementById('nav-select');
+    const btnsDiv = document.getElementById('nav-buttons');
+
     participants.forEach((p, i) => {
+      // Option pour le select mobile
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = '🌸 ' + p['Prénom'];
+      sel.appendChild(opt);
+
+      // Bouton pour desktop
       const btn = document.createElement('button');
       btn.className = 'nav-btn';
       btn.innerHTML = `🌸 ${p['Prénom']}`;
       btn.onclick = () => goTo(i);
-      navBar.appendChild(btn);
+      btnsDiv.appendChild(btn);
     });
+
+    sel.onchange = () => goTo(parseInt(sel.value));
 
     renderFiche(0);
   } catch (e) {

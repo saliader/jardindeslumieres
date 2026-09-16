@@ -58,67 +58,87 @@
   /* ── NAV BAR ── */
   #nav-bar {
     display: none;
-    padding: 12px 16px;
+    padding: 14px 20px;
     background: var(--white);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 10;
+    box-shadow: 0 2px 8px rgba(74,124,89,0.06);
   }
 
-  /* Select mobile */
+  .nav-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Label icône fleur */
+  .nav-flower-label {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Select stylisé — identique mobile/desktop */
   #nav-select {
-    display: none;
-    width: 100%;
-    padding: 9px 36px 9px 16px;
+    flex: 1;
+    padding: 10px 40px 10px 16px;
     border: 1.5px solid var(--border);
     border-radius: 40px;
     background-color: var(--bg);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a7a6a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     font-family: 'Nunito', sans-serif;
     font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
+    font-weight: 600;
+    color: var(--green);
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-
-  /* Boutons desktop scrollables */
-  #nav-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-    scrollbar-width: none;
+  #nav-select:focus {
+    outline: none;
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 3px rgba(74,124,89,0.12);
   }
-  #nav-buttons::-webkit-scrollbar { display: none; }
+  #nav-select:hover { border-color: var(--green-light); }
 
-  .nav-btn {
+  /* Badge compteur total */
+  #nav-counter {
     flex-shrink: 0;
-    background: var(--bg);
-    border: 1.5px solid var(--border);
-    color: var(--text-muted);
-    padding: 7px 16px;
+    background: var(--green-pale);
+    border: 1.5px solid rgba(74,124,89,0.25);
+    color: var(--green);
+    padding: 6px 14px;
     border-radius: 40px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 700;
     white-space: nowrap;
   }
-  .nav-btn:hover { border-color: var(--green-light); color: var(--green); background: var(--green-pale); }
-  .nav-btn.active { background: var(--green); color: white; border-color: var(--green); font-weight: 600; }
 
-  /* Sur mobile : select à la place des boutons */
-  @media (max-width: 540px) {
-    #nav-select { display: block; }
-    #nav-buttons { display: none; }
+  /* Flèches navigation compactes */
+  .nav-arrow-mini {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: 'Nunito', sans-serif;
   }
+  .nav-arrow-mini:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
+  .nav-arrow-mini:disabled { opacity: 0.3; cursor: default; }
 
   #fiche-container { max-width: 680px; margin: 0 auto; padding: 36px 20px 72px; display: none; }
   .fiche-top {
@@ -167,6 +187,8 @@
   .objectifs-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .objectifs-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--text); }
   .obj-dot { flex-shrink: 0; margin-top: 8px; width: 8px; height: 8px; background: var(--green-light); border-radius: 50%; }
+
+  /* Pagination en bas de fiche — gardée pour mobile */
   .fiche-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
   .nav-arrow {
     background: var(--white); border: 1.5px solid var(--border); color: var(--text-muted);
@@ -193,10 +215,18 @@
 
 <div id="loading"><div class="spinner"></div>Chargement des fleurs…</div>
 <div id="error-msg">🌧️ Impossible de charger les données.</div>
+
+<!-- NAV BAR : select + compteur + flèches -->
 <div id="nav-bar">
-  <select id="nav-select"></select>
-  <div id="nav-buttons"></div>
+  <div class="nav-inner">
+    <span class="nav-flower-label">🌸</span>
+    <button class="nav-arrow-mini" id="btn-prev" onclick="goTo(current-1)" disabled>‹</button>
+    <select id="nav-select"></select>
+    <button class="nav-arrow-mini" id="btn-next" onclick="goTo(current+1)" disabled>›</button>
+    <span id="nav-counter">0 sœurs</span>
+  </div>
 </div>
+
 <div id="fiche-container"></div>
 
 <script>
@@ -345,11 +375,13 @@ function renderFiche(idx) {
     </div>
   `;
 
-  // Sync boutons desktop
-  document.querySelectorAll('.nav-btn').forEach((btn, i) => btn.classList.toggle('active', i === idx));
-  // Sync select mobile
+  // Sync select
   const sel = document.getElementById('nav-select');
   if (sel) sel.value = idx;
+
+  // Sync flèches nav bar
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = idx === participants.length - 1;
 
   container.style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -377,21 +409,16 @@ async function loadData() {
     navBar.style.display = 'block';
 
     const sel = document.getElementById('nav-select');
-    const btnsDiv = document.getElementById('nav-buttons');
+    const counter = document.getElementById('nav-counter');
+
+    // Compteur total
+    counter.textContent = participants.length + ' sœur' + (participants.length > 1 ? 's' : '');
 
     participants.forEach((p, i) => {
-      // Option pour le select mobile
       const opt = document.createElement('option');
       opt.value = i;
       opt.textContent = '🌸 ' + p['Prénom'];
       sel.appendChild(opt);
-
-      // Bouton pour desktop
-      const btn = document.createElement('button');
-      btn.className = 'nav-btn';
-      btn.innerHTML = `🌸 ${p['Prénom']}`;
-      btn.onclick = () => goTo(i);
-      btnsDiv.appendChild(btn);
     });
 
     sel.onchange = () => goTo(parseInt(sel.value));

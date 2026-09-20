@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta property="og:title" content="Jardin des Lumières 2026 — Suivi des sœurs" />
+<meta property="og:description" content="Suivi hebdomadaire · Assiduité · Graine · Objectifs · Binôme" />
+<meta property="og:image" content="https://saliader.github.io/jardindeslumieres/preview2.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://saliader.github.io/jardindeslumieres/suivi.html" />
+<meta property="og:type" content="website" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jardin des Lumières 2026 — Suivi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fdf8f2;
+  --bg2: #fef5ec;
+  --green: #4a7c59;
+  --green-light: #7aab88;
+  --green-pale: #e8f4ec;
+  --rose: #c97b8a;
+  --rose-pale: #fdeef1;
+  --gold: #c9913a;
+  --gold-pale: #fdf3e3;
+  --purple: #7b6fa0;
+  --purple-pale: #f0eef8;
+  --text: #3a3028;
+  --text-muted: #8a7a6a;
+  --border: #e2d8cc;
+  --white: #ffffff;
+  --radius: 18px;
+  --shadow: 0 4px 24px rgba(74,124,89,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-image:
+    radial-gradient(ellipse at 10% 10%, rgba(122,171,136,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%, rgba(201,145,58,0.08) 0%, transparent 50%);
+}
+
+/* ── HEADER ── */
+header {
+  text-align: center;
+  padding: 44px 24px 28px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(74,124,89,0.06);
+}
+.header-flowers { font-size: 22px; letter-spacing: 6px; margin-bottom: 10px; }
+header h1 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 5vw, 36px); font-weight: 600; color: var(--green); }
+header h1 em { font-style: italic; color: var(--rose); }
+.header-tagline { font-size: 13px; color: var(--text-muted); margin-top: 6px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+.header-nav-links { display: flex; justify-content: center; gap: 16px; margin-top: 14px; }
+.header-nav-links a {
+  font-size: 13px; font-weight: 600; color: var(--text-muted);
+  text-decoration: none; padding: 5px 14px;
+  border: 1.5px solid var(--border); border-radius: 20px;
+  transition: all 0.2s;
+}
+.header-nav-links a:hover, .header-nav-links a.active {
+  color: var(--green); border-color: var(--green); background: var(--green-pale);
+}
+
+/* ── STATES ── */
+#loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
+.spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#error-msg { text-align: center; padding: 60px 24px; color: var(--rose); display: none; }
+#empty-msg { text-align: center; padding: 80px 24px; color: var(--text-muted); display: none; font-size: 15px; line-height: 1.8; }
+
+/* ── NAV BAR ── */
+#nav-bar {
+  display: none;
+  padding: 12px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(74,124,89,0.06);
+}
+.nav-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 10px; }
+.nav-flower-label { font-size: 18px; flex-shrink: 0; }
+#nav-select {
+  flex: 1;
+  padding: 10px 40px 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 40px;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--green);
+  cursor: pointer; appearance: none; -webkit-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#nav-select:focus { outline: none; border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(74,124,89,0.12); }
+#nav-counter { flex-shrink: 0; background: var(--green-pale); border: 1.5px solid rgba(74,124,89,0.25); color: var(--green); padding: 6px 14px; border-radius: 40px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.nav-arrow-mini { flex-shrink: 0; width: 36px; height: 36px; border: 1.5px solid var(--border); border-radius: 50%; background: var(--white); color: var(--text-muted); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.nav-arrow-mini:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
+.nav-arrow-mini:disabled { opacity: 0.3; cursor: default; }
+
+/* ── CONTAINER ── */
+#suivi-container { max-width: 720px; margin: 0 auto; padding: 32px 20px 72px; display: none; }
+
+/* ── EN-TÊTE SŒUR ── */
+.soeur-header {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px 28px 20px; margin-bottom: 20px; box-shadow: var(--shadow);
+  text-align: center; position: relative; overflow: hidden;
+}
+.soeur-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--green-light), var(--rose));
+}
+.avatar { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--green-pale), var(--rose-pale)); border: 2px solid var(--green-light); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 28px; color: var(--green); margin: 0 auto 12px; }
+.soeur-header h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--green); }
+.soeur-stats { display: flex; justify-content: center; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
+.stat-pill { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 18px; text-align: center; }
+.stat-pill .sp-val { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--green); }
+.stat-pill .sp-lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.3px; margin-top: 2px; }
+
+/* ── SEMAINES ── */
+.semaines-title { font-size: 13px; font-weight: 700; color: var(--green); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.semaine-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px 20px; margin-bottom: 12px; box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.semaine-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 16px 0 0 16px; }
+.semaine-card.priorite-rouge::before { background: #e05555; }
+.semaine-card.priorite-orange::before { background: #e0914a; }
+.semaine-card.priorite-jaune::before { background: #d4b84a; }
+.semaine-card.priorite-vert::before { background: var(--green); }
+.semaine-card.priorite-default::before { background: var(--border); }
+
+.semaine-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.semaine-date { font-weight: 700; color: var(--text); font-size: 15px; }
+.semaine-graine { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; }
+.semaine-badge { flex-shrink: 0; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.badge-present { background: var(--green-pale); color: var(--green); border: 1px solid rgba(74,124,89,0.25); }
+.badge-absent-excuse { background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(201,145,58,0.3); }
+.badge-absent { background: var(--rose-pale); color: var(--rose); border: 1px solid rgba(201,123,138,0.25); }
+.badge-retard { background: var(--purple-pale); color: var(--purple); border: 1px solid rgba(123,111,160,0.25); }
+
+.semaine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.mini-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.mini-card .mc-label { font-size: 10.5px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.3px; margin-bottom: 5px; }
+.mini-card .mc-val { font-size: 13.5px; color: var(--text); line-height: 1.4; font-weight: 500; }
+.mc-stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+
+.note-libre { background: var(--bg); border-left: 3px solid var(--green-light); border-radius: 0 10px 10px 0; padding: 10px 14px; font-size: 13.5px; line-height: 1.7; color: var(--text); white-space: pre-line; font-style: italic; }
+
+.actions-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.action-tag { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; background: var(--green-pale); color: var(--green); border: 1px solid rgba(74,124,89,0.2); }
+
+/* ── PAS DE SUIVI ── */
+.no-suivi { text-align: center; padding: 40px 24px; color: var(--text-muted); background: var(--white); border: 1px dashed var(--border); border-radius: var(--radius); }
+.no-suivi .ns-icon { font-size: 36px; margin-bottom: 12px; }
+
+/* ── NAV BAS DE PAGE ── */
+.fiche-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
+.nav-arrow { background: var(--white); border: 1.5px solid var(--border); color: var(--text-muted); padding: 10px 22px; border-radius: 40px; font-size: 14px; font-family: 'Nunito', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.nav-arrow:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
+.nav-arrow:disabled { opacity: 0.35; cursor: default; }
+.counter { font-size: 13px; color: var(--text-muted); }
+
+@media (max-width: 480px) {
+  .semaine-grid { grid-template-columns: 1fr 1fr; }
+  #suivi-container { padding: 20px 14px 60px; }
+  .soeur-stats { gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-flowers">🌸 🌿 🌼 🌿 🌸</div>
+  <h1>Jardin des <em>Lumières</em></h1>
+  <p class="header-tagline">Suivi hebdomadaire · 2026</p>
+  <div class="header-nav-links">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="fiches.html">🌸 Fiches</a>
+    <a href="suivi.html" class="active">📋 Suivi</a>
+  </div>
+</header>
+
+<div id="loading"><div class="spinner"></div>Chargement du suivi…</div>
+<div id="error-msg">🌧️ Impossible de charger les données de suivi.</div>
+<div id="empty-msg">
+  🌱<br><br>
+  Aucune donnée de suivi disponible pour le moment.<br>
+  Les réponses apparaîtront ici après le premier dimanche de suivi.
+</div>
+
+<div id="nav-bar">
+  <div class="nav-inner">
+    <span class="nav-flower-label">🌸</span>
+    <button class="nav-arrow-mini" id="btn-prev" onclick="goTo(current-1)" disabled>‹</button>
+    <select id="nav-select"></select>
+    <button class="nav-arrow-mini" id="btn-next" onclick="goTo(current+1)" disabled>›</button>
+    <span id="nav-counter">—</span>
+  </div>
+</div>
+
+<div id="suivi-container"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// ⚠️  REMPLACE L'URL ci-dessous par l'URL CSV de publication
+//     de l'onglet "🌸 Suivi hebdomadaire" de ton classeur.
+//
+//  Dans Google Sheets :
+//  Fichier > Partager > Publier sur le web
+//  → Sélectionner l'onglet "🌸 Suivi hebdomadaire"
+//  → Format : CSV → Publier → Copier le lien ici
+// ─────────────────────────────────────────────────────────────
+const SUIVI_CSV_URL = "REMPLACE_PAR_TON_URL_CSV_SUIVI";
+
+// ─── Colonnes du formulaire (dans l'ordre de réponse) ────────
+// Les intitulés exacts dépendent des questions du formulaire.
+// Cette carte fait la correspondance entre les noms de colonnes
+// du CSV (en-têtes Google Forms) et les clés utilisées ici.
+const COL = {
+  HORODATAGE:      "Horodatage",
+  DATE_SUIVI:      "Date du suivi (dimanche soir)",
+  GRAINE:          "🌱 Graine de la semaine",
+  GRAINE_RESUME:   "Résumé / intention de cette graine",
+  PRENOM:          "Prénom de la sœur",
+  BINOME:          "Prénom de son binôme",
+  PRESENCE:        "Présence à la séance de cette semaine",
+  ASSIDUITE:       "Assiduité générale ces dernières semaines",
+  GRAINE_MENTIONNEE: "A-t-elle mentionné la graine cette semaine ?",
+  GRAINE_SCORE:    "Niveau d'appropriation de la graine (ce que tu as observé)",
+  GRAINE_DETAIL:   "Ce qu'elle a dit ou fait en lien avec la graine",
+  OBJECTIFS_AVANCEMENT: "Avancement global sur ses objectifs 2027",
+  OBJECTIFS_POINTS: "Points travaillés cette semaine (ce qu'elle a fait / mentionné)",
+  OBJECTIFS_DETAIL: "Ce qu'elle a partagé sur ses objectifs cette semaine",
+  BINOME_ETAT:     "Le binôme a-t-il fonctionné cette semaine ?",
+  BINOME_OBS:      "Observations sur la relation binôme",
+  MOTIVATION:      "Niveau de motivation observé cette semaine",
+  TENDANCE:        "Tendance par rapport aux semaines précédentes",
+  ETAT_GENERAL:    "État général de la sœur (bien-être apparent)",
+  SIGNAUX:         "Signaux particuliers observés (cocher si présents)",
+  PRIORITE:        "Priorité d'attention pour la semaine prochaine",
+  ACTIONS:         "Actions prévues pour la semaine prochaine",
+  NOTE:            "Note libre sur cette sœur cette semaine"
+};
+
+let allData = [];      // toutes les lignes du CSV
+let soeurs = [];       // liste unique des prénoms
+let dataParSoeur = {}; // { prenom: [lignes...] }
+let current = 0;
+
+// ─── Parsing CSV robuste ─────────────────────────────────────
+function parseCSV(text) {
+  const records = [];
+  let headers = null;
+  let i = 0;
+  function parseRecord() {
+    const fields = [];
+    while (i < text.length) {
+      if (text[i] === '"') {
+        i++;
+        let field = '';
+        while (i < text.length) {
+          if (text[i] === '"') {
+            if (text[i+1] === '"') { field += '"'; i += 2; }
+            else { i++; break; }
+          } else { field += text[i++]; }
+        }
+        fields.push(field.trim());
+      } else {
+        let field = '';
+        while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
+          field += text[i++];
+        }
+        fields.push(field.trim());
+      }
+      if (i < text.length && text[i] === ',') { i++; continue; }
+      if (i < text.length && (text[i] === '\n' || text[i] === '\r')) {
+        if (text[i] === '\r' && text[i+1] === '\n') i++;
+        i++;
+        break;
+      }
+      break;
+    }
+    return fields;
+  }
+  headers = parseRecord();
+  while (i < text.length) {
+    const values = parseRecord();
+    if (values.length === 0 || (values.length === 1 && values[0] === '')) continue;
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h.trim()] = (values[idx] || '').trim(); });
+    if (obj[COL.PRENOM] && obj[COL.PRENOM].trim()) records.push(obj);
+  }
+  return records;
+}
+
+// ─── Étoiles de motivation ───────────────────────────────────
+function stars(n) {
+  const v = parseInt(n) || 0;
+  if (!v) return '—';
+  return '★'.repeat(v) + '☆'.repeat(5 - v);
+}
+
+// ─── Classe de priorité ──────────────────────────────────────
+function prioriteClass(val) {
+  if (!val) return 'priorite-default';
+  if (val.includes('Urgent')) return 'priorite-rouge';
+  if (val.includes('levée') || val.includes('Élevée')) return 'priorite-orange';
+  if (val.includes('Normale')) return 'priorite-jaune';
+  if (val.includes('gère') || val.includes('Légère')) return 'priorite-vert';
+  return 'priorite-default';
+}
+
+// ─── Badge présence ──────────────────────────────────────────
+function presenceBadge(val) {
+  if (!val) return '';
+  if (val.includes('Présente') && !val.includes('retard')) return `<span class="semaine-badge badge-present">✅ Présente</span>`;
+  if (val.includes('retard')) return `<span class="semaine-badge badge-retard">🕐 En retard</span>`;
+  if (val.includes('excusée')) return `<span class="semaine-badge badge-absent-excuse">⚠️ Absente excusée</span>`;
+  if (val.includes('sans nouvelle')) return `<span class="semaine-badge badge-absent">❌ Absente</span>`;
+  return `<span class="semaine-badge badge-present">${val}</span>`;
+}
+
+// ─── Rendu de la vue d'une sœur ──────────────────────────────
+function renderSoeur(idx) {
+  current = idx;
+  const prenom = soeurs[idx];
+  const lignes = dataParSoeur[prenom] || [];
+
+  // Tri du plus récent au plus ancien
+  lignes.sort((a, b) => {
+    const da = new Date(a[COL.DATE_SUIVI] || a[COL.HORODATAGE] || 0);
+    const db = new Date(b[COL.DATE_SUIVI] || b[COL.HORODATAGE] || 0);
+    return db - da;
+  });
+
+  const nbSemaines = lignes.length;
+  const nbPresences = lignes.filter(l => l[COL.PRESENCE] && l[COL.PRESENCE].includes('Présente') && !l[COL.PRESENCE].includes('retard')).length;
+  const motivMoyenne = (() => {
+    const vals = lignes.map(l => parseInt(l[COL.MOTIVATION])).filter(v => v > 0);
+    if (!vals.length) return null;
+    return (vals.reduce((a,b) => a+b, 0) / vals.length).toFixed(1);
+  })();
+
+  // Binôme le plus récent
+  const binomeRecent = lignes.find(l => l[COL.BINOME])?.[ COL.BINOME] || '—';
+
+  const initiale = prenom.charAt(0).toUpperCase();
+
+  let html = `
+    <div class="soeur-header">
+      <div class="avatar">${initiale}</div>
+      <h2>${prenom}</h2>
+      <div class="soeur-stats">
+        <div class="stat-pill">
+          <div class="sp-val">${nbSemaines}</div>
+          <div class="sp-lbl">Semaines suivies</div>
+        </div>
+        <div class="stat-pill">
+          <div class="sp-val">${nbPresences}/${nbSemaines}</div>
+          <div class="sp-lbl">Présences</div>
+        </div>
+        ${motivMoyenne ? `<div class="stat-pill">
+          <div class="sp-val">${motivMoyenne}/5</div>
+          <div class="sp-lbl">Motivation moy.</div>
+        </div>` : ''}
+        <div class="stat-pill">
+          <div class="sp-val" style="font-size:15px;font-family:'Nunito'">${binomeRecent}</div>
+          <div class="sp-lbl">Binôme</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  if (!nbSemaines) {
+    html += `<div class="no-suivi"><div class="ns-icon">🌱</div>Pas encore de suivi enregistré pour cette sœur.</div>`;
+  } else {
+    html += `<div class="semaines-title">📋 Historique des semaines</div>`;
+    lignes.forEach(l => {
+      const dateAff = l[COL.DATE_SUIVI] || l[COL.HORODATAGE] || '—';
+      const actions = l[COL.ACTIONS] ? l[COL.ACTIONS].split(',').map(a => a.trim()).filter(Boolean) : [];
+
+      html += `<div class="semaine-card ${prioriteClass(l[COL.PRIORITE])}">
+        <div class="semaine-top">
+          <div>
+            <div class="semaine-date">📅 ${dateAff}</div>
+            ${l[COL.GRAINE] ? `<div class="semaine-graine">🌱 ${l[COL.GRAINE]}</div>` : ''}
+          </div>
+          ${presenceBadge(l[COL.PRESENCE])}
+        </div>
+
+        <div class="semaine-grid">
+          ${l[COL.ASSIDUITE] ? `<div class="mini-card">
+            <div class="mc-label">📊 Assiduité</div>
+            <div class="mc-val">${l[COL.ASSIDUITE].replace(/[🟢🟡🟠🔴⬜]/g,'').trim()}</div>
+          </div>` : ''}
+
+          ${l[COL.MOTIVATION] ? `<div class="mini-card">
+            <div class="mc-label">🔥 Motivation</div>
+            <div class="mc-val mc-stars">${stars(l[COL.MOTIVATION])}</div>
+          </div>` : ''}
+
+          ${l[COL.TENDANCE] ? `<div class="mini-card">
+            <div class="mc-label">📈 Tendance</div>
+            <div class="mc-val">${l[COL.TENDANCE]}</div>
+          </div>` : ''}
+
+          ${l[COL.ETAT_GENERAL] ? `<div class="mini-card">
+            <div class="mc-label">🌡️ État général</div>
+            <div class="mc-val">${l[COL.ETAT_GENERAL]}</div>
+          </div>` : ''}
+
+          ${l[COL.OBJECTIFS_AVANCEMENT] ? `<div class="mini-card">
+            <div class="mc-label">🎯 Objectifs</div>
+            <div class="mc-val">${l[COL.OBJECTIFS_AVANCEMENT]}</div>
+          </div>` : ''}
+
+          ${l[COL.BINOME_ETAT] ? `<div class="mini-card">
+            <div class="mc-label">🤝 Binôme</div>
+            <div class="mc-val">${l[COL.BINOME_ETAT]}</div>
+          </div>` : ''}
+
+          ${l[COL.GRAINE_SCORE] ? `<div class="mini-card">
+            <div class="mc-label">🌱 Graine reçue</div>
+            <div class="mc-val mc-stars">${stars(l[COL.GRAINE_SCORE])}</div>
+          </div>` : ''}
+
+          ${l[COL.PRIORITE] ? `<div class="mini-card">
+            <div class="mc-label">🎯 Priorité</div>
+            <div class="mc-val">${l[COL.PRIORITE]}</div>
+          </div>` : ''}
+        </div>
+
+        ${l[COL.OBJECTIFS_DETAIL] ? `<div class="note-libre" style="margin-bottom:8px">💬 ${l[COL.OBJECTIFS_DETAIL]}</div>` : ''}
+        ${l[COL.GRAINE_DETAIL] ? `<div class="note-libre" style="margin-bottom:8px;border-color:var(--green)">🌱 ${l[COL.GRAINE_DETAIL]}</div>` : ''}
+        ${l[COL.NOTE] ? `<div class="note-libre">📝 ${l[COL.NOTE]}</div>` : ''}
+
+        ${actions.length ? `<div class="actions-tags">${actions.map(a => `<span class="action-tag">${a.replace(/^[^—\-a-zA-ZÀ-ÿ0-9]*/, '')}</span>`).join('')}</div>` : ''}
+      </div>`;
+    });
+  }
+
+  html += `<div class="fiche-nav">
+    <button class="nav-arrow" onclick="goTo(${idx-1})" ${idx===0?'disabled':''}>← Précédente</button>
+    <span class="counter">${idx+1} / ${soeurs.length}</span>
+    <button class="nav-arrow" onclick="goTo(${idx+1})" ${idx===soeurs.length-1?'disabled':''}>Suivante →</button>
+  </div>`;
+
+  document.getElementById('suivi-container').innerHTML = html;
+
+  // Sync nav
+  const sel = document.getElementById('nav-select');
+  if (sel) sel.value = idx;
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = idx === soeurs.length - 1;
+
+  document.getElementById('suivi-container').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= soeurs.length) return;
+  renderSoeur(idx);
+}
+
+// ─── Chargement des données ───────────────────────────────────
+async function loadData() {
+  try {
+    if (SUIVI_CSV_URL === "REMPLACE_PAR_TON_URL_CSV_SUIVI") {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('empty-msg').innerHTML = `
+        ⚙️ Configuration requise<br><br>
+        Ouvre le fichier <code>suivi.html</code> et remplace<br>
+        <code>REMPLACE_PAR_TON_URL_CSV_SUIVI</code><br>
+        par l'URL CSV de publication de ton onglet<br>
+        <strong>🌸 Suivi hebdomadaire</strong>.
+      `;
+      document.getElementById('empty-msg').style.display = 'block';
+      return;
+    }
+
+    const res = await fetch(SUIVI_CSV_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    allData = parseCSV(text);
+
+    document.getElementById('loading').style.display = 'none';
+
+    if (!allData.length) {
+      document.getElementById('empty-msg').style.display = 'block';
+      return;
+    }
+
+    // Grouper par sœur
+    allData.forEach(l => {
+      const p = l[COL.PRENOM] || '';
+      if (!p) return;
+      if (!dataParSoeur[p]) { dataParSoeur[p] = []; soeurs.push(p); }
+      dataParSoeur[p].push(l);
+    });
+
+    // Trier les sœurs par ordre alphabétique
+    soeurs.sort();
+
+    // Construire le select
+    const navBar = document.getElementById('nav-bar');
+    navBar.style.display = 'block';
+    const sel = document.getElementById('nav-select');
+    const counter = document.getElementById('nav-counter');
+    counter.textContent = soeurs.length + ' sœur' + (soeurs.length > 1 ? 's' : '');
+    soeurs.forEach((p, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = '🌸 ' + p;
+      sel.appendChild(opt);
+    });
+    sel.onchange = () => goTo(parseInt(sel.value));
+
+    renderSoeur(0);
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error-msg').style.display = 'block';
+    console.error(e);
+  }
+}
+
+loadData();
+</script>
+
+</body>
+</html>

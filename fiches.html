@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta property="og:title" content="Jardin des Lumières 2026 — Fiches" />
+<meta property="og:title" content="Jardin des Lumières 2026 — Fiches" />
 <meta property="og:description" content="Consulte les fiches des sœurs du cercle · Plante · Sème · Récolte" />
 <meta property="og:image" content="https://saliader.github.io/jardindeslumieres/preview2.png" />
 <meta property="og:image:width" content="1200" />
@@ -9,200 +9,208 @@
 <meta property="og:url" content="https://saliader.github.io/jardindeslumieres/fiches.html" />
 <meta property="og:type" content="website" />
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Jardin des Lumières 2026 — Fiches</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #fdf8f2;
-    --bg2: #fef5ec;
-    --green: #4a7c59;
-    --green-light: #7aab88;
-    --green-pale: #e8f4ec;
-    --rose: #c97b8a;
-    --rose-pale: #fdeef1;
-    --gold: #c9913a;
-    --gold-pale: #fdf3e3;
-    --text: #3a3028;
-    --text-muted: #8a7a6a;
-    --border: #e2d8cc;
-    --white: #ffffff;
-    --radius: 18px;
-    --shadow: 0 4px 24px rgba(74,124,89,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse at 10% 10%, rgba(122,171,136,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 90%, rgba(201,145,58,0.08) 0%, transparent 50%);
-  }
-  header {
-    text-align: center;
-    padding: 44px 24px 28px;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(74,124,89,0.06);
-  }
-  .header-flowers { font-size: 22px; letter-spacing: 6px; margin-bottom: 10px; }
-  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 38px); font-weight: 600; color: var(--green); }
-  header h1 em { font-style: italic; color: var(--rose); }
-  .header-tagline { font-size: 13px; color: var(--text-muted); margin-top: 6px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
-  #loading { text-align: center; padding: 80px 24px; color: var(--text-muted); }
-  .spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+:root {
+  --bg:#fdf8f2; --bg2:#fef5ec;
+  --green:#4a7c59; --green-light:#7aab88; --green-pale:#e8f4ec;
+  --rose:#c97b8a; --rose-pale:#fdeef1;
+  --gold:#c9913a; --gold-pale:#fdf3e3;
+  --purple:#7b6fa0; --purple-pale:#f0eef8;
+  --red:#c94a4a; --red-pale:#fdeaea;
+  --text:#3a3028; --text-muted:#8a7a6a;
+  --border:#e2d8cc; --white:#ffffff;
+  --radius:18px; --shadow:0 4px 24px rgba(74,124,89,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  background-image:radial-gradient(ellipse at 10% 10%,rgba(122,171,136,0.12) 0%,transparent 50%),
+  radial-gradient(ellipse at 90% 90%,rgba(201,145,58,0.08) 0%,transparent 50%);}
 
-  /* ── NAV BAR ── */
-  #nav-bar {
-    display: none;
-    padding: 14px 20px;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(74,124,89,0.06);
-  }
+/* ── HEADER ── */
+header{text-align:center;padding:44px 24px 28px;background:var(--white);
+  border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(74,124,89,0.06);}
+.header-flowers{font-size:22px;letter-spacing:6px;margin-bottom:10px;}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,38px);font-weight:600;color:var(--green);}
+header h1 em{font-style:italic;color:var(--rose);}
+.header-tagline{font-size:13px;color:var(--text-muted);margin-top:6px;letter-spacing:2px;text-transform:uppercase;font-weight:300;}
 
-  .nav-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+/* ── NAV BAR ── */
+#nav-bar{display:none;padding:12px 20px;background:var(--white);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(74,124,89,0.06);}
+.nav-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:10px;}
+.nav-flower-label{font-size:18px;flex-shrink:0;}
+#nav-select{flex:1;padding:10px 40px 10px 16px;border:1.5px solid var(--border);border-radius:40px;
+  background-color:var(--bg);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;color:var(--green);
+  cursor:pointer;appearance:none;-webkit-appearance:none;}
+#nav-select:focus{outline:none;border-color:var(--green-light);box-shadow:0 0 0 3px rgba(74,124,89,0.12);}
+#nav-counter{flex-shrink:0;background:var(--green-pale);border:1.5px solid rgba(74,124,89,0.25);
+  color:var(--green);padding:6px 14px;border-radius:40px;font-size:13px;font-weight:700;white-space:nowrap;}
+.nav-arrow-mini{flex-shrink:0;width:36px;height:36px;border:1.5px solid var(--border);border-radius:50%;
+  background:var(--white);color:var(--text-muted);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.nav-arrow-mini:hover:not(:disabled){border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.nav-arrow-mini:disabled{opacity:.3;cursor:default;}
 
-  /* Label icône fleur */
-  .nav-flower-label {
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+/* ── CONTAINER ── */
+#fiche-container{max-width:720px;margin:0 auto;padding:32px 20px 72px;display:none;}
+#loading{text-align:center;padding:80px 24px;color:var(--text-muted);}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--green);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-  /* Select stylisé — identique mobile/desktop */
-  #nav-select {
-    flex: 1;
-    padding: 10px 40px 10px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 40px;
-    background-color: var(--bg);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    font-family: 'Nunito', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--green);
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  #nav-select:focus {
-    outline: none;
-    border-color: var(--green-light);
-    box-shadow: 0 0 0 3px rgba(74,124,89,0.12);
-  }
-  #nav-select:hover { border-color: var(--green-light); }
+/* ── FICHE TOP ── */
+.fiche-top{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 28px 22px;margin-bottom:16px;box-shadow:var(--shadow);
+  text-align:center;position:relative;overflow:hidden;}
+.fiche-top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--green),var(--green-light),var(--rose));}
+.avatar{width:74px;height:74px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green-pale),var(--rose-pale));
+  border:2px solid var(--green-light);display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:30px;color:var(--green);margin:0 auto 14px;}
+.fiche-top h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--green);}
+.fiche-top .date{font-size:13px;color:var(--text-muted);margin-top:4px;}
 
-  /* Badge compteur total */
-  #nav-counter {
-    flex-shrink: 0;
-    background: var(--green-pale);
-    border: 1.5px solid rgba(74,124,89,0.25);
-    color: var(--green);
-    padding: 6px 14px;
-    border-radius: 40px;
-    font-size: 13px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
+/* ── BADGES STATUT ── */
+.statut-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+.statut-badge{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;}
+.badge-vert{background:var(--green-pale);border:1.5px solid rgba(74,124,89,0.3);color:var(--green);}
+.badge-jaune{background:var(--gold-pale);border:1.5px solid rgba(201,145,58,0.35);color:var(--gold);}
+.badge-rouge{background:var(--red-pale);border:1.5px solid rgba(201,74,74,0.3);color:var(--red);}
+.badge-engagement{background:var(--green-pale);border:1px solid rgba(74,124,89,0.3);color:var(--green);
+  padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;}
+.badge-conditions{background:var(--gold-pale);border:1px solid rgba(201,145,58,0.35);color:var(--gold);
+  padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;}
+.badges-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:8px;}
 
-  /* Flèches navigation compactes */
-  .nav-arrow-mini {
-    flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid var(--border);
-    border-radius: 50%;
-    background: var(--white);
-    color: var(--text-muted);
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    font-family: 'Nunito', sans-serif;
-  }
-  .nav-arrow-mini:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
-  .nav-arrow-mini:disabled { opacity: 0.3; cursor: default; }
+/* ── SECTIONS PROFIL ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:16px 18px;box-shadow:var(--shadow);}
+.info-card .ic-label{font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.5px;margin-bottom:5px;}
+.info-card .ic-value{font-size:14.5px;color:var(--text);line-height:1.4;}
+.info-card .ic-value.big{font-family:'Playfair Display',serif;font-size:26px;color:var(--green);font-weight:600;}
+.section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px 24px;margin-bottom:14px;box-shadow:var(--shadow);}
+.section-title{font-size:13px;font-weight:700;color:var(--green);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;}
+.section p{font-size:14.5px;line-height:1.8;color:var(--text);white-space:pre-line;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{padding:5px 14px;border-radius:20px;font-size:13.5px;font-weight:500;}
+.tag.fort{background:var(--green-pale);border:1px solid rgba(74,124,89,0.25);color:var(--green);}
+.objectifs-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.objectifs-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;line-height:1.65;color:var(--text);}
+.obj-dot{flex-shrink:0;margin-top:8px;width:8px;height:8px;background:var(--green-light);border-radius:50%;}
 
-  #fiche-container { max-width: 680px; margin: 0 auto; padding: 36px 20px 72px; display: none; }
-  .fiche-top {
-    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 28px 28px 22px; margin-bottom: 16px; box-shadow: var(--shadow);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .fiche-top::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--green), var(--green-light), var(--rose));
-  }
-  .avatar {
-    width: 74px; height: 74px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--green-pale), var(--rose-pale));
-    border: 2px solid var(--green-light); display: flex; align-items: center;
-    justify-content: center; font-family: 'Playfair Display', serif;
-    font-size: 30px; color: var(--green); margin: 0 auto 14px;
-  }
-  .fiche-top h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--green); }
-  .fiche-top .date { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-  .badge-engagement {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: var(--green-pale); border: 1px solid rgba(74,124,89,0.3);
-    color: var(--green); padding: 5px 14px; border-radius: 20px;
-    font-size: 12.5px; font-weight: 600; margin-top: 10px;
-  }
-  .badge-conditions {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: var(--gold-pale); border: 1px solid rgba(201,145,58,0.35);
-    color: var(--gold); padding: 5px 14px; border-radius: 20px;
-    font-size: 12.5px; font-weight: 600; margin-top: 10px;
-  }
-  .badges-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 4px; }
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
-  .info-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
-  .info-card .ic-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 5px; }
-  .info-card .ic-value { font-size: 14.5px; color: var(--text); line-height: 1.4; }
-  .info-card .ic-value.big { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--green); font-weight: 600; }
-  .section { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); }
-  .section-title { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .section p { font-size: 14.5px; line-height: 1.8; color: var(--text); white-space: pre-line; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag { padding: 5px 14px; border-radius: 20px; font-size: 13.5px; font-weight: 500; }
-  .tag.fort { background: var(--green-pale); border: 1px solid rgba(74,124,89,0.25); color: var(--green); }
-  .tag.faible { background: var(--rose-pale); border: 1px solid rgba(201,123,138,0.25); color: var(--rose); }
-  .objectifs-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .objectifs-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--text); }
-  .obj-dot { flex-shrink: 0; margin-top: 8px; width: 8px; height: 8px; background: var(--green-light); border-radius: 50%; }
+/* ── SÉPARATEUR SUIVI ── */
+.suivi-header{display:flex;align-items:center;gap:12px;margin:28px 0 16px;}
+.suivi-header-line{flex:1;height:1px;background:var(--border);}
+.suivi-header-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--green);
+  font-style:italic;white-space:nowrap;}
 
-  /* Pagination en bas de fiche — gardée pour mobile */
-  .fiche-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; gap: 12px; }
-  .nav-arrow {
-    background: var(--white); border: 1.5px solid var(--border); color: var(--text-muted);
-    padding: 10px 22px; border-radius: 40px; font-size: 14px;
-    font-family: 'Nunito', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s;
-  }
-  .nav-arrow:hover:not(:disabled) { border-color: var(--green); color: var(--green); background: var(--green-pale); }
-  .nav-arrow:disabled { opacity: 0.35; cursor: default; }
-  .counter { font-size: 13px; color: var(--text-muted); }
-  #error-msg { text-align: center; padding: 60px 24px; color: var(--rose); display: none; }
-  @media (max-width: 480px) {
-    .info-grid { grid-template-columns: 1fr; }
-    #fiche-container { padding: 20px 14px 60px; }
-  }
+/* ── SEMAINE CARD ── */
+.semaine-card{background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:18px 20px;margin-bottom:12px;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;}
+.semaine-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:16px 0 0 16px;}
+.prio-rouge::before{background:var(--red);}
+.prio-orange::before{background:#e0914a;}
+.prio-jaune::before{background:#d4b84a;}
+.prio-vert::before{background:var(--green);}
+.prio-default::before{background:var(--border);}
+
+.semaine-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-bottom:14px;}
+.semaine-date{font-weight:700;color:var(--text);font-size:15px;}
+.semaine-graine{font-size:12.5px;color:var(--text-muted);margin-top:3px;}
+.presence-badge{flex-shrink:0;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+.pb-present{background:var(--green-pale);color:var(--green);border:1px solid rgba(74,124,89,0.25);}
+.pb-excuse{background:var(--gold-pale);color:var(--gold);border:1px solid rgba(201,145,58,0.3);}
+.pb-absent{background:var(--red-pale);color:var(--red);border:1px solid rgba(201,74,74,0.25);}
+.pb-retard{background:var(--purple-pale);color:var(--purple);border:1px solid rgba(123,111,160,0.25);}
+
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px;}
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.mini-card .mc-label{font-size:10px;color:var(--text-muted);font-weight:700;letter-spacing:.3px;margin-bottom:4px;}
+.mini-card .mc-val{font-size:13px;color:var(--text);line-height:1.4;font-weight:500;}
+.mc-stars{color:var(--gold);font-size:14px;letter-spacing:1px;}
+.note-libre{background:var(--bg);border-left:3px solid var(--green-light);border-radius:0 10px 10px 0;
+  padding:10px 14px;font-size:13.5px;line-height:1.7;color:var(--text);white-space:pre-line;font-style:italic;margin-top:8px;}
+.actions-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.action-tag{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;
+  background:var(--green-pale);color:var(--green);border:1px solid rgba(74,124,89,0.2);}
+
+/* ── BOUTON SAISIR SUIVI ── */
+.btn-saisir{width:100%;padding:16px;border:2px dashed var(--green-light);border-radius:var(--radius);
+  background:var(--green-pale);color:var(--green);font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;gap:10px;}
+.btn-saisir:hover{background:var(--green);color:var(--white);border-color:var(--green);}
+
+/* ── PANNEAU DE SAISIE ── */
+#panneau-saisie{display:none;background:var(--white);border:2px solid var(--green-light);
+  border-radius:var(--radius);padding:28px;margin-bottom:16px;box-shadow:var(--shadow);}
+#panneau-saisie h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--green);
+  margin-bottom:20px;text-align:center;}
+.form-section{margin-bottom:22px;}
+.form-section-title{font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--green-pale);}
+.form-group{margin-bottom:14px;}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.form-label span{font-weight:400;color:var(--text-muted);font-size:12px;}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);
+  border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);
+  background:var(--bg);transition:border-color .2s;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--green-light);
+  box-shadow:0 0 0 3px rgba(74,124,89,0.1);}
+.form-textarea{min-height:80px;resize:vertical;line-height:1.6;}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+.stars-input{display:flex;gap:8px;align-items:center;}
+.stars-input input[type=range]{flex:1;accent-color:var(--green);}
+.stars-val{font-size:16px;color:var(--gold);min-width:60px;text-align:right;font-weight:700;}
+.checkboxes{display:flex;flex-direction:column;gap:8px;}
+.checkbox-item{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;
+  border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;}
+.checkbox-item:hover{border-color:var(--green-light);background:var(--green-pale);}
+.checkbox-item input{margin-top:2px;accent-color:var(--green);flex-shrink:0;}
+.checkbox-item label{font-size:13.5px;cursor:pointer;line-height:1.4;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),var(--green-light));
+  color:var(--white);border:none;border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-submit:hover{opacity:.9;transform:translateY(-1px);}
+.btn-submit:disabled{opacity:.6;cursor:default;transform:none;}
+.btn-annuler{width:100%;padding:12px;background:transparent;color:var(--text-muted);
+  border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s;}
+.btn-annuler:hover{border-color:var(--rose);color:var(--rose);}
+.msg-succes{text-align:center;padding:20px;color:var(--green);font-weight:700;
+  background:var(--green-pale);border-radius:12px;margin-top:12px;display:none;}
+.msg-erreur{text-align:center;padding:12px;color:var(--red);font-size:13px;
+  background:var(--red-pale);border-radius:10px;margin-top:8px;display:none;}
+
+/* ── NAVIGATION BAS ── */
+.fiche-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px;}
+.nav-arrow{background:var(--white);border:1.5px solid var(--border);color:var(--text-muted);
+  padding:10px 22px;border-radius:40px;font-size:14px;font-family:'Nunito',sans-serif;
+  font-weight:500;cursor:pointer;transition:all .2s;}
+.nav-arrow:hover:not(:disabled){border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.nav-arrow:disabled{opacity:.35;cursor:default;}
+.counter{font-size:13px;color:var(--text-muted);}
+
+@media(max-width:480px){
+  .info-grid,.form-row{grid-template-columns:1fr;}
+  #fiche-container{padding:20px 14px 60px;}
+}
 </style>
 </head>
 <body>
@@ -214,9 +222,7 @@
 </header>
 
 <div id="loading"><div class="spinner"></div>Chargement des fleurs…</div>
-<div id="error-msg">🌧️ Impossible de charger les données.</div>
 
-<!-- NAV BAR : select + compteur + flèches -->
 <div id="nav-bar">
   <div class="nav-inner">
     <span class="nav-flower-label">🌸</span>
@@ -230,161 +236,453 @@
 <div id="fiche-container"></div>
 
 <script>
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
+// ─── CONFIG ──────────────────────────────────────────────────
+// Remplace par l'URL de déploiement de ton Web App Apps Script
+const WEBAPP_URL = "https://script.google.com/macros/library/d/1j5puHbbIefcpWfVHqcWSIYmKbvb0sCLwC6rxiytSEmybaxcrEXluq3HB/9";
 
+// CSV fiches d'inscription
+const CSV_FICHES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
+
+// CSV suivi hebdomadaire
+const CSV_SUIVI = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=641975808&single=true&output=csv";
+
+// ─── STATE ───────────────────────────────────────────────────
 let participants = [];
-let current = 0;
+let suiviData    = {};   // { prenom: [lignes suivi...] }
+let current      = 0;
+let currentPrenom = "";
 
+// ─── PARSING CSV ─────────────────────────────────────────────
 function parseCSV(text) {
-  const records = [];
-  let headers = null;
-  let i = 0;
-
+  const records = []; let headers = null; let i = 0;
   function parseRecord() {
     const fields = [];
     while (i < text.length) {
       if (text[i] === '"') {
-        i++;
-        let field = '';
+        i++; let field = '';
         while (i < text.length) {
-          if (text[i] === '"') {
-            if (text[i+1] === '"') { field += '"'; i += 2; }
-            else { i++; break; }
-          } else {
-            field += text[i++];
-          }
+          if (text[i] === '"') { if (text[i+1]==='"'){field+='"';i+=2;} else{i++;break;} }
+          else { field += text[i++]; }
         }
         fields.push(field.trim());
       } else {
         let field = '';
-        while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
-          field += text[i++];
-        }
+        while (i < text.length && text[i]!==',' && text[i]!=='\n' && text[i]!=='\r') field+=text[i++];
         fields.push(field.trim());
       }
-      if (i < text.length && text[i] === ',') { i++; continue; }
-      if (i < text.length && (text[i] === '\n' || text[i] === '\r')) {
-        if (text[i] === '\r' && text[i+1] === '\n') i++;
-        i++;
-        break;
-      }
+      if (i < text.length && text[i]===',') { i++; continue; }
+      if (i < text.length && (text[i]==='\n'||text[i]==='\r')) { if(text[i]==='\r'&&text[i+1]==='\n')i++; i++; break; }
       break;
     }
     return fields;
   }
-
   headers = parseRecord();
   while (i < text.length) {
     const values = parseRecord();
-    if (values.length === 0 || (values.length === 1 && values[0] === '')) continue;
-    const obj = {};
-    headers.forEach((h, idx) => { obj[h.trim()] = values[idx] || ''; });
-    if (obj['Prénom'] && obj['Prénom'].trim()) records.push(obj);
+    if (!values.length||(values.length===1&&values[0]==='')) continue;
+    const obj = {}; headers.forEach((h,idx)=>{ obj[h.trim()]=values[idx]||''; });
+    records.push(obj);
   }
   return records;
 }
 
+// ─── CALCUL BADGES ASSIDUITÉ & AR ────────────────────────────
+function calcBadges(prenom) {
+  const lignes = suiviData[prenom] || [];
+  if (!lignes.length) return { assiduite: null, ar: null };
+
+  // Assiduité
+  let absences = 0;
+  let manque   = false;
+  lignes.forEach(l => {
+    const p = (l["Présence"]||"").toLowerCase();
+    if (p.includes("absente") && !p.includes("excus")) absences++;
+    if (p.includes("excus")||p.includes("retard")) manque = true;
+  });
+  let assiduite;
+  if (absences >= 2) assiduite = { label:"Absente ("+absences+")", cls:"badge-rouge", icon:"🔴" };
+  else if (manque || absences===1) assiduite = { label:"Manque d'assiduité", cls:"badge-jaune", icon:"🟡" };
+  else assiduite = { label:"Assidue", cls:"badge-vert", icon:"🟢" };
+
+  // AR
+  let aucunAR = 0;
+  let pasTropCA = 0;
+  let total = 0;
+  lignes.forEach(l => {
+    const ar = (l["AR (accusés de réception)"]||"").toLowerCase();
+    if (ar) {
+      total++;
+      if (ar.includes("aucun")) aucunAR++;
+      else if (ar.includes("pas trop")) pasTropCA++;
+    }
+  });
+  let ar = null;
+  if (total > 0) {
+    const ratioAucun = aucunAR / total;
+    const ratioPasTrop = pasTropCA / total;
+    if (ratioAucun >= 0.5) ar = { label:"Aucun AR", cls:"badge-rouge", icon:"🔴" };
+    else if (ratioPasTrop >= 0.4 || (aucunAR > 0)) ar = { label:"Pas trop ça", cls:"badge-jaune", icon:"🟡" };
+    else ar = { label:"AR systématiques", cls:"badge-vert", icon:"🟢" };
+  }
+  return { assiduite, ar };
+}
+
+// ─── STARS ───────────────────────────────────────────────────
+function stars(n) {
+  const v = parseInt(n)||0;
+  if (!v) return '—';
+  return '★'.repeat(v)+'☆'.repeat(5-v);
+}
+
+// ─── BADGE PRÉSENCE ──────────────────────────────────────────
+function presenceBadge(val) {
+  if (!val) return '';
+  const v = val.toLowerCase();
+  if (v.includes('présente')&&!v.includes('retard')) return `<span class="presence-badge pb-present">✅ Présente</span>`;
+  if (v.includes('retard')) return `<span class="presence-badge pb-retard">🕐 En retard</span>`;
+  if (v.includes('excus')) return `<span class="presence-badge pb-excuse">⚠️ Absente excusée</span>`;
+  if (v.includes('sans nouvelle')) return `<span class="presence-badge pb-absent">❌ Absente</span>`;
+  return `<span class="presence-badge pb-present">${val}</span>`;
+}
+
+// ─── CLASSE PRIORITÉ ─────────────────────────────────────────
+function prioClass(val) {
+  if (!val) return 'prio-default';
+  if (val.includes('Urgent')) return 'prio-rouge';
+  if (val.includes('levée')||val.includes('Élevée')) return 'prio-orange';
+  if (val.includes('Normale')) return 'prio-jaune';
+  if (val.includes('gère')||val.includes('Légère')) return 'prio-vert';
+  return 'prio-default';
+}
+
+// ─── PARSING OBJECTIFS ───────────────────────────────────────
 function parseObjectifs(text) {
   if (!text) return [];
-  return text.split(/\n/)
-    .map(l => l.replace(/^\d+\s*[-–.)\s]\s*/, '').trim())
-    .filter(Boolean);
+  return text.split(/\n/).map(l=>l.replace(/^\d+\s*[-–.)\s]\s*/,'').trim()).filter(Boolean);
 }
 
-function parseTags(text) {
-  if (!text) return [];
-  return text.split(/[-–,\n]/).map(t => t.trim()).filter(Boolean);
-}
-
+// ─── RENDER FICHE ────────────────────────────────────────────
 function renderFiche(idx) {
   current = idx;
   const p = participants[idx];
-  const container = document.getElementById('fiche-container');
-  const engagé = p['Engagement'] && p['Engagement'].toLowerCase().includes('oui');
-  const conditionsOk = p['Conditions acceptées'] && p['Conditions acceptées'].toLowerCase().includes('oui');
+  currentPrenom = p['Prénom'] || '';
+  const lignesSuivi = (suiviData[currentPrenom] || []).slice().sort((a,b)=>{
+    return new Date(b["Date du suivi"]||0) - new Date(a["Date du suivi"]||0);
+  });
+
+  const { assiduite, ar } = calcBadges(currentPrenom);
+  const engagé = (p['Engagement']||'').toLowerCase().includes('oui');
+  const conditionsOk = (p['Conditions acceptées']||'').toLowerCase().includes('oui');
   const objectifs = parseObjectifs(p['Objectifs 2027']);
-  const pointsForts = parseTags(p['Points forts']);
-  const pointsFaibles = parseTags(p['Point faible']);
-  const initiale = (p['Prénom'] || '?').charAt(0).toUpperCase();
+  const initiale = (currentPrenom||'?').charAt(0).toUpperCase();
 
-  container.innerHTML = `
-    <div class="fiche-top">
-      <div class="avatar">${initiale}</div>
-      <h2>${p['Prénom']}</h2>
-      <div class="date">🌱 Plantée le ${p['Date'] || '—'}</div>
-      <div class="badges-row">
-        ${engagé ? `<span class="badge-engagement">🌿 Engagement confirmé</span>` : ''}
-        ${conditionsOk ? `<span class="badge-conditions">📜 Conditions acceptées</span>` : ''}
+  // ── EN-TÊTE ──
+  let html = `<div class="fiche-top">
+    <div class="avatar">${initiale}</div>
+    <h2>${currentPrenom}</h2>
+    <div class="date">🌱 Plantée le ${p['Date']||'—'}</div>
+    <div class="statut-badges">
+      ${assiduite ? `<span class="statut-badge ${assiduite.cls}">${assiduite.icon} ${assiduite.label}</span>` : ''}
+      ${ar ? `<span class="statut-badge ${ar.cls}">${ar.icon} ${ar.label}</span>` : ''}
+    </div>
+    <div class="badges-row">
+      ${engagé?`<span class="badge-engagement">🌿 Engagement confirmé</span>`:''}
+      ${conditionsOk?`<span class="badge-conditions">📜 Conditions acceptées</span>`:''}
+    </div>
+  </div>`;
+
+  // ── INFOS PROFIL ──
+  html += `<div class="info-grid">
+    <div class="info-card"><div class="ic-label">🌺 Téléphone</div><div class="ic-value">${p['Téléphone']||'—'}</div></div>
+    <div class="info-card"><div class="ic-label">🌿 Ancienneté</div><div class="ic-value">${p['Ancienneté']||'—'}</div></div>
+    <div class="info-card"><div class="ic-label">🕊️ Parcours</div><div class="ic-value">${p['Conversion']||'—'}</div></div>
+    <div class="info-card"><div class="ic-label">📖 Sourates apprises</div><div class="ic-value big">${p['Sourates apprises']||'—'}</div></div>
+  </div>`;
+
+  html += `<div class="section"><div class="section-title">📖 Relation au Coran</div><p>${p['Lecture Coran']||'—'}</p></div>`;
+
+  const forts = (p['Points forts']||'').split(/[-–,\n]/).map(t=>t.trim()).filter(Boolean);
+  if (forts.length) html += `<div class="section"><div class="section-title">🌼 Points forts</div><div class="tags">${forts.map(t=>`<span class="tag fort">${t}</span>`).join('')}</div></div>`;
+
+  if (p['Point faible']) html += `<div class="section"><div class="section-title">🌷 Graine à semer</div><p>${p['Point faible']}</p></div>`;
+  if (p['Espoirs / attentes']) html += `<div class="section"><div class="section-title">🌻 Espoirs & attentes</div><p>${p['Espoirs / attentes']}</p></div>`;
+  if (objectifs.length) html += `<div class="section"><div class="section-title">🌺 Objectifs 2027</div><ul class="objectifs-list">${objectifs.map(o=>`<li><span class="obj-dot"></span><span>${o}</span></li>`).join('')}</ul></div>`;
+
+  // ── SÉPARATEUR SUIVI ──
+  html += `<div class="suivi-header">
+    <div class="suivi-header-line"></div>
+    <div class="suivi-header-title">Suivi hebdomadaire</div>
+    <div class="suivi-header-line"></div>
+  </div>`;
+
+  // ── BOUTON SAISIR ──
+  html += `<button class="btn-saisir" onclick="ouvrirSaisie()">✍️ Saisir le suivi de cette semaine</button>`;
+
+  // ── PANNEAU SAISIE ──
+  html += `<div id="panneau-saisie">
+    <h3>✍️ Suivi de ${currentPrenom}</h3>
+
+    <div class="form-section">
+      <div class="form-section-title">📅 La semaine</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date du suivi</label>
+          <input type="date" class="form-input" id="f-date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prénom du binôme</label>
+          <input type="text" class="form-input" id="f-binome" placeholder="Ex: Laila" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🌱 Graine de la semaine</label>
+        <input type="text" class="form-input" id="f-graine" placeholder="Thème ou parole de la semaine" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Résumé / intention de la graine <span>(optionnel)</span></label>
+        <textarea class="form-textarea" id="f-graine-resume" placeholder="L'esprit de cette graine en quelques mots…" style="min-height:60px"></textarea>
       </div>
     </div>
 
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="ic-label">🌺 Téléphone</div>
-        <div class="ic-value">${p['Téléphone'] || '—'}</div>
+    <div class="form-section">
+      <div class="form-section-title">📋 Assiduité</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Présence à la séance</label>
+          <select class="form-select" id="f-presence">
+            <option value="">— Choisir —</option>
+            <option>✅ Présente</option>
+            <option>⚠️ Absente — excusée</option>
+            <option>❌ Absente — sans nouvelle</option>
+            <option>🕐 Présente mais en retard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Assiduité générale</label>
+          <select class="form-select" id="f-assiduite">
+            <option value="">— Choisir —</option>
+            <option>🟢 Très régulière</option>
+            <option>🟡 Assez régulière</option>
+            <option>🟠 Irrégulière</option>
+            <option>🔴 Très irrégulière</option>
+          </select>
+        </div>
       </div>
-      <div class="info-card">
-        <div class="ic-label">🌿 Ancienneté</div>
-        <div class="ic-value">${p['Ancienneté'] || '—'}</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-label">🕊️ Parcours</div>
-        <div class="ic-value">${p['Conversion'] || '—'}</div>
-      </div>
-      <div class="info-card">
-        <div class="ic-label">📖 Sourates apprises</div>
-        <div class="ic-value big">${p['Sourates apprises'] || '—'}</div>
+      <div class="form-group">
+        <label class="form-label">AR (accusés de réception des messages)</label>
+        <select class="form-select" id="f-ar">
+          <option value="">— Choisir —</option>
+          <option>🟢 Systématique — répond toujours</option>
+          <option>🟡 Pas trop ça — répond parfois</option>
+          <option>🔴 Aucun AR — ne répond pas</option>
+        </select>
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">📖 Relation au Coran</div>
-      <p>${p['Lecture Coran'] || '—'}</p>
+    <div class="form-section">
+      <div class="form-section-title">🌱 La graine de la semaine</div>
+      <div class="form-group">
+        <label class="form-label">A-t-elle mentionné la graine ?</label>
+        <select class="form-select" id="f-graine-mentionnee">
+          <option value="">— Choisir —</option>
+          <option>Oui — spontanément</option>
+          <option>Oui — quand je l'ai évoquée</option>
+          <option>Non — pas de retour</option>
+          <option>Pas de contact cette semaine</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Appropriation de la graine</label>
+        <div class="stars-input">
+          <input type="range" min="1" max="5" value="3" id="f-graine-score"
+            oninput="document.getElementById('graine-stars').textContent='★'.repeat(this.value)+'☆'.repeat(5-this.value)">
+          <span class="stars-val" id="graine-stars">★★★☆☆</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ce qu'elle a dit / fait en lien avec la graine <span>(optionnel)</span></label>
+        <textarea class="form-textarea" id="f-graine-detail" placeholder="Un mot, une réflexion, un comportement observé…"></textarea>
+      </div>
     </div>
 
-    ${pointsForts.length ? `
-    <div class="section">
-      <div class="section-title">🌼 Points forts</div>
-      <div class="tags">${pointsForts.map(t => `<span class="tag fort">${t}</span>`).join('')}</div>
-    </div>` : ''}
-
-    ${pointsFaibles.length ? `
-    <div class="section">
-      <div class="section-title">🌷 Graine à semer</div>
-      <p>${p['Point faible']}</p>
-    </div>` : ''}
-
-    ${p['Espoirs / attentes'] ? `
-    <div class="section">
-      <div class="section-title">🌻 Espoirs & attentes</div>
-      <p>${p['Espoirs / attentes']}</p>
-    </div>` : ''}
-
-    ${objectifs.length ? `
-    <div class="section">
-      <div class="section-title">🌺 Objectifs 2027</div>
-      <ul class="objectifs-list">
-        ${objectifs.map(o => `<li><span class="obj-dot"></span><span>${o}</span></li>`).join('')}
-      </ul>
-    </div>` : ''}
-
-    <div class="fiche-nav">
-      <button class="nav-arrow" onclick="goTo(${idx-1})" ${idx===0?'disabled':''}>← Précédente</button>
-      <span class="counter">${idx+1} / ${participants.length}</span>
-      <button class="nav-arrow" onclick="goTo(${idx+1})" ${idx===participants.length-1?'disabled':''}>Suivante →</button>
+    <div class="form-section">
+      <div class="form-section-title">🎯 Objectifs personnels</div>
+      <div class="form-group">
+        <label class="form-label">Avancement sur ses objectifs 2027</label>
+        <select class="form-select" id="f-objectifs-avancement">
+          <option value="">— Choisir —</option>
+          <option>🌿 En progression — elle avance bien</option>
+          <option>🌱 Stable — elle maintient ses efforts</option>
+          <option>🍂 En recul — elle a du mal</option>
+          <option>⏸️ Pause — période difficile</option>
+          <option>❓ Pas pu évaluer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Points travaillés cette semaine</label>
+        <div class="checkboxes" id="f-points">
+          ${["📖 Lecture du Coran quotidienne","📚 Mémorisation de sourates","🔄 Révision de sourates","🕌 Prières à l'heure","📿 Adhkar / invocations","📓 Cours de science religieuse","🤝 Lien avec son binôme","🔇 Travail sur les péchés de la langue","💪 Effort sur un point faible","🌐 Réduction des réseaux sociaux"].map(pt=>`
+          <label class="checkbox-item">
+            <input type="checkbox" value="${pt}" class="pt-check"> <label>${pt}</label>
+          </label>`).join('')}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ce qu'elle a partagé sur ses objectifs <span>(optionnel)</span></label>
+        <textarea class="form-textarea" id="f-objectifs-detail" placeholder="Victoires, difficultés, besoins…"></textarea>
+      </div>
     </div>
-  `;
 
-  // Sync select
+    <div class="form-section">
+      <div class="form-section-title">🤝 Binôme</div>
+      <div class="form-group">
+        <label class="form-label">Le binôme a-t-il fonctionné ?</label>
+        <select class="form-select" id="f-binome-etat">
+          <option value="">— Choisir —</option>
+          <option>✅ Oui — contact et soutien mutuel</option>
+          <option>🟡 Partiellement — contact léger</option>
+          <option>❌ Non — pas de contact</option>
+          <option>⬜ Pas de binôme assigné</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Observations sur le binôme <span>(optionnel)</span></label>
+        <textarea class="form-textarea" id="f-binome-obs" placeholder="Ce qui s'est bien passé, ce qui bloque…"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">🔥 Motivation & État du cœur</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Niveau de motivation</label>
+          <div class="stars-input">
+            <input type="range" min="1" max="5" value="3" id="f-motivation"
+              oninput="document.getElementById('motiv-stars').textContent='★'.repeat(this.value)+'☆'.repeat(5-this.value)">
+            <span class="stars-val" id="motiv-stars">★★★☆☆</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tendance</label>
+          <select class="form-select" id="f-tendance">
+            <option value="">— Choisir —</option>
+            <option>📈 En hausse</option>
+            <option>📊 Stable</option>
+            <option>📉 En baisse</option>
+            <option>〰️ Variable</option>
+            <option>⬜ Premier suivi</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">État général</label>
+        <select class="form-select" id="f-etat">
+          <option value="">— Choisir —</option>
+          <option>🌸 Très bien — épanouie</option>
+          <option>🌿 Bien — sereine</option>
+          <option>🍃 Correct — quelques difficultés</option>
+          <option>🍂 Fatiguée / épreuve</option>
+          <option>⚠️ Inquiétant — besoin d'aide</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Signaux particuliers</label>
+        <div class="checkboxes" id="f-signaux">
+          ${["Elle a exprimé tristesse ou découragement","Elle a mentionné une épreuve personnelle","Elle s'isole ou répond moins","Elle a eu un bel élan spirituel","Elle a partagé une victoire ou une joie","Elle a demandé du soutien ou de la duaa","Aucun signal particulier"].map(s=>`
+          <label class="checkbox-item">
+            <input type="checkbox" value="${s}" class="sig-check"> <label>${s}</label>
+          </label>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">📝 Actions & Suivi</div>
+      <div class="form-group">
+        <label class="form-label">Priorité semaine prochaine</label>
+        <select class="form-select" id="f-priorite">
+          <option value="">— Choisir —</option>
+          <option>🔴 Urgente — intervention à prévoir</option>
+          <option>🟠 Élevée — à recontacter</option>
+          <option>🟡 Normale — suivi habituel</option>
+          <option>🟢 Légère — tout va bien</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Actions prévues</label>
+        <div class="checkboxes" id="f-actions">
+          ${["💬 La contacter personnellement","🤲 Faire une duaa pour elle","📌 Lui rappeler son objectif","🌱 Lui envoyer un mot d'encouragement","🔄 Revoir son binôme","Aucune action particulière"].map(a=>`
+          <label class="checkbox-item">
+            <input type="checkbox" value="${a}" class="act-check"> <label>${a}</label>
+          </label>`).join('')}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Note libre <span>(optionnel)</span></label>
+        <textarea class="form-textarea" id="f-note" placeholder="Ce que tu veux retenir de cette semaine…"></textarea>
+      </div>
+    </div>
+
+    <div id="msg-erreur" class="msg-erreur"></div>
+    <button class="btn-submit" id="btn-submit" onclick="soumettreFormulaire()">🌸 Enregistrer le suivi</button>
+    <button class="btn-annuler" onclick="fermerSaisie()">Annuler</button>
+    <div id="msg-succes" class="msg-succes">✅ Suivi enregistré avec succès ! La fiche se mettra à jour à la prochaine visite.</div>
+  </div>`;
+
+  // ── HISTORIQUE SUIVI ──
+  if (lignesSuivi.length) {
+    lignesSuivi.forEach(l => {
+      const actions = (l["Actions prévues"]||'').split(',').map(a=>a.trim()).filter(Boolean);
+      const points  = (l["Points travaillés"]||'').split(',').map(a=>a.trim()).filter(Boolean);
+      html += `<div class="semaine-card ${prioClass(l['Priorité semaine prochaine'])}">
+        <div class="semaine-top">
+          <div>
+            <div class="semaine-date">📅 ${l['Date du suivi']||l['Horodatage']||'—'}</div>
+            ${l['Graine de la semaine']?`<div class="semaine-graine">🌱 ${l['Graine de la semaine']}</div>`:''}
+          </div>
+          ${presenceBadge(l['Présence'])}
+        </div>
+        <div class="mini-grid">
+          ${l['Assiduité générale']?`<div class="mini-card"><div class="mc-label">📊 Assiduité</div><div class="mc-val">${l['Assiduité générale']}</div></div>`:''}
+          ${l['AR (accusés de réception)']?`<div class="mini-card"><div class="mc-label">📨 AR</div><div class="mc-val">${l['AR (accusés de réception)']}</div></div>`:''}
+          ${l['Motivation (1-5)']?`<div class="mini-card"><div class="mc-label">🔥 Motivation</div><div class="mc-val mc-stars">${stars(l['Motivation (1-5)'])}</div></div>`:''}
+          ${l['Tendance motivation']?`<div class="mini-card"><div class="mc-label">📈 Tendance</div><div class="mc-val">${l['Tendance motivation']}</div></div>`:''}
+          ${l['État général']?`<div class="mini-card"><div class="mc-label">🌡️ État</div><div class="mc-val">${l['État général']}</div></div>`:''}
+          ${l['Avancement objectifs']?`<div class="mini-card"><div class="mc-label">🎯 Objectifs</div><div class="mc-val">${l['Avancement objectifs']}</div></div>`:''}
+          ${l['État du binôme']?`<div class="mini-card"><div class="mc-label">🤝 Binôme</div><div class="mc-val">${l['État du binôme']}</div></div>`:''}
+          ${l['Appropriation de la graine (1-5)']?`<div class="mini-card"><div class="mc-label">🌱 Graine</div><div class="mc-val mc-stars">${stars(l['Appropriation de la graine (1-5)'])}</div></div>`:''}
+        </div>
+        ${points.length?`<div class="actions-tags">${points.map(pt=>`<span class="action-tag">${pt}</span>`).join('')}</div>`:''}
+        ${l['Ce qu\'elle a partagé sur ses objectifs']?`<div class="note-libre">💬 ${l['Ce qu\'elle a partagé sur ses objectifs']}</div>`:''}
+        ${l['Ce qu\'elle a dit sur la graine']?`<div class="note-libre" style="border-color:var(--green)">🌱 ${l['Ce qu\'elle a dit sur la graine']}</div>`:''}
+        ${l['Note libre']?`<div class="note-libre">📝 ${l['Note libre']}</div>`:''}
+        ${actions.length?`<div class="actions-tags" style="margin-top:8px">${actions.map(a=>`<span class="action-tag">${a}</span>`).join('')}</div>`:''}
+      </div>`;
+    });
+  }
+
+  // ── NAV BAS ──
+  html += `<div class="fiche-nav">
+    <button class="nav-arrow" onclick="goTo(${idx-1})" ${idx===0?'disabled':''}>← Précédente</button>
+    <span class="counter">${idx+1} / ${participants.length}</span>
+    <button class="nav-arrow" onclick="goTo(${idx+1})" ${idx===participants.length-1?'disabled':''}>Suivante →</button>
+  </div>`;
+
+  const container = document.getElementById('fiche-container');
+  container.innerHTML = html;
+  container.style.display = 'block';
+
+  // Date du jour par défaut
+  const today = new Date().toISOString().split('T')[0];
+  const df = document.getElementById('f-date');
+  if (df) df.value = today;
+
+  // Sync nav
   const sel = document.getElementById('nav-select');
   if (sel) sel.value = idx;
-
-  // Sync flèches nav bar
   document.getElementById('btn-prev').disabled = idx === 0;
   document.getElementById('btn-next').disabled = idx === participants.length - 1;
-
-  container.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 function goTo(idx) {
@@ -392,41 +690,109 @@ function goTo(idx) {
   renderFiche(idx);
 }
 
+// ─── SAISIE ──────────────────────────────────────────────────
+function ouvrirSaisie() {
+  const p = document.getElementById('panneau-saisie');
+  if (p) { p.style.display='block'; p.scrollIntoView({ behavior:'smooth', block:'start' }); }
+}
+function fermerSaisie() {
+  const p = document.getElementById('panneau-saisie');
+  if (p) p.style.display='none';
+}
+
+function getChecked(cls) {
+  return Array.from(document.querySelectorAll('.'+cls+':checked')).map(c=>c.value).join(', ');
+}
+
+async function soumettreFormulaire() {
+  const btn = document.getElementById('btn-submit');
+  const errDiv = document.getElementById('msg-erreur');
+  const sucDiv = document.getElementById('msg-succes');
+  errDiv.style.display='none'; sucDiv.style.display='none';
+
+  const presence = document.getElementById('f-presence').value;
+  if (!presence) { errDiv.textContent="⚠️ Merci d'indiquer la présence."; errDiv.style.display='block'; return; }
+
+  btn.disabled=true; btn.textContent='⏳ Envoi en cours…';
+
+  const data = {
+    "Date du suivi": document.getElementById('f-date').value,
+    "Graine de la semaine": document.getElementById('f-graine').value,
+    "Résumé de la graine": document.getElementById('f-graine-resume').value,
+    "Prénom de la sœur": currentPrenom,
+    "Prénom du binôme": document.getElementById('f-binome').value,
+    "Présence": presence,
+    "Assiduité générale": document.getElementById('f-assiduite').value,
+    "AR (accusés de réception)": document.getElementById('f-ar').value,
+    "Graine mentionnée ?": document.getElementById('f-graine-mentionnee').value,
+    "Appropriation de la graine (1-5)": document.getElementById('f-graine-score').value,
+    "Ce qu'elle a dit sur la graine": document.getElementById('f-graine-detail').value,
+    "Avancement objectifs": document.getElementById('f-objectifs-avancement').value,
+    "Points travaillés": getChecked('pt-check'),
+    "Ce qu'elle a partagé sur ses objectifs": document.getElementById('f-objectifs-detail').value,
+    "État du binôme": document.getElementById('f-binome-etat').value,
+    "Observations binôme": document.getElementById('f-binome-obs').value,
+    "Motivation (1-5)": document.getElementById('f-motivation').value,
+    "Tendance motivation": document.getElementById('f-tendance').value,
+    "État général": document.getElementById('f-etat').value,
+    "Signaux observés": getChecked('sig-check'),
+    "Priorité semaine prochaine": document.getElementById('f-priorite').value,
+    "Actions prévues": getChecked('act-check'),
+    "Note libre": document.getElementById('f-note').value
+  };
+
+  try {
+    await fetch(WEBAPP_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    });
+    sucDiv.style.display='block';
+    btn.textContent='✅ Enregistré !';
+    setTimeout(()=>{ fermerSaisie(); btn.disabled=false; btn.textContent='🌸 Enregistrer le suivi'; }, 2500);
+  } catch(err) {
+    errDiv.textContent="❌ Erreur d'envoi. Vérifie la connexion ou l'URL du Web App.";
+    errDiv.style.display='block';
+    btn.disabled=false; btn.textContent='🌸 Enregistrer le suivi';
+  }
+}
+
+// ─── CHARGEMENT ───────────────────────────────────────────────
 async function loadData() {
   try {
-    const res = await fetch(CSV_URL);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const text = await res.text();
-    participants = parseCSV(text);
-    document.getElementById('loading').style.display = 'none';
+    const [r1, r2] = await Promise.all([fetch(CSV_FICHES), fetch(CSV_SUIVI)]);
+    const [t1, t2] = await Promise.all([r1.text(), r2.text()]);
 
-    if (!participants.length) {
-      document.getElementById('error-msg').style.display = 'block';
-      return;
-    }
+    participants = parseCSV(t1).filter(p=>p['Prénom']&&p['Prénom'].trim());
 
-    const navBar = document.getElementById('nav-bar');
-    navBar.style.display = 'block';
-
-    const sel = document.getElementById('nav-select');
-    const counter = document.getElementById('nav-counter');
-
-    // Compteur total
-    counter.textContent = participants.length + ' sœur' + (participants.length > 1 ? 's' : '');
-
-    participants.forEach((p, i) => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = '🌸 ' + p['Prénom'];
-      sel.appendChild(opt);
+    // Grouper le suivi par prénom
+    const suiviRaw = parseCSV(t2).filter(p=>p['Prénom de la sœur']||p['Prénom']);
+    suiviRaw.forEach(l => {
+      const prenom = (l['Prénom de la sœur']||l['Prénom']||'').trim();
+      if (!prenom) return;
+      if (!suiviData[prenom]) suiviData[prenom]=[];
+      // Normaliser les clés
+      const norm = {};
+      Object.keys(l).forEach(k=>{ norm[k.trim()]=l[k]; });
+      suiviData[prenom].push(norm);
     });
 
-    sel.onchange = () => goTo(parseInt(sel.value));
+    document.getElementById('loading').style.display='none';
+    if (!participants.length) { document.getElementById('loading').innerHTML='🌧️ Aucune fiche trouvée.'; return; }
 
+    const navBar = document.getElementById('nav-bar');
+    navBar.style.display='block';
+    const sel = document.getElementById('nav-select');
+    document.getElementById('nav-counter').textContent = participants.length+' sœur'+(participants.length>1?'s':'');
+    participants.forEach((p,i)=>{
+      const opt=document.createElement('option');
+      opt.value=i; opt.textContent='🌸 '+p['Prénom'];
+      sel.appendChild(opt);
+    });
+    sel.onchange=()=>goTo(parseInt(sel.value));
     renderFiche(0);
-  } catch (e) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error-msg').style.display = 'block';
+  } catch(e) {
+    document.getElementById('loading').innerHTML='🌧️ Impossible de charger les données.';
     console.error(e);
   }
 }

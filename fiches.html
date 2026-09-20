@@ -236,7 +236,7 @@ header h1 em{font-style:italic;color:var(--rose);}
 <div id="fiche-container"></div>
 
 <script>
-const WEBAPP_URL = "https://script.google.com/macros/library/d/1j5puHbbIefcpWfVHqcWSIYmKbvb0sCLwC6rxiytSEmybaxcrEXluq3HB/9";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycby74r-GuKxMQHgl_WHSNBTXPdUNvvYD7ZI4v8HKtO7tcmKmxLCxPkYm4MmwGajMee4o/exec";
 const CSV_FICHES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
 const CSV_SUIVI  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=641975808&single=true&output=csv";
 
@@ -387,14 +387,14 @@ function renderFiche(idx) {
     <div class="suivi-header-line"></div>
   </div>`;
 
-  html += `<button class="btn-saisir" onclick="ouvrirSaisie()"> Saisir le suivi de cette semaine</button>`;
+  html += `<button class="btn-saisir" onclick="ouvrirSaisie()">✍️ Saisir le suivi de cette semaine</button>`;
 
   // ── PANNEAU SAISIE (champs modifiés) ──
   html += `<div id="panneau-saisie">
-    <h3> Suivi de ${currentPrenom}</h3>
+    <h3>✍️ Suivi de ${currentPrenom}</h3>
 
     <div class="form-section">
-      <div class="form-section-title"> La semaine</div>
+      <div class="form-section-title">📅 La semaine</div>
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Date du suivi</label>
@@ -402,17 +402,17 @@ function renderFiche(idx) {
         </div>
         <div class="form-group">
           <label class="form-label">Prénom du binôme</label>
-          <input type="text" class="form-input" id="f-binome" placeholder="" />
+          <input type="text" class="form-input" id="f-binome" placeholder="Ex: Laila" />
         </div>
       </div>
       <div class="form-group">
         <label class="form-label">🌱 Graine de la semaine</label>
-        <input type="text" class="form-input" id="f-graine" placeholder="Thème de la semaine" />
+        <input type="text" class="form-input" id="f-graine" placeholder="Thème ou parole de la semaine" />
       </div>
     </div>
 
     <div class="form-section">
-      <div class="form-section-title"> Assiduité</div>
+      <div class="form-section-title">📋 Assiduité</div>
       <div class="form-group">
         <label class="form-label">Présence à l'assise</label>
         <select class="form-select" id="f-presence">
@@ -447,30 +447,30 @@ function renderFiche(idx) {
     </div>
 
     <div class="form-section">
-      <div class="form-section-title"> Objectifs personnels</div>
+      <div class="form-section-title">🎯 Objectifs personnels</div>
       <div class="form-group">
         <label class="form-label">Avancement sur ses objectifs 2027</label>
         <select class="form-select" id="f-objectifs-avancement">
           <option value="">— Choisir —</option>
           <option>🌿 En progression — elle avance bien</option>
           <option>🌱 Stable — elle maintient ses efforts</option>
-          <option> En recul — elle a du mal</option>
-          <option> Pause — période difficile</option>
-          <option> Pas pu évaluer</option>
+          <option>🍂 En recul — elle a du mal</option>
+          <option>⏸️ Pause — période difficile</option>
+          <option>❓ Pas pu évaluer</option>
         </select>
       </div>
     </div>
 
     <div class="form-section">
-      <div class="form-section-title"> Binôme</div>
+      <div class="form-section-title">🤝 Binôme</div>
       <div class="form-group">
         <label class="form-label">État du binôme</label>
         <select class="form-select" id="f-binome-etat">
           <option value="">— Choisir —</option>
-          <option> Oui — contact et soutien mutuel</option>
-          <option> Partiellement — contact léger</option>
+          <option>✅ Oui — contact et soutien mutuel</option>
+          <option>🟡 Partiellement — contact léger</option>
           <option>❌ Non — pas de contact</option>
-          <option> Pas de binôme assigné</option>
+          <option>⬜ Pas de binôme assigné</option>
         </select>
       </div>
       <div class="form-group">
@@ -480,7 +480,7 @@ function renderFiche(idx) {
     </div>
 
     <div class="form-section">
-      <div class="form-section-title"> Motivation & État du cœur</div>
+      <div class="form-section-title">🔥 Motivation & État du cœur</div>
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Niveau de motivation</label>
@@ -494,11 +494,11 @@ function renderFiche(idx) {
           <label class="form-label">Tendance</label>
           <select class="form-select" id="f-tendance">
             <option value="">— Choisir —</option>
-            <option> En hausse</option>
-            <option> Stable</option>
-            <option> En baisse</option>
-            <option> Variable</option>
-            <option> Premier suivi</option>
+            <option>📈 En hausse</option>
+            <option>📊 Stable</option>
+            <option>📉 En baisse</option>
+            <option>〰️ Variable</option>
+            <option>⬜ Premier suivi</option>
           </select>
         </div>
       </div>
@@ -509,8 +509,8 @@ function renderFiche(idx) {
           <option>🌸 Très bien — épanouie</option>
           <option>🌿 Bien — sereine</option>
           <option>🍃 Correct — quelques difficultés</option>
-          <option> Fatiguée / épreuve</option>
-          <option> Inquiétant — besoin d'aide</option>
+          <option>🍂 Fatiguée / épreuve</option>
+          <option>⚠️ Inquiétant — besoin d'aide</option>
         </select>
       </div>
       <div class="form-group">
@@ -525,12 +525,12 @@ function renderFiche(idx) {
     </div>
 
     <div class="form-section">
-      <div class="form-section-title"> Actions & Suivi</div>
+      <div class="form-section-title">📝 Actions & Suivi</div>
       <div class="form-group">
         <label class="form-label">Priorité semaine prochaine</label>
         <select class="form-select" id="f-priorite">
           <option value="">— Choisir —</option>
-          <option>🔴 Urgente — Prevenir Salima</option>
+          <option>🔴 Urgente — intervention à prévoir</option>
           <option>🟠 Élevée — à recontacter</option>
           <option>🟡 Normale — suivi habituel</option>
           <option>🟢 Légère — tout va bien</option>
@@ -539,7 +539,7 @@ function renderFiche(idx) {
       <div class="form-group">
         <label class="form-label">Actions prévues</label>
         <div class="checkboxes" id="f-actions">
-          ${[" La contacter personnellement"," Revoir son binôme","Aucune action particulière"].map(a=>`
+          ${["💬 La contacter personnellement","🔄 Revoir son binôme","Aucune action particulière"].map(a=>`
           <label class="checkbox-item">
             <input type="checkbox" value="${a}" class="act-check"> <label>${a}</label>
           </label>`).join('')}
@@ -547,7 +547,7 @@ function renderFiche(idx) {
       </div>
       <div class="form-group">
         <label class="form-label">Note <span>(optionnel)</span></label>
-        <textarea class="form-textarea" id="f-note" placeholder=""></textarea>
+        <textarea class="form-textarea" id="f-note" placeholder="Ce que tu veux retenir de cette semaine…"></textarea>
       </div>
     </div>
 
@@ -570,16 +570,16 @@ function renderFiche(idx) {
           ${presenceBadge(l['Présence'])}
         </div>
         <div class="mini-grid">
-          ${l['AR (accusés de réception)']?`<div class="mini-card"><div class="mc-label"> AR</div><div class="mc-val">${l['AR (accusés de réception)']}</div></div>`:''}
-          ${l['Motivation (1-5)']?`<div class="mini-card"><div class="mc-label"> Motivation</div><div class="mc-val mc-stars">${stars(l['Motivation (1-5)'])}</div></div>`:''}
-          ${l['Tendance motivation']?`<div class="mini-card"><div class="mc-label"> Tendance</div><div class="mc-val">${l['Tendance motivation']}</div></div>`:''}
-          ${l['État général']?`<div class="mini-card"><div class="mc-label"> État</div><div class="mc-val">${l['État général']}</div></div>`:''}
-          ${l['Avancement objectifs']?`<div class="mini-card"><div class="mc-label"> Objectifs</div><div class="mc-val">${l['Avancement objectifs']}</div></div>`:''}
-          ${l['État du binôme']?`<div class="mini-card"><div class="mc-label"> Binôme</div><div class="mc-val">${l['État du binôme']}</div></div>`:''}
+          ${l['AR (accusés de réception)']?`<div class="mini-card"><div class="mc-label">📨 AR</div><div class="mc-val">${l['AR (accusés de réception)']}</div></div>`:''}
+          ${l['Motivation (1-5)']?`<div class="mini-card"><div class="mc-label">🔥 Motivation</div><div class="mc-val mc-stars">${stars(l['Motivation (1-5)'])}</div></div>`:''}
+          ${l['Tendance motivation']?`<div class="mini-card"><div class="mc-label">📈 Tendance</div><div class="mc-val">${l['Tendance motivation']}</div></div>`:''}
+          ${l['État général']?`<div class="mini-card"><div class="mc-label">🌡️ État</div><div class="mc-val">${l['État général']}</div></div>`:''}
+          ${l['Avancement objectifs']?`<div class="mini-card"><div class="mc-label">🎯 Objectifs</div><div class="mc-val">${l['Avancement objectifs']}</div></div>`:''}
+          ${l['État du binôme']?`<div class="mini-card"><div class="mc-label">🤝 Binôme</div><div class="mc-val">${l['État du binôme']}</div></div>`:''}
           ${l['Appropriation de la graine (1-5)']?`<div class="mini-card"><div class="mc-label">🌱 Graine</div><div class="mc-val mc-stars">${stars(l['Appropriation de la graine (1-5)'])}</div></div>`:''}
         </div>
         ${points.length?`<div class="actions-tags">${points.map(pt=>`<span class="action-tag">${pt}</span>`).join('')}</div>`:''}
-        ${l['Note libre']?`<div class="note-libre"> ${l['Note libre']}</div>`:''}
+        ${l['Note libre']?`<div class="note-libre">📝 ${l['Note libre']}</div>`:''}
         ${actions.length?`<div class="actions-tags" style="margin-top:8px">${actions.map(a=>`<span class="action-tag">${a}</span>`).join('')}</div>`:''}
       </div>`;
     });

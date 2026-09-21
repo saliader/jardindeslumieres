@@ -355,19 +355,19 @@ function renderFiche(idx) {
   const objectifs = parseObjectifs(p['Objectifs 2027']);
   const initiale = (currentPrenom||'?').charAt(0).toUpperCase();
 
-  let html = `<div class="fiche-top">
-    <div class="avatar">${initiale}</div>
-    <h2>${currentPrenom}</h2>
-    <div class="date">🌱 Plantée le ${p['Date']||'—'}</div>
-    <div class="statut-badges">
-      ${assiduite ? `<span class="statut-badge ${assiduite.cls}">${assiduite.icon} ${assiduite.label}</span>` : ''}
-      ${ar ? `<span class="statut-badge ${ar.cls}">${ar.icon} ${ar.label}</span>` : ''}
-    </div>
-    <div class="badges-row">
-      ${engagé?`<span class="badge-engagement">🌿 Engagement confirmé</span>`:''}
-      ${conditionsOk?`<span class="badge-conditions">📜 Conditions acceptées</span>`:''}
-    </div>
-  </div>`;
+ let html = `<div class="fiche-top">
+  <div class="statut-badges-corner">
+    ${assiduite ? `<span class="statut-badge ${assiduite.cls}">${assiduite.icon} ${assiduite.label}</span>` : ''}
+    ${ar ? `<span class="statut-badge ${ar.cls}">${ar.icon} ${ar.label}</span>` : ''}
+  </div>
+  <div class="avatar">${initiale}</div>
+  <h2>${currentPrenom}</h2>
+  <div class="date">🌱 Plantée le ${p['Date']||'—'}</div>
+  <div class="badges-row" style="margin-top:14px;">
+    ${engagé?`<span class="badge-engagement">🌿 Engagement confirmé</span>`:''}
+    ${conditionsOk?`<span class="badge-conditions">📜 Conditions acceptées</span>`:''}
+  </div>
+</div>`;
 
   html += `<div class="info-grid">
     <div class="info-card"><div class="ic-label">🌺 Téléphone</div><div class="ic-value">${p['Téléphone']||'—'}</div></div>

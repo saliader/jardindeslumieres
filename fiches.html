@@ -414,7 +414,14 @@ function renderFiche(idx) {
         <input type="text" class="form-input" id="f-graine" placeholder="Thème ou parole de la semaine" />
       </div>
     </div>
-
+      <div class="form-group">
+        <label class="form-label">🌿 Jardinière en chef</label>
+        <select class="form-select" id="f-jardiniere">
+          <option value="">— Choisir —</option>
+          <option>Anissa</option>
+          <option>Lou</option>
+        </select>
+      </div>
     <div class="form-section">
       <div class="form-section-title">📋 Assiduité</div>
       <div class="form-group">
@@ -636,11 +643,13 @@ async function soumettreFormulaire() {
 
   const presence = document.getElementById('f-presence').value;
   if (!presence) { errDiv.textContent="⚠️ Merci d'indiquer la présence."; errDiv.style.display='block'; return; }
+ if (!document.getElementById('f-jardiniere').value) { errDiv.textContent="⚠️ Merci de choisir la jardinière en chef."; errDiv.style.display='block'; return; }
 
   btn.disabled=true; btn.textContent='⏳ Envoi en cours…';
 
   const data = {
     "Date du suivi": document.getElementById('f-date').value,
+    "Jardinière en chef": document.getElementById('f-jardiniere').value,
     "Graine de la semaine": document.getElementById('f-graine').value,
     "Prénom de la sœur": currentPrenom,
     "Prénom du binôme": document.getElementById('f-binome').value,

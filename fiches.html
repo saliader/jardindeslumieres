@@ -577,6 +577,7 @@ function renderFiche(idx) {
           <div>
             <div class="semaine-date">📅 ${l['Date du suivi']||l['Horodatage']||'—'}</div>
             ${l['Graine de la semaine']?`<div class="semaine-graine">🌱 ${l['Graine de la semaine']}</div>`:''}
+            ${l['Jardinière en chef']?`<div class="semaine-graine">🌿 Suivie par ${l['Jardinière en chef']}</div>`:''}
           </div>
           ${presenceBadge(l['Présence'])}
         </div>

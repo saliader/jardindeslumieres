@@ -283,7 +283,13 @@ function parseCSV(text) {
 }
 
 function calcBadges(prenom) {
-  const lignes = suiviData[prenom] || [];
+  const toutes = suiviData[prenom] || [];
+
+  // On trie du plus récent au plus ancien et on garde les 2 derniers suivis
+  const lignes = toutes.slice().sort((a, b) => {
+    return new Date(b["Date du suivi"] || 0) - new Date(a["Date du suivi"] || 0);
+  }).slice(0, 2);
+
   if (!lignes.length) return { assiduite: null, ar: null };
 
   let absences = 0;   // absences non excusées
@@ -297,7 +303,6 @@ function calcBadges(prenom) {
     else if (p.includes("retard")) retards++;
   });
 
-  // Mention ajoutée entre parenthèses si absences excusées
   const mentionExc = excusees > 0 ? ` (abs excusée : ${excusees})` : "";
 
   let assiduite;

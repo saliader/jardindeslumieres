@@ -285,16 +285,30 @@ function parseCSV(text) {
 function calcBadges(prenom) {
   const lignes = suiviData[prenom] || [];
   if (!lignes.length) return { assiduite: null, ar: null };
-  let absences = 0; let manque = false;
+
+  let absences = 0;   // absences non excusées
+  let excusees = 0;   // absences excusées (comptées comme présence)
+  let retards  = 0;
+
   lignes.forEach(l => {
     const p = (l["Présence"]||"").toLowerCase();
-    if (p.includes("absente") && !p.includes("excus")) absences++;
-    if (p.includes("excus")||p.includes("retard")) manque = true;
+    if (p.includes("excus")) excusees++;
+    else if (p.includes("absente")) absences++;
+    else if (p.includes("retard")) retards++;
   });
+
+  // Mention ajoutée entre parenthèses si absences excusées
+  const mentionExc = excusees > 0 ? ` (abs excusée : ${excusees})` : "";
+
   let assiduite;
-  if (absences >= 2) assiduite = { label:"Absente ("+absences+")", cls:"badge-rouge", icon:"🔴" };
-  else if (manque || absences===1) assiduite = { label:"Manque d'assiduité", cls:"badge-jaune", icon:"🟡" };
-  else assiduite = { label:"Assidue", cls:"badge-vert", icon:"🟢" };
+  if (absences >= 2) {
+    assiduite = { label:"Absente ("+absences+")"+mentionExc, cls:"badge-rouge", icon:"🔴" };
+  } else if (absences === 1 || retards > 0) {
+    assiduite = { label:"Manque d'assiduité"+mentionExc, cls:"badge-jaune", icon:"🟡" };
+  } else {
+    assiduite = { label:"Assidue"+mentionExc, cls:"badge-vert", icon:"🟢" };
+  }
+
   let aucunAR = 0; let pasTropCA = 0; let total = 0;
   lignes.forEach(l => {
     const ar = (l["AR (accusés de réception)"]||"").toLowerCase();

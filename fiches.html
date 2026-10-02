@@ -66,22 +66,20 @@ header h1 em{font-style:italic;color:var(--rose);}
 @keyframes spin{to{transform:rotate(360deg);}}
 
 /* ── FICHE TOP ── */
-.fiche-top{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
-  padding:28px 28px 22px;margin-bottom:16px;box-shadow:var(--shadow);
-  text-align:center;position:relative;overflow:hidden;}
-.fiche-top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--green),var(--green-light),var(--rose));}
-
-/* Badges assiduité/AR en haut à droite */
-.statut-badges-corner{position:absolute;top:16px;right:16px;
-  display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
-.avatar{width:74px;height:74px;border-radius:50%;
-  background:linear-gradient(135deg,var(--green-pale),var(--rose-pale));
-  border:2px solid var(--green-light);display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:30px;color:var(--green);margin:0 auto 14px;}
-.fiche-top h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--green);}
-.fiche-top .date{font-size:13px;color:var(--text-muted);margin-top:4px;}
-
+let html = `<div class="fiche-top">
+  <div class="statut-badges-corner">
+    ${!sortie && assiduite ? `<span class="statut-badge ${assiduite.cls}">${assiduite.icon} ${assiduite.label}</span>` : ''}
+    ${!sortie && ar ? `<span class="statut-badge ${ar.cls}">${ar.icon} ${ar.label}</span>` : ''}
+  </div>
+  <div class="avatar">${initiale}</div>
+  <h2>${currentPrenom}</h2>
+  <div class="date">🌱 Plantée le ${p['Date']||'—'}</div>
+  ${sortie ? `<div class="tampon-sortie">${texteSortie(motifSortie)}</div>` : ''}
+  <div class="badges-row" style="margin-top:14px;">
+    ${engagé?`<span class="badge-engagement">🌿 Engagement confirmé</span>`:''}
+    ${conditionsOk?`<span class="badge-conditions">📜 Conditions acceptées</span>`:''}
+  </div>
+</div>`;
 /* ── BADGES STATUT ── */
 .statut-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
 .statut-badge{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;
@@ -202,6 +200,20 @@ header h1 em{font-style:italic;color:var(--rose);}
 .msg-erreur{text-align:center;padding:12px;color:var(--red);font-size:13px;
   background:var(--red-pale);border-radius:10px;margin-top:8px;display:none;}
 
+/* ── SŒUR SORTIE DU JARDIN ── */
+#fiche-container.sortie .fiche-top,
+#fiche-container.sortie .section,
+#fiche-container.sortie .info-card{background:var(--red-pale);border-color:rgba(201,74,74,.45);}
+#fiche-container.sortie .fiche-top::before{background:var(--red);}
+#fiche-container.sortie .fiche-top h2,
+#fiche-container.sortie .section-title,
+#fiche-container.sortie .ic-value.big{color:var(--red);}
+#fiche-container.sortie .avatar{background:var(--red-pale);border-color:var(--red);color:var(--red);}
+.tampon-sortie{display:inline-block;margin-top:16px;padding:10px 20px;
+  border:3px double var(--red);border-radius:10px;color:var(--red);
+  font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:1px;
+  transform:rotate(-4deg);background:rgba(255,255,255,.55);}
+  
 /* ── NAVIGATION BAS ── */
 .fiche-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px;}
 .nav-arrow{background:var(--white);border:1.5px solid var(--border);color:var(--text-muted);
@@ -285,16 +297,16 @@ function parseCSV(text) {
 function calcBadges(prenom) {
   const toutes = suiviData[prenom] || [];
 
-  // On trie du plus récent au plus ancien et on garde les 2 derniers suivis
+  // On garde les 2 derniers suivis
   const lignes = toutes.slice().sort((a, b) => {
     return new Date(b["Date du suivi"] || 0) - new Date(a["Date du suivi"] || 0);
   }).slice(0, 2);
 
   if (!lignes.length) return { assiduite: null, ar: null };
 
-  let absences = 0;   // absences non excusées
+  let absences = 0;   // absences sans nouvelle
   let excusees = 0;   // absences excusées (comptées comme présence)
-  let retards  = 0;
+  let retards  = 0;   // retards (comptés comme présence)
 
   lignes.forEach(l => {
     const p = (l["Présence"]||"").toLowerCase();
@@ -303,15 +315,19 @@ function calcBadges(prenom) {
     else if (p.includes("retard")) retards++;
   });
 
-  const mentionExc = excusees > 0 ? ` (abs excusée : ${excusees})` : "";
+  // Mentions entre parenthèses
+  const mentions = [];
+  if (excusees > 0) mentions.push("abs excusée : " + excusees);
+  if (retards > 0)  mentions.push("retard : " + retards);
+  const mention = mentions.length ? " (" + mentions.join(", ") + ")" : "";
 
   let assiduite;
   if (absences >= 2) {
-    assiduite = { label:"Absente ("+absences+")"+mentionExc, cls:"badge-rouge", icon:"🔴" };
-  } else if (absences === 1 || retards > 0) {
-    assiduite = { label:"Manque d'assiduité"+mentionExc, cls:"badge-jaune", icon:"🟡" };
+    assiduite = { label:"Absente ("+absences+")"+mention, cls:"badge-rouge", icon:"🔴" };
+  } else if (absences === 1) {
+    assiduite = { label:"Manque d'assiduité"+mention, cls:"badge-jaune", icon:"🟡" };
   } else {
-    assiduite = { label:"Assidue"+mentionExc, cls:"badge-vert", icon:"🟢" };
+    assiduite = { label:"Assidue"+mention, cls:"badge-vert", icon:"🟢" };
   }
 
   let aucunAR = 0; let pasTropCA = 0; let total = 0;
@@ -328,12 +344,6 @@ function calcBadges(prenom) {
     else ar = { label:"AR systématiques", cls:"badge-vert", icon:"🟢" };
   }
   return { assiduite, ar };
-}
-
-function stars(n) {
-  const v = parseInt(n)||0;
-  if (!v) return '—';
-  return '★'.repeat(v)+'☆'.repeat(5-v);
 }
 
 function presenceBadge(val) {
@@ -360,6 +370,13 @@ function parseObjectifs(text) {
   return text.split(/\n/).map(l=>l.replace(/^\d+\s*[-–.)\s]\s*/,'').trim()).filter(Boolean);
 }
 
+  function texteSortie(m) {
+  const v = m.toLowerCase();
+  if (v.includes('sérieux') || v.includes('serieux')) return "Sortie du jardin à cause du manque de sérieux";
+  if (v.includes('suivre')) return "Sortie du jardin : n'arrive pas à suivre";
+  return "Sortie du jardin : " + m;
+}
+  
 function renderFiche(idx) {
   current = idx;
   const p = participants[idx];
@@ -372,6 +389,8 @@ function renderFiche(idx) {
   const engagé = (p['Engagement']||'').toLowerCase().includes('oui');
   const conditionsOk = (p['Conditions acceptées']||'').toLowerCase().includes('oui');
   const objectifs = parseObjectifs(p['Objectifs 2027']);
+  const motifSortie = (p['Sortie du jardin']||'').trim();
+  const sortie = motifSortie !== '';
   const initiale = (currentPrenom||'?').charAt(0).toUpperCase();
 
  let html = `<div class="fiche-top">
@@ -626,6 +645,7 @@ function renderFiche(idx) {
   const container = document.getElementById('fiche-container');
   container.innerHTML = html;
   container.style.display = 'block';
+  container.classList.toggle('sortie', sortie);
 
   const today = new Date().toISOString().split('T')[0];
   const df = document.getElementById('f-date');
@@ -727,7 +747,7 @@ async function loadData() {
     document.getElementById('nav-counter').textContent = participants.length+' sœur'+(participants.length>1?'s':'');
     participants.forEach((p,i)=>{
       const opt=document.createElement('option');
-      opt.value=i; opt.textContent='🌸 '+p['Prénom'];
+      opt.value=i; opt.textConopt.textContent=(p['Sortie du jardin']&&p['Sortie du jardin'].trim()?'🔴 ':'🌸 ')+p['Prénom'];tent='🌸 '+p['Prénom'];
       sel.appendChild(opt);
     });
     sel.onchange=()=>goTo(parseInt(sel.value));

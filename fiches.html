@@ -226,6 +226,34 @@ header h1 em{font-style:italic;color:var(--rose);}
   .info-grid,.form-row{grid-template-columns:1fr;}
   #fiche-container{padding:20px 14px 60px;}
 }
+  html,body{max-width:100%;}
+body{overflow-x:clip;}
+
+#nav-bar{padding:10px 12px;}
+.nav-inner{gap:6px;min-width:0;}
+#nav-select{
+  min-width:0;
+  width:100%;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  font-size:16px;
+  padding-left:12px;
+}
+
+/* sur mobile : on libère de la place */
+@media(max-width:600px){
+  .nav-flower-label,#nav-counter{display:none;}
+  .statut-badges-corner{
+    position:static;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:12px;
+  }
+}
+
+.fiche-top h2{overflow-wrap:anywhere;}
 </style>
 </head>
 <body>

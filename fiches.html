@@ -321,6 +321,20 @@ function parseCSV(text) {
   return records;
 }
 
+// ── DATES EN FRANÇAIS (ex. « 7 octobre 2026 ») ──
+function formatDateFR(val) {
+  if (!val) return '—';
+  const s = String(val).trim();
+  let d;
+  const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})/);       // 2026-10-07
+  const fr  = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/); // 07/10/2026
+  if (iso) d = new Date(+iso[1], +iso[2] - 1, +iso[3]);
+  else if (fr) d = new Date(+fr[3], +fr[2] - 1, +fr[1]);
+  else d = new Date(s);
+  if (isNaN(d)) return s; // format inconnu : on laisse tel quel
+  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
 // ── BADGES (assiduité + AR) : on regarde les 2 derniers suivis ──
 function calcBadges(prenom) {
   const toutes = suiviData[prenom] || [];
@@ -438,7 +452,7 @@ function renderFiche(idx) {
   </div>
   <div class="avatar">${initiale}</div>
   <h2>${currentPrenom}</h2>
-  <div class="date">🌱 Plantée le ${p['Date']||'—'}</div>
+  <div class="date">🌱 Plantée le ${formatDateFR(p['Date'])}</div>
   ${sortie ? `<div class="tampon-sortie">${motifSortie}</div>` : ''}
   <div class="badges-row" style="margin-top:14px;">
     ${engagé?`<span class="badge-engagement">🌿 Engagement confirmé</span>`:''}
@@ -479,7 +493,7 @@ function renderFiche(idx) {
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Date du suivi</label>
-          <input type="date" class="form-input" id="f-date" />
+          <input type="date" class="form-input" id="f-date" lang="fr" />
         </div>
         <div class="form-group">
           <label class="form-label">Prénom du binôme</label>
@@ -654,7 +668,7 @@ function renderFiche(idx) {
       html += `<div class="semaine-card ${prioClass(l['Priorité semaine prochaine'])}">
         <div class="semaine-top">
           <div>
-            <div class="semaine-date">📅 ${l['Date du suivi']||l['Horodatage']||'—'}</div>
+            <div class="semaine-date">📅 ${formatDateFR(l['Date du suivi']||l['Horodatage'])}</div>
             ${l['Graine de la semaine']?`<div class="semaine-graine">🌱 ${l['Graine de la semaine']}</div>`:''}
             ${l['Jardinière en chef']?`<div class="semaine-graine">🌿 Suivie par ${l['Jardinière en chef']}</div>`:''}
           </div>

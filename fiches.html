@@ -823,12 +823,9 @@ function statsSoeur(prenom) {
     if (prio.includes("levée")||prio.includes("Élevée")){ niveau=1; raisons.push("🟠 À recontacter"); }
   }
   if (signaux) {
-    const s=[];
-    if (signaux.includes("tristesse")) s.push("tristesse");
-    if (signaux.includes("épreuve"))   s.push("épreuve");
-    if (signaux.includes("isole"))     s.push("isolement");
     niveau = Math.max(niveau,1);
-    raisons.push("👀 Signaux : "+(s.join(', ')||"à vérifier"));
+    (last["Signaux observés"]||"").split(',').map(t=>t.trim()).filter(t=>t && !/^aucun signal/i.test(t))
+      .forEach(t=>raisons.push("👀 "+t));
   }
   if (recentAbs)                          { niveau=Math.max(niveau,1); raisons.push("❌ Absente récemment"); }
   if (motLast!==null && motLast<=2)       { niveau=Math.max(niveau,1); raisons.push("🔥 Motivation basse"); }

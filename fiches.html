@@ -799,15 +799,14 @@ function statsSoeur(prenom) {
   const mv = lignes.map(l=>parseInt(l["Motivation (1-5)"])||0).filter(v=>v>0); // récent en premier
   const motMoy  = mv.length ? moy(mv) : null;
   const motLast = mv.length ? mv[0] : null;
-  let diff = null;
-  if (mv.length===2) diff = mv[0]-mv[1];
-  else if (mv.length>2) diff = moy(mv.slice(0,2)) - moy(mv.slice(2));
-  let tend = {icon:'⬜', label:'Premier suivi', cls:''};
-  if (diff!==null) {
-    if (diff>=0.5)       tend = {icon:'📈', label:'En hausse', cls:'t-vert'};
-    else if (diff<=-0.5) tend = {icon:'📉', label:'En baisse', cls:'t-rouge'};
-    else                 tend = {icon:'📊', label:'Stable',    cls:''};
-  }
+  // Tendance = celle indiquée par la jardinière au dernier suivi (pas de calcul maison)
+  const tDecl = (last["Tendance motivation"]||"").toLowerCase();
+  let tend = {icon:'—', label:'Non renseignée', cls:''};
+  if (tDecl.includes("hausse"))        tend = {icon:'📈', label:'En hausse', cls:'t-vert'};
+  else if (tDecl.includes("baisse"))   tend = {icon:'📉', label:'En baisse', cls:'t-rouge'};
+  else if (tDecl.includes("variable")) tend = {icon:'〰️', label:'Variable',  cls:'t-jaune'};
+  else if (tDecl.includes("stable"))   tend = {icon:'📊', label:'Stable',    cls:''};
+  else if (tDecl.includes("premier"))  tend = {icon:'⬜', label:'Premier suivi', cls:''};
 
   // ── Besoin d'aide (basé sur le dernier suivi + tendances récentes) ──
   const etat = (last["État général"]||"");
@@ -923,7 +922,8 @@ function renderSynthese() {
           <div class="mc-val mc-stars">${st.motMoy!==null?stars(Math.round(st.motMoy)):'—'}</div>
           ${st.motMoy!==null?`<div class="mc-sub">${fmt1(st.motMoy)}/5 · dernière : ${st.motLast}/5</div><div class="spark">${spark}</div>`:''}</div>
         <div class="mini-card"><div class="mc-label">📈 TENDANCE</div>
-          <div class="mc-val ${st.tend.cls}"><b>${st.tend.icon} ${st.tend.label}</b></div></div>
+          <div class="mc-val ${st.tend.cls}"><b>${st.tend.icon} ${st.tend.label}</b></div>
+          <div class="mc-sub">indiquée au dernier suivi</div></div>
         <div class="mini-card"><div class="mc-label">🌡️ DERNIER ÉTAT</div>
           <div class="mc-val">${st.etat||'—'}</div></div>
       </div>
@@ -944,7 +944,7 @@ function renderSynthese() {
     </div>`;
   });
 
-  html += `<p class="syn-note">Méthode : assiduité = présences (absences excusées incluses) sur le nombre de suivis · motivation = moyenne de tous les suivis · tendance = 2 derniers suivis comparés aux précédents · « besoin d'aide / à surveiller » = dernier suivi (état général, priorité, signaux) + absence récente, motivation basse ou en baisse.</p>`;
+  html += `<p class="syn-note">Méthode : assiduité = présences (absences excusées incluses) sur le nombre de suivis · motivation = moyenne de tous les suivis · tendance = celle saisie au dernier suivi · « besoin d'aide / à surveiller » = uniquement ce qui a été saisi au dernier suivi (état général, priorité, signaux, tendance en baisse) + absence sans nouvelle récente ou motivation notée 2/5 ou moins.</p>`;
 
   const container = document.getElementById('fiche-container');
   container.innerHTML = html;

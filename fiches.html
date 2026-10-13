@@ -279,8 +279,11 @@ body{overflow-x:clip;}
 .spark span{width:6px;background:var(--green-light);border-radius:2px;}
 .syn-empty{font-size:13.5px;color:var(--text-muted);font-style:italic;}
 .syn-note{font-size:12px;color:var(--text-muted);line-height:1.6;text-align:center;margin-top:18px;}
-.syn-graines{margin-top:12px;}
-.syn-graines-titre{font-size:10px;color:var(--text-muted);font-weight:700;letter-spacing:.3px;}
+.mc-graines{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);}
+.mc-graines-titre{font-size:11px;color:var(--text-muted);font-weight:700;}
+.mc-graines ul{list-style:none;margin-top:4px;display:flex;flex-direction:column;gap:3px;}
+.mc-graines li{font-size:12px;color:var(--text);line-height:1.35;font-weight:500;}
+.mc-graines li::before{content:'• ';color:var(--green-light);}
 </style>
 </head>
 <body>
@@ -923,7 +926,8 @@ function renderSynthese() {
       body = `<div class="mini-grid">
         <div class="mini-card"><div class="mc-label">📋 ASSIDUITÉ</div>
           <div class="mc-val ${st.assid.cls}"><b>${st.presences}/${st.np}</b> · ${st.assid.label}</div>
-          ${st.dAss?`<div class="mc-sub">${st.dAss}</div>`:''}</div>
+          ${st.dAss?`<div class="mc-sub">${st.dAss}</div>`:''}
+          ${st.graines.length?`<div class="mc-graines"><div class="mc-graines-titre">🌱 Graines suivies (${st.graines.length})</div><ul>${st.graines.map(g=>`<li>${g}</li>`).join('')}</ul></div>`:''}</div>
         <div class="mini-card"><div class="mc-label">📨 AR</div>
           <div class="mc-val ${st.ar.cls}"><b>${st.ar.label}</b></div>
           ${st.arDetail?`<div class="mc-sub">${st.arDetail}</div>`:''}</div>
@@ -936,8 +940,7 @@ function renderSynthese() {
         <div class="mini-card"><div class="mc-label">🌡️ DERNIER ÉTAT</div>
           <div class="mc-val">${st.etat||'—'}</div></div>
       </div>
-      ${st.raisons.length?`<div class="actions-tags">${st.raisons.map(r=>`<span class="action-tag">${r}</span>`).join('')}</div>`:''}
-      ${st.graines.length?`<div class="syn-graines"><div class="syn-graines-titre">🌱 GRAINES SUIVIES (${st.graines.length})</div><div class="actions-tags">${st.graines.map(g=>`<span class="action-tag">${g}</span>`).join('')}</div></div>`:''}`;
+      ${st.raisons.length?`<div class="actions-tags">${st.raisons.map(r=>`<span class="action-tag">${r}</span>`).join('')}</div>`:''}`;
     } else {
       body = `<div class="syn-empty">Aucun suivi enregistré pour l'instant.</div>`;
     }

@@ -279,7 +279,8 @@ body{overflow-x:clip;}
 .spark span{width:6px;background:var(--green-light);border-radius:2px;}
 .syn-empty{font-size:13.5px;color:var(--text-muted);font-style:italic;}
 .syn-note{font-size:12px;color:var(--text-muted);line-height:1.6;text-align:center;margin-top:18px;}
-.graine-meta{font-size:12px;color:var(--text-muted);}
+.syn-graines{margin-top:12px;}
+.syn-graines-titre{font-size:10px;color:var(--text-muted);font-weight:700;letter-spacing:.3px;}
 </style>
 </head>
 <body>
@@ -508,30 +509,6 @@ function renderFiche(idx) {
     <div class="suivi-header-line"></div>
   </div>`;
 
-    // ── GRAINES SUIVIES (dédoublonnées, ordre chronologique) ──
-  const graines = [];
-  const vues = new Set();
-  lignesSuivi.slice().reverse().forEach(l => {
-    const g = (l['Graine de la semaine'] || '').trim();
-    if (!g || vues.has(g.toLowerCase())) return;
-    vues.add(g.toLowerCase());
-    graines.push({
-      g,
-      date: l['Date du suivi'] || l['Horodatage'],
-      score: l['Appropriation de la graine (1-5)']
-    });
-  });
-  if (graines.length) {
-    html += `<div class="section">
-      <div class="section-title">🌱 Graines suivies (${graines.length})</div>
-      <ul class="objectifs-list">
-        ${graines.map(x => `<li><span class="obj-dot"></span><span>${x.g}
-          <span class="graine-meta"> · ${formatDateFR(x.date)}${parseInt(x.score) ? ' · <span class="mc-stars">' + stars(x.score) + '</span>' : ''}</span>
-        </span></li>`).join('')}
-      </ul>
-    </div>`;
-  }
-  
   html += `<button class="btn-saisir" onclick="ouvrirSaisie()">✍️ Saisir le suivi de cette semaine</button>`;
 
   // ── PANNEAU SAISIE ──
@@ -856,8 +833,18 @@ function statsSoeur(prenom) {
   if (motLast!==null && motLast<=2)       { niveau=Math.max(niveau,1); raisons.push("🔥 Motivation basse"); }
   if (tend.label==='En baisse')           { niveau=Math.max(niveau,1); raisons.push("📉 Motivation en baisse"); }
 
+  // ── Graines suivies (dédoublonnées, ordre chronologique) ──
+  const graines = [];
+  const vues = new Set();
+  lignes.slice().reverse().forEach(l=>{
+    const g = (l["Graine de la semaine"]||"").trim();
+    if (!g || vues.has(g.toLowerCase())) return;
+    vues.add(g.toLowerCase());
+    graines.push(g);
+  });
+
   return { n, last, np, presences, assid, dAss: dAss.join(' · '), ar, arDetail,
-           motMoy, motLast, mv, tend, etat, niveau, raisons,
+           motMoy, motLast, mv, tend, etat, niveau, raisons, graines,
            _pres:presences, _np:np };
 }
 
@@ -949,7 +936,8 @@ function renderSynthese() {
         <div class="mini-card"><div class="mc-label">🌡️ DERNIER ÉTAT</div>
           <div class="mc-val">${st.etat||'—'}</div></div>
       </div>
-      ${st.raisons.length?`<div class="actions-tags">${st.raisons.map(r=>`<span class="action-tag">${r}</span>`).join('')}</div>`:''}`;
+      ${st.raisons.length?`<div class="actions-tags">${st.raisons.map(r=>`<span class="action-tag">${r}</span>`).join('')}</div>`:''}
+      ${st.graines.length?`<div class="syn-graines"><div class="syn-graines-titre">🌱 GRAINES SUIVIES (${st.graines.length})</div><div class="actions-tags">${st.graines.map(g=>`<span class="action-tag">${g}</span>`).join('')}</div></div>`:''}`;
     } else {
       body = `<div class="syn-empty">Aucun suivi enregistré pour l'instant.</div>`;
     }

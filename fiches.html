@@ -365,13 +365,23 @@ function formatDateFR(val) {
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+// ── DATE -> TIMESTAMP (gère aaaa-mm-jj et jj/mm/aaaa) ──
+function tsDate(v) {
+  const s = String(v || '').trim();
+  if (!s) return 0;
+  const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  const fr  = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  const d = iso ? new Date(+iso[1], +iso[2] - 1, +iso[3])
+          : fr  ? new Date(+fr[3], +fr[2] - 1, +fr[1])
+          : new Date(s);
+  return isNaN(d) ? 0 : d.getTime();
+}
+
 // ── BADGES (assiduité + AR) : on regarde les 2 derniers suivis ──
 function calcBadges(prenom) {
   const toutes = suiviData[prenom] || [];
 
-  const lignes = toutes.slice().sort((a, b) => {
-    return new Date(b["Date du suivi"] || 0) - new Date(a["Date du suivi"] || 0);
-  }).slice(0, 2);
+  const lignes = toutes.slice().sort(triRecent).slice(0, 2);
 
   if (!lignes.length) return { assiduite: null, ar: null };
 
@@ -463,9 +473,7 @@ function renderFiche(idx) {
   current = idx;
   const p = participants[idx];
   currentPrenom = p['Prénom'] || '';
-  const lignesSuivi = (suiviData[currentPrenom] || []).slice().sort((a,b)=>{
-    return new Date(b["Date du suivi"]||0) - new Date(a["Date du suivi"]||0);
-  });
+  const lignesSuivi = (suiviData[currentPrenom] || []).slice().sort(triRecent);
 
   const { assiduite, ar } = calcBadges(currentPrenom);
   const engagé = (p['Engagement']||'').toLowerCase().includes('oui');
@@ -747,15 +755,6 @@ let triSynthese = 'recent';
 const moy  = arr => arr.reduce((a,b)=>a+b,0)/arr.length;
 const fmt1 = n => n.toFixed(1).replace('.',',');
 const pl   = (k,s,p) => k+' '+(k>1?p:s);
-function tsDate(v){
-  const s=Sng(v||'').trim(); if(!s) return 0;
-  const iso=s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  const fr=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-  const d = iso ? new Date(+iso[1],+iso[2]-1,+iso[3])
-          : fr  ? new Date(+fr[3],+fr[2]-1,+fr[1])
-          : new Date(s);
-  return isNaN(d) ? 0 : d.getTime();
-}
 function triRecent(a,b){ return tsDate(b["Date du suivi"]||b["Horodatage"]) - tsDate(a["Date du suivi"]||a["Horodatage"]); }
 
 // Calcule la situation d'une sœur à partir de TOUS ses suivis (mise à jour automatique)
@@ -882,7 +881,7 @@ function renderSynthese() {
   const nbSurv  = avecSuivi.filter(x=>x.st.niveau===1).length;
   const nbSorties = items.filter(x=>x.sortie).length;
 
-    // ── Tri ──
+  // ── Tri ──
   const cle = x => x.sortie ? 99 : (x.st ? (2-x.st.niveau) : 50);
   const dernierTs = x => x.st ? tsDate(x.st.last["Date du suivi"]||x.st.last["Horodatage"]) : 0;
   if (triSynthese==='recent') {
@@ -913,11 +912,10 @@ function renderSynthese() {
   </div>
 
   <div class="syn-tri">
-      <div class="syn-tri">
     <button class="${triSynthese==='recent'?'actif':''}" onclick="setTri('recent')">🕒 Derniers suivis d'abord</button>
     <button class="${triSynthese==='attention'?'actif':''}" onclick="setTri('attention')">🚨 Priorité d'abord</button>
     <button class="${triSynthese==='alpha'?'actif':''}" onclick="setTri('alpha')">🔤 Ordre alphabétique</button>
-  </div>;
+  </div>`;
 
   items.forEach(x=>{
     const st = x.st;

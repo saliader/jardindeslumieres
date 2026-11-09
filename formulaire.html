@@ -506,7 +506,13 @@ function identifierSoeur() {
   currentSoeur = soeur;
   afficherFormulaire();
 }
-
+function normaliser(tel) {
+  // Supprime TOUT ce qui n'est pas un chiffre ou +
+  let t = tel.replace(/[^0-9+]/g, '');
+  if (t.startsWith('+33')) t = '0' + t.slice(3);
+  if (t.startsWith('0033')) t = '0' + t.slice(4);
+  return t;
+}
 // ── CALCUL DES GRAINES NON ENCORE SAISIES ────────────────────
 function calcGrainesDispos(prenom) {
   // Graines déjà saisies par cette sœur dans les auto-déclarations

@@ -28,24 +28,21 @@ body{
   background-image:radial-gradient(ellipse at 10% 10%,rgba(122,171,136,0.12) 0%,transparent 50%),
   radial-gradient(ellipse at 90% 90%,rgba(201,145,58,0.08) 0%,transparent 50%);
 }
-
-/* ── HEADER ── */
 header{text-align:center;padding:44px 24px 28px;background:var(--white);
   border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(74,124,89,0.06);}
 .header-flowers{font-size:22px;letter-spacing:6px;margin-bottom:10px;}
 header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,34px);font-weight:600;color:var(--green);}
 header h1 em{font-style:italic;color:var(--rose);}
 .header-tagline{font-size:13px;color:var(--text-muted);margin-top:6px;letter-spacing:2px;text-transform:uppercase;font-weight:300;}
-
 #main-wrap{max-width:620px;margin:0 auto;padding:32px 20px 60px;}
 
-/* ── ÉTATS ── */
+/* ÉTATS */
 #loading{text-align:center;padding:80px 24px;color:var(--text-muted);}
 .spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--green);
   border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* ── CARDS ── */
+/* CARDS */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
   padding:28px;margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
@@ -54,7 +51,7 @@ header h1 em{font-style:italic;color:var(--rose);}
   margin-bottom:6px;text-align:center;}
 .card-subtitle{font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:22px;line-height:1.6;}
 
-/* ── FORMULAIRE ── */
+/* FORMULAIRE */
 .form-group{margin-bottom:16px;}
 .form-label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
 .form-label span{font-weight:400;color:var(--text-muted);font-size:12px;}
@@ -68,8 +65,7 @@ header h1 em{font-style:italic;color:var(--rose);}
   background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;}
 .form-textarea{min-height:90px;resize:vertical;line-height:1.6;}
 
-/* ── GRAINE SELECT ── */
-.graine-select-wrap{position:relative;}
+/* GRAINE */
 .graine-badge-new{display:inline-block;margin-left:8px;font-size:11px;font-weight:700;
   background:var(--green-pale);color:var(--green);border:1px solid rgba(74,124,89,0.3);
   border-radius:20px;padding:2px 8px;vertical-align:middle;}
@@ -82,7 +78,7 @@ header h1 em{font-style:italic;color:var(--rose);}
   line-height:1.7;display:none;}
 .graine-toutes-faites.show{display:block;}
 
-/* ── BANNER SŒUR ── */
+/* BANNER SŒUR */
 .soeur-banner{background:linear-gradient(135deg,var(--green-pale),rgba(201,145,58,0.08));
   border:1.5px solid rgba(74,124,89,0.25);border-radius:14px;padding:16px 20px;
   margin-bottom:20px;display:flex;align-items:center;gap:14px;}
@@ -97,13 +93,13 @@ header h1 em{font-style:italic;color:var(--rose);}
   border-radius:20px;padding:4px 12px;cursor:pointer;transition:all .2s;}
 .btn-changer:hover{border-color:var(--rose);color:var(--rose);}
 
-/* ── SECTION TITRES ── */
+/* SECTION TITRES */
 .form-section{margin-bottom:24px;}
 .form-section-title{font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;
   letter-spacing:.6px;margin-bottom:14px;padding-bottom:8px;
   border-bottom:2px solid var(--green-pale);display:flex;align-items:center;gap:8px;}
 
-/* ── ÉTOILES ── */
+/* ÉTOILES */
 .stars-wrap{display:flex;flex-direction:column;gap:8px;}
 .stars-row{display:flex;gap:6px;}
 .star-btn{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--border);
@@ -112,7 +108,7 @@ header h1 em{font-style:italic;color:var(--rose);}
 .star-btn:hover,.star-btn.active{background:var(--gold-pale);border-color:var(--gold);}
 .stars-label{font-size:12px;color:var(--text-muted);text-align:center;}
 
-/* ── CHOIX BOUTONS ── */
+/* CHOIX BOUTONS */
 .choices-grid{display:flex;flex-wrap:wrap;gap:8px;}
 .choice-btn{padding:9px 16px;border-radius:30px;border:1.5px solid var(--border);
   background:var(--bg);font-family:'Nunito',sans-serif;font-size:13.5px;font-weight:600;
@@ -120,7 +116,7 @@ header h1 em{font-style:italic;color:var(--rose);}
 .choice-btn:hover{border-color:var(--green-light);color:var(--green);}
 .choice-btn.selected{background:var(--green-pale);border-color:var(--green);color:var(--green);}
 
-/* ── BESOINS ── */
+/* BESOINS */
 .besoin-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .besoin-card{padding:14px 12px;border-radius:14px;border:1.5px solid var(--border);
   background:var(--bg);cursor:pointer;transition:all .2s;text-align:center;}
@@ -130,7 +126,7 @@ header h1 em{font-style:italic;color:var(--rose);}
 .besoin-label{font-size:12.5px;font-weight:700;color:var(--text);display:block;}
 .besoin-desc{font-size:11px;color:var(--text-muted);line-height:1.4;margin-top:3px;display:block;}
 
-/* ── BOUTONS ── */
+/* BOUTONS */
 .btn-primary{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),var(--green-light));
   color:var(--white);border:none;border-radius:12px;font-family:'Nunito',sans-serif;
   font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.3px;}
@@ -141,7 +137,7 @@ header h1 em{font-style:italic;color:var(--rose);}
   font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s;}
 .btn-secondary:hover{border-color:var(--rose);color:var(--rose);}
 
-/* ── SUCCÈS ── */
+/* SUCCÈS */
 #ecran-succes{display:none;text-align:center;padding:60px 20px;}
 .succes-icon{font-size:64px;margin-bottom:20px;}
 .succes-titre{font-family:'Playfair Display',serif;font-size:28px;color:var(--green);margin-bottom:12px;}
@@ -153,6 +149,10 @@ header h1 em{font-style:italic;color:var(--rose);}
 
 .msg-erreur{padding:12px 16px;color:var(--red);font-size:13.5px;
   background:var(--red-pale);border-radius:10px;margin-top:10px;display:none;line-height:1.5;}
+
+/* DEBUG (masqué en prod) */
+.debug-box{background:#f0f0f0;border:1px solid #ccc;border-radius:8px;padding:12px;
+  font-size:11px;font-family:monospace;color:#333;margin-bottom:12px;display:none;word-break:break-all;}
 
 #etape-identite{display:none;}
 #etape-formulaire{display:none;}
@@ -189,6 +189,8 @@ header h1 em{font-style:italic;color:var(--rose);}
         <input type="tel" id="f-tel" class="form-input" placeholder="06 12 34 56 78" autocomplete="tel" inputmode="tel">
       </div>
       <div id="msg-erreur-id" class="msg-erreur"></div>
+      <!-- debug box (affichée seulement si erreur) -->
+      <div id="debug-box" class="debug-box"></div>
       <button class="btn-primary" onclick="identifierSoeur()">Continuer →</button>
     </div>
   </div>
@@ -200,7 +202,7 @@ header h1 em{font-style:italic;color:var(--rose);}
       <div class="soeur-avatar" id="soeur-avatar"></div>
       <div class="soeur-info">
         <div class="soeur-nom" id="soeur-nom-banner"></div>
-        <div class="soeur-email" id="soeur-email-banner"></div>
+        <div class="soeur-email" id="soeur-email-banner">🌸 Jardin des Lumières</div>
       </div>
       <button class="btn-changer" onclick="changerSoeur()">Changer</button>
     </div>
@@ -209,27 +211,18 @@ header h1 em{font-style:italic;color:var(--rose);}
     <div class="card">
       <div class="form-section">
         <div class="form-section-title">🌱 La graine de la semaine</div>
-
         <div class="form-group">
           <label class="form-label">
             Choisis la graine de cette semaine
             <span id="graines-restantes-label"></span>
           </label>
-
-          <!-- SELECT des graines filtrées -->
-          <div class="graine-select-wrap">
-            <select id="f-graine" class="form-select" onchange="onGraineChange()">
-              <option value="">— Choisir une graine —</option>
-            </select>
-          </div>
-
-          <!-- Message si toutes faites -->
+          <select id="f-graine" class="form-select" onchange="onGraineChange()">
+            <option value="">— Choisir une graine —</option>
+          </select>
           <div class="graine-toutes-faites" id="graine-toutes-faites">
             🌸 Mashallah ! Tu as déjà rempli une fiche pour toutes les graines disponibles.<br>
             Reviens la semaine prochaine quand une nouvelle graine sera ajoutée.
           </div>
-
-          <!-- Info graine sélectionnée -->
           <div class="graine-info" id="graine-info"></div>
         </div>
 
@@ -379,25 +372,22 @@ header h1 em{font-style:italic;color:var(--rose);}
 </div>
 
 <script>
-// ── URLS ──────────────────────────────────────────────────────
-const WEBAPP_URL   = "https://script.google.com/macros/s/AKfycbzH6nvS76Ey3BUkr48z8LD4ez8QgjcfCgx-gLXJ4rt97vBOb8rFiHumdCuIj02Yn-j4/exec";
-const CSV_FICHES   = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
-const CSV_AUTO     = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=273893948&single=true&output=csv";
-const CSV_GRAINES  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=693187884&single=true&output=csv";
+// ── CONFIGURATION ─────────────────────────────────────────────
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzH6nvS76Ey3BUkr48z8LD4ez8QgjcfCgx-gLXJ4rt97vBOb8rFiHumdCuIj02Yn-j4/exec";
 
-// ── DONNÉES GLOBALES ─────────────────────────────────────────
-let participants   = [];   // fiches sœurs
-let toutesGraines  = [];   // toutes les graines du CSV graines
-let autoDecls      = [];   // toutes les auto-déclarations enregistrées
-let currentSoeur   = null;
-let grainesDispos  = [];   // graines non encore saisies par la sœur courante
+// ── DONNÉES GLOBALES ──────────────────────────────────────────
+let participants  = [];   // [{ prenom: "Sara", tel: "0612345678" }, …]
+let toutesGraines = [];   // ["Graine 1", "Graine 2", …]
+let autoDecls     = [];   // auto-déclarations déjà soumises
+let currentSoeur  = null;
+let grainesDispos = [];
 
 const selections = {
-  graine: 0,
+  graine:     0,
   motivation: 0,
-  objectifs: '',
-  etat: '',
-  besoins: new Set()
+  objectifs:  '',
+  etat:       '',
+  besoins:    new Set()
 };
 
 const starLabels = {
@@ -405,46 +395,42 @@ const starLabels = {
   motivation: ['','Très basse 😔','Basse 😕','Modérée 🙂','Bonne 😊','Excellente 🤩']
 };
 
-// ── CSV PARSER ───────────────────────────────────────────────
-function parseCSV(text) {
-  const lines = text.split('\n');
-  if (!lines.length) return [];
-  const headers = splitLine(lines[0]);
-  const result  = [];
-  for (let i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
-    const vals = splitLine(lines[i]);
-    const obj  = {};
-    headers.forEach((h, j) => { obj[h.trim()] = (vals[j] || '').trim(); });
-    result.push(obj);
-  }
-  return result;
-}
-function splitLine(line) {
-  const result = []; let cur = '', inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else { inQ=!inQ; } }
-    else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
-    else { cur += c; }
-  }
-  result.push(cur);
-  return result;
+// ── NORMALISATION DU NUMÉRO ───────────────────────────────────
+// Supprime tout sauf les chiffres, convertit +33 / 0033 → 0
+function normaliser(tel) {
+  let t = String(tel || '').replace(/[^0-9+]/g, '');
+  if (t.startsWith('+33')) t = '0' + t.slice(3);
+  if (t.startsWith('0033')) t = '0' + t.slice(4);
+  return t;
 }
 
-// ── INIT ─────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────
 async function init() {
   try {
-    const res  = await fetch(WEBAPP_URL + '?action=getData');
+    const res = await fetch(WEBAPP_URL + '?action=getData&t=' + Date.now());
+
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
     const data = await res.json();
+
     if (data.error) throw new Error(data.error);
+
     participants  = data.soeurs    || [];
     toutesGraines = data.graines   || [];
     autoDecls     = data.autoDecls || [];
+
+    console.log('✅ Données chargées :', participants.length, 'sœurs,', toutesGraines.length, 'graines');
+
   } catch (e) {
-    console.error('Erreur chargement données :', e);
+    console.error('❌ Erreur chargement données :', e);
+    // On affiche quand même le formulaire d'identification
+    // avec un message d'avertissement
+    const errDiv = document.getElementById('msg-erreur-id');
+    errDiv.textContent = '⚠️ Problème de connexion aux données. Contacte Sali si le problème persiste.';
+    errDiv.style.display = 'block';
   }
-  document.getElementById('loading').style.display       = 'none';
+
+  document.getElementById('loading').style.display        = 'none';
   document.getElementById('etape-identite').style.display = 'block';
 }
 
@@ -452,100 +438,86 @@ async function init() {
 function identifierSoeur() {
   const raw    = document.getElementById('f-tel').value.trim();
   const errDiv = document.getElementById('msg-erreur-id');
+  const dbgBox = document.getElementById('debug-box');
   errDiv.style.display = 'none';
+  dbgBox.style.display = 'none';
 
   if (!raw) {
-    errDiv.textContent = '⚠️ Merci d\'entrer ton numéro de téléphone.';
-    errDiv.style.display = 'block'; return;
-  }
-
-  // ── Normalisation ──────────────────────────────────────────
-  // Supprime espaces, points, tirets, parenthèses
-  function normaliser(tel) {
-    let t = tel.replace(/[\s.\-().]/g, '');
-    // +33612345678 → 0612345678
-    if (t.startsWith('+33')) t = '0' + t.slice(3);
-    // 0033612345678 → 0612345678
-    if (t.startsWith('0033')) t = '0' + t.slice(4);
-    return t;
+    errDiv.textContent   = '⚠️ Merci d\'entrer ton numéro de téléphone.';
+    errDiv.style.display = 'block';
+    return;
   }
 
   const telNorm = normaliser(raw);
 
   if (!/^[0-9]{8,15}$/.test(telNorm)) {
-    errDiv.textContent = '⚠️ Numéro invalide. Vérifie le format (ex : 06 12 34 56 78).';
-    errDiv.style.display = 'block'; return;
+    errDiv.textContent   = '⚠️ Numéro invalide. Vérifie le format (ex : 06 12 34 56 78).';
+    errDiv.style.display = 'block';
+    return;
   }
 
-const soeur = participants.find(p => normaliser(p.tel) === telNorm);
-    const telStocke = normaliser(p['Téléphone'] || '');
-    return telStocke === telNorm;
-  });
+  // Cherche la sœur dont le numéro normalisé correspond
+  const soeur = participants.find(p => normaliser(p.tel) === telNorm);
 
   if (!soeur) {
-    errDiv.textContent = '⚠️ Numéro non reconnu. Vérifie ou contacte Sali.';
-    errDiv.style.display = 'block'; return;
+    errDiv.textContent   = '⚠️ Numéro non reconnu. Vérifie ou contacte Sali.';
+    errDiv.style.display = 'block';
+
+    // Aide au débogage : affiche ce qui a été reçu vs ce qui a été saisi
+    if (participants.length === 0) {
+      dbgBox.textContent   = '⚙️ Debug : aucune sœur chargée depuis la Web App. Vérifie que le script Apps Script est bien déployé avec le nouveau doGet().';
+      dbgBox.style.display = 'block';
+    } else {
+      dbgBox.textContent   = '⚙️ Debug : ' + participants.length + ' sœurs chargées. Numéro saisi normalisé : "' + telNorm + '". Premier numéro en base : "' + normaliser(participants[0].tel) + '"';
+      dbgBox.style.display = 'block';
+    }
+    return;
   }
 
   currentSoeur = soeur;
   afficherFormulaire();
 }
-function normaliser(tel) {
-  // Supprime TOUT ce qui n'est pas un chiffre ou +
-  let t = tel.replace(/[^0-9+]/g, '');
-  if (t.startsWith('+33')) t = '0' + t.slice(3);
-  if (t.startsWith('0033')) t = '0' + t.slice(4);
-  return t;
-}
+
 // ── CALCUL DES GRAINES NON ENCORE SAISIES ────────────────────
 function calcGrainesDispos(prenom) {
-  // Graines déjà saisies par cette sœur dans les auto-déclarations
   const dejaSaisies = new Set(
     autoDecls
       .filter(r => {
-        const p = (r['Prénom de la sœur'] || r['Prénom'] || '').trim().toLowerCase();
+        const p = (r['Prénom de la sœur'] || '').trim().toLowerCase();
         return p === prenom.toLowerCase();
       })
       .map(r => (r['Graine de la semaine'] || '').trim().toLowerCase())
       .filter(Boolean)
   );
-
-  // Retourne uniquement les graines pas encore saisies
   return toutesGraines.filter(g => !dejaSaisies.has(g.toLowerCase()));
 }
 
 // ── AFFICHAGE DU FORMULAIRE ───────────────────────────────────
 function afficherFormulaire() {
   const prenom = currentSoeur.prenom || '';
-  const tel    = document.getElementById('f-tel').value.trim();
 
-  // Banner sœur
-  document.getElementById('soeur-avatar').textContent = prenom.charAt(0).toUpperCase();
+  document.getElementById('soeur-avatar').textContent     = prenom.charAt(0).toUpperCase();
   document.getElementById('soeur-nom-banner').textContent = prenom;
-  document.getElementById('soeur-email-banner').textContent = tel;
 
-  // Calcul des graines disponibles
   grainesDispos = calcGrainesDispos(prenom);
   remplirSelectGraines();
 
-  document.getElementById('etape-identite').style.display = 'none';
+  document.getElementById('etape-identite').style.display   = 'none';
   document.getElementById('etape-formulaire').style.display = 'block';
   window.scrollTo(0, 0);
 }
 
 // ── REMPLISSAGE DU SELECT GRAINES ────────────────────────────
 function remplirSelectGraines() {
-  const sel    = document.getElementById('f-graine');
-  const toutes = toutesGraines.length;
-  const dispos = grainesDispos.length;
-  const label  = document.getElementById('graines-restantes-label');
+  const sel          = document.getElementById('f-graine');
+  const toutes       = toutesGraines.length;
+  const dispos       = grainesDispos.length;
+  const label        = document.getElementById('graines-restantes-label');
   const toutesFaites = document.getElementById('graine-toutes-faites');
 
-  // Réinitialise
   sel.innerHTML = '<option value="">— Choisir une graine —</option>';
 
   if (toutes === 0) {
-    // Aucune graine dans la liste
     sel.style.display = 'none';
     label.textContent = '';
     toutesFaites.style.display = 'none';
@@ -553,16 +525,13 @@ function remplirSelectGraines() {
   }
 
   if (dispos === 0) {
-    // Toutes les graines déjà remplies
     sel.style.display = 'none';
     toutesFaites.classList.add('show');
     label.textContent = '';
-    // On cache aussi le reste du formulaire
     document.getElementById('btn-submit').disabled = true;
     return;
   }
 
-  // Il reste des graines
   sel.style.display = '';
   toutesFaites.classList.remove('show');
 
@@ -574,14 +543,14 @@ function remplirSelectGraines() {
   }
 
   grainesDispos.forEach(g => {
-    const opt = document.createElement('option');
-    opt.value = g;
+    const opt       = document.createElement('option');
+    opt.value       = g;
     opt.textContent = '🌱 ' + g;
     sel.appendChild(opt);
   });
 }
 
-// ── CHANGEMENT DE GRAINE SÉLECTIONNÉE ────────────────────────
+// ── CHANGEMENT DE GRAINE ─────────────────────────────────────
 function onGraineChange() {
   const val  = document.getElementById('f-graine').value;
   const info = document.getElementById('graine-info');
@@ -595,7 +564,7 @@ function onGraineChange() {
 
 function changerSoeur() {
   document.getElementById('etape-formulaire').style.display = 'none';
-  document.getElementById('etape-identite').style.display = 'block';
+  document.getElementById('etape-identite').style.display   = 'block';
   currentSoeur = null;
   document.getElementById('f-tel').value = '';
   window.scrollTo(0, 0);
@@ -622,9 +591,11 @@ function selectChoice(key, btn) {
 // ── BESOINS ──────────────────────────────────────────────────
 function toggleBesoin(card, key) {
   if (selections.besoins.has(key)) {
-    selections.besoins.delete(key); card.classList.remove('selected');
+    selections.besoins.delete(key);
+    card.classList.remove('selected');
   } else {
-    selections.besoins.add(key); card.classList.add('selected');
+    selections.besoins.add(key);
+    card.classList.add('selected');
   }
 }
 
@@ -634,14 +605,15 @@ async function soumettreFormulaire() {
   const errDiv = document.getElementById('msg-erreur-form');
   errDiv.style.display = 'none';
 
-  const tel    = document.getElementById('f-tel').value.trim().replace(/[\s.\-]/g, '');
-  const prenom = currentSoeur['Prénom'] || tel;
+  const prenom = currentSoeur.prenom || '';
+  const tel    = currentSoeur.tel    || '';
   const graine = document.getElementById('f-graine').value.trim();
 
   if (!graine) {
-    errDiv.textContent = '⚠️ Merci de choisir la graine de la semaine.';
+    errDiv.textContent   = '⚠️ Merci de choisir la graine de la semaine.';
     errDiv.style.display = 'block';
-    window.scrollTo(0, 200); return;
+    window.scrollTo(0, 200);
+    return;
   }
 
   const grainDetail     = document.getElementById('f-graine-detail').value.trim();
@@ -650,10 +622,14 @@ async function soumettreFormulaire() {
   const note            = document.getElementById('f-note').value.trim();
 
   const besoinMap = {
-    'besoin-ecoute': 'Être écoutée', 'besoin-soutien': 'Soutien & encouragements',
-    'besoin-guidance': 'Guidance spirituelle', 'besoin-espace': 'Espace & légèreté',
-    'besoin-rigueur': 'Un peu de rigueur', 'besoin-binome': 'Contact avec mon binôme',
-    'besoin-rien': 'Tout va bien', 'besoin-autre': 'Autre'
+    'besoin-ecoute':   'Être écoutée',
+    'besoin-soutien':  'Soutien & encouragements',
+    'besoin-guidance': 'Guidance spirituelle',
+    'besoin-espace':   'Espace & légèreté',
+    'besoin-rigueur':  'Un peu de rigueur',
+    'besoin-binome':   'Contact avec mon binôme',
+    'besoin-rien':     'Tout va bien',
+    'besoin-autre':    'Autre'
   };
   const besoinsTexte = [...selections.besoins].map(k => besoinMap[k] || k).join(', ');
 
@@ -661,25 +637,25 @@ async function soumettreFormulaire() {
   const dateStr = now.toLocaleDateString('fr-FR');
 
   const data = {
-    "Date du suivi":          dateStr,
-    "Jardinière en chef":     "Auto-déclaration sœur",
-    "Graine de la semaine":   graine,
-    "Prénom de la sœur":      prenom,
-    "Prénom du binôme":       "",
-    "Présence":               "",
-    "AR (accusés de réception)": "",
-    "Appropriation de la graine (1-5)": selections.graine || "",
-    "Avancement objectifs":   selections.objectifs || "",
-    "État du binôme":         "",
-    "Observation binôme":     "",
-    "Motivation (1-5)":       selections.motivation || "",
-    "Tendance motivation":    "",
-    "État général":           selections.etat || "",
-    "Signaux observés":       besoinsTexte || "",
-    "Priorité semaine prochaine": "",
-    "Actions prévues":        "",
+    "Date du suivi":                     dateStr,
+    "Jardinière en chef":                "Auto-déclaration sœur",
+    "Graine de la semaine":              graine,
+    "Prénom de la sœur":                 prenom,
+    "Prénom du binôme":                  "",
+    "Présence":                          "",
+    "AR (accusés de réception)":         "",
+    "Appropriation de la graine (1-5)":  selections.graine || "",
+    "Avancement objectifs":              selections.objectifs || "",
+    "État du binôme":                    "",
+    "Observation binôme":                "",
+    "Motivation (1-5)":                  selections.motivation || "",
+    "Tendance motivation":               "",
+    "État général":                      selections.etat || "",
+    "Signaux observés":                  besoinsTexte || "",
+    "Priorité semaine prochaine":        "",
+    "Actions prévues":                   "",
     "Note libre": [
-      grainDetail     ? "🌱 Graine : "   + grainDetail     : "",
+      grainDetail     ? "🌱 Graine : "    + grainDetail     : "",
       objectifsDetail ? "🎯 Objectifs : " + objectifsDetail : "",
       besoinDetail    ? "🤲 Besoin : "    + besoinDetail    : "",
       note            ? "📝 Note : "      + note            : "",
@@ -692,15 +668,16 @@ async function soumettreFormulaire() {
 
   try {
     await fetch(WEBAPP_URL, {
-      method: 'POST', mode: 'no-cors',
+      method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body:    JSON.stringify(data)
     });
     document.getElementById('etape-formulaire').style.display = 'none';
     document.getElementById('ecran-succes').style.display     = 'block';
     window.scrollTo(0, 0);
   } catch (err) {
-    errDiv.textContent = '❌ Erreur d\'envoi. Vérifie ta connexion et réessaie.';
+    errDiv.textContent   = '❌ Erreur d\'envoi. Vérifie ta connexion et réessaie.';
     errDiv.style.display = 'block';
     btn.disabled    = false;
     btn.textContent = '🌸 Envoyer ma fiche';
@@ -709,15 +686,18 @@ async function soumettreFormulaire() {
 
 // ── RECOMMENCER ──────────────────────────────────────────────
 function recommencer() {
-  currentSoeur = null;
+  currentSoeur  = null;
   grainesDispos = [];
-  selections.graine = 0; selections.motivation = 0;
-  selections.objectifs = ''; selections.etat = '';
-  selections.besoins = new Set();
+  selections.graine     = 0;
+  selections.motivation = 0;
+  selections.objectifs  = '';
+  selections.etat       = '';
+  selections.besoins    = new Set();
 
   ['graine','motivation'].forEach(k => {
-    document.getElementById('stars-'+k).querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
-    const lbl = document.getElementById('stars-'+k+'-label');
+    document.getElementById('stars-' + k).querySelectorAll('.star-btn')
+      .forEach(b => b.classList.remove('active'));
+    const lbl = document.getElementById('stars-' + k + '-label');
     if (lbl) lbl.textContent = 'Clique pour évaluer';
   });
   ['choices-objectifs','choices-etat'].forEach(id => {
@@ -725,14 +705,17 @@ function recommencer() {
     if (c) c.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
   });
   document.querySelectorAll('.besoin-card').forEach(b => b.classList.remove('selected'));
+
   ['f-tel','f-graine-detail','f-objectifs-detail','f-besoin-detail','f-note']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
   const btn = document.getElementById('btn-submit');
   if (btn) { btn.disabled = false; btn.textContent = '🌸 Envoyer ma fiche'; }
 
-  document.getElementById('ecran-succes').style.display    = 'none';
-  document.getElementById('etape-identite').style.display  = 'block';
+  document.getElementById('msg-erreur-id').style.display   = 'none';
+  document.getElementById('debug-box').style.display        = 'none';
+  document.getElementById('ecran-succes').style.display     = 'none';
+  document.getElementById('etape-identite').style.display   = 'block';
   window.scrollTo(0, 0);
 }
 

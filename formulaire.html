@@ -466,22 +466,36 @@ async function init() {
 
 // ── IDENTIFICATION ────────────────────────────────────────────
 function identifierSoeur() {
-  const tel    = document.getElementById('f-tel').value.trim().replace(/[\s.\-]/g, '');
+  const raw    = document.getElementById('f-tel').value.trim();
   const errDiv = document.getElementById('msg-erreur-id');
   errDiv.style.display = 'none';
 
-  if (!tel) {
+  if (!raw) {
     errDiv.textContent = '⚠️ Merci d\'entrer ton numéro de téléphone.';
     errDiv.style.display = 'block'; return;
   }
-  if (!/^[0-9+]{8,15}$/.test(tel)) {
+
+  // ── Normalisation ──────────────────────────────────────────
+  // Supprime espaces, points, tirets, parenthèses
+  function normaliser(tel) {
+    let t = tel.replace(/[\s.\-().]/g, '');
+    // +33612345678 → 0612345678
+    if (t.startsWith('+33')) t = '0' + t.slice(3);
+    // 0033612345678 → 0612345678
+    if (t.startsWith('0033')) t = '0' + t.slice(4);
+    return t;
+  }
+
+  const telNorm = normaliser(raw);
+
+  if (!/^[0-9]{8,15}$/.test(telNorm)) {
     errDiv.textContent = '⚠️ Numéro invalide. Vérifie le format (ex : 06 12 34 56 78).';
     errDiv.style.display = 'block'; return;
   }
 
   const soeur = participants.find(p => {
-    const telStocke = (p['Téléphone'] || '').replace(/[\s.\-]/g, '');
-    return telStocke === tel;
+    const telStocke = normaliser(p['Téléphone'] || '');
+    return telStocke === telNorm;
   });
 
   if (!soeur) {

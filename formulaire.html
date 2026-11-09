@@ -167,11 +167,11 @@ header h1 em{font-style:italic;color:var(--rose);}
   <div id="etape-identite">
     <div class="card">
       <div class="card-title">🌱 Bonjour !</div>
-      <p class="card-subtitle">Entre ton adresse e-mail pour accéder à ton formulaire.</p>
+      <p class="card-subtitle">Entre ton numéro de téléphone pour accéder à ton formulaire.</p>
 
       <div class="form-group">
-        <label class="form-label" for="f-email">Ton adresse e-mail</label>
-        <input type="email" id="f-email" class="form-input" placeholder="ton@email.com" autocomplete="email" inputmode="email">
+        <label class="form-label" for="f-email">Ton numéro de téléphone</label>
+        <input type="tel" id="f-email" class="form-input" placeholder="06 12 34 56 78" autocomplete="tel" inputmode="tel">
       </div>
 
       <div id="msg-erreur-id" class="msg-erreur"></div>
@@ -425,33 +425,34 @@ async function init() {
 
 // ── IDENTIFICATION ──
 function identifierSoeur() {
-  const email = document.getElementById('f-email').value.trim().toLowerCase();
+  // Normalise le numéro : supprime espaces, tirets, points
+  const tel = document.getElementById('f-email').value.trim().replace(/[\s.\-]/g, '');
   const errDiv = document.getElementById('msg-erreur-id');
   errDiv.style.display = 'none';
 
-  if (!email) {
-    errDiv.textContent = '⚠️ Merci d\'entrer ton adresse e-mail.';
+  if (!tel) {
+    errDiv.textContent = '⚠️ Merci d\'entrer ton numéro de téléphone.';
     errDiv.style.display = 'block';
     return;
   }
 
-  // Cherche dans les participants (colonne Téléphone utilisée comme email ou chercher dans toutes les colonnes)
-  let soeur = participants.find(p => {
-    return Object.values(p).some(v => v.trim().toLowerCase() === email);
+  if (!/^[0-9+]{8,15}$/.test(tel)) {
+    errDiv.textContent = '⚠️ Numéro invalide. Vérifie le format (ex : 06 12 34 56 78).';
+    errDiv.style.display = 'block';
+    return;
+  }
+
+  // Cherche dans la colonne Téléphone (colonne C = index 2)
+  // On normalise aussi le numéro stocké pour comparer sans espaces
+  const soeur = participants.find(p => {
+    const telStocke = (p['Téléphone'] || '').replace(/[\s.\-]/g, '');
+    return telStocke === tel;
   });
 
-  // Si pas trouvée mais l'email est valide, essayer avec juste le prénom si email contient le prénom
   if (!soeur) {
-    // Accepter même si l'e-mail n'est pas dans la liste : identifier par l'email directement
-    // On crée un objet minimal pour qu'elle puisse quand même remplir la fiche
-    if (/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
-      // Email valide mais pas dans la liste : on continue quand même
-      soeur = { 'Prénom': email.split('@')[0], 'email_brut': email, '_inconnu': true };
-    } else {
-      errDiv.textContent = '⚠️ Adresse e-mail invalide. Vérifie le format.';
-      errDiv.style.display = 'block';
-      return;
-    }
+    errDiv.textContent = '⚠️ Numéro non reconnu. Vérifie ou contacte Sali.';
+    errDiv.style.display = 'block';
+    return;
   }
 
   currentSoeur = soeur;
@@ -460,12 +461,12 @@ function identifierSoeur() {
 
 function afficherFormulaire() {
   const prenom = currentSoeur['Prénom'] || '';
-  const email = document.getElementById('f-email').value.trim();
+  const tel = document.getElementById('f-email').value.trim();
 
   // Banner
   document.getElementById('soeur-avatar').textContent = prenom.charAt(0).toUpperCase();
   document.getElementById('soeur-nom-banner').textContent = prenom;
-  document.getElementById('soeur-email-banner').textContent = email;
+  document.getElementById('soeur-email-banner').textContent = tel;
 
   document.getElementById('etape-identite').style.display = 'none';
   document.getElementById('etape-formulaire').style.display = 'block';
@@ -516,8 +517,8 @@ async function soumettreFormulaire() {
   const errDiv = document.getElementById('msg-erreur-form');
   errDiv.style.display = 'none';
 
-  const email = document.getElementById('f-email').value.trim();
-  const prenom = currentSoeur['Prénom'] || email;
+  const tel = document.getElementById('f-email').value.trim().replace(/[\s.\-]/g, '');
+  const prenom = currentSoeur['Prénom'] || tel;
   const graine = document.getElementById('f-graine').value.trim();
   const grainDetail = document.getElementById('f-graine-detail').value.trim();
   const objectifsDetail = document.getElementById('f-objectifs-detail').value.trim();
@@ -570,7 +571,7 @@ async function soumettreFormulaire() {
       objectifsDetail ? "🎯 Objectifs : " + objectifsDetail : "",
       besoinDetail ? "🤲 Besoin : " + besoinDetail : "",
       note ? "📝 Note : " + note : "",
-      "📧 Email : " + email
+      "📱 Tel : " + tel
     ].filter(Boolean).join("\n\n")
   };
 

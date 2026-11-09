@@ -435,32 +435,16 @@ function splitLine(line) {
 // ── INIT ─────────────────────────────────────────────────────
 async function init() {
   try {
-    const [rFiches, rGraines, rAuto] = await Promise.all([
-      fetch(CSV_FICHES),
-      fetch(CSV_GRAINES),
-      fetch(CSV_AUTO).catch(() => null)
-    ]);
-
-    // Fiches (liste des sœurs)
-    participants = parseCSV(await rFiches.text())
-      .filter(p => p['Prénom'] && p['Prénom'].trim() && p['Téléphone']);
-
-    // Graines disponibles (colonne "Graine")
-    toutesGraines = parseCSV(await rGraines.text())
-      .map(r => (r['Graine'] || '').trim())
-      .filter(Boolean);
-
-    // Auto-déclarations déjà saisies
-    if (rAuto && rAuto.ok) {
-      autoDecls = parseCSV(await rAuto.text())
-        .filter(r => r['Prénom de la sœur'] || r['Prénom']);
-    }
-
+    const res  = await fetch(WEBAPP_URL + '?action=getData');
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    participants  = data.soeurs    || [];
+    toutesGraines = data.graines   || [];
+    autoDecls     = data.autoDecls || [];
   } catch (e) {
     console.error('Erreur chargement données :', e);
   }
-
-  document.getElementById('loading').style.display = 'none';
+  document.getElementById('loading').style.display       = 'none';
   document.getElementById('etape-identite').style.display = 'block';
 }
 
@@ -493,7 +477,7 @@ function identifierSoeur() {
     errDiv.style.display = 'block'; return;
   }
 
-  const soeur = participants.find(p => {
+const soeur = participants.find(p => normaliser(p.tel) === telNorm);
     const telStocke = normaliser(p['Téléphone'] || '');
     return telStocke === telNorm;
   });
@@ -532,7 +516,7 @@ function calcGrainesDispos(prenom) {
 
 // ── AFFICHAGE DU FORMULAIRE ───────────────────────────────────
 function afficherFormulaire() {
-  const prenom = currentSoeur['Prénom'] || '';
+  const prenom = currentSoeur.prenom || '';
   const tel    = document.getElementById('f-tel').value.trim();
 
   // Banner sœur

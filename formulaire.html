@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta property="og:title" content="Jardin des Lumières 2026 — Ma fiche de la semaine" />
+<meta property="og:description" content="Remplis ta fiche hebdomadaire · Plante · Sème · Récolte" />
+<meta property="og:url" content="https://saliader.github.io/jardindeslumieres/formulaire.html" />
+<meta property="og:type" content="website" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jardin des Lumières 2026 — Ma fiche</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fdf8f2; --bg2:#fef5ec;
+  --green:#4a7c59; --green-light:#7aab88; --green-pale:#e8f4ec;
+  --rose:#c97b8a; --rose-pale:#fdeef1;
+  --gold:#c9913a; --gold-pale:#fdf3e3;
+  --purple:#7b6fa0; --purple-pale:#f0eef8;
+  --red:#c94a4a; --red-pale:#fdeaea;
+  --text:#3a3028; --text-muted:#8a7a6a;
+  --border:#e2d8cc; --white:#ffffff;
+  --radius:18px; --shadow:0 4px 24px rgba(74,124,89,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,80px);
+  background-image:radial-gradient(ellipse at 10% 10%,rgba(122,171,136,0.12) 0%,transparent 50%),
+  radial-gradient(ellipse at 90% 90%,rgba(201,145,58,0.08) 0%,transparent 50%);
+}
+
+/* ── HEADER ── */
+header{text-align:center;padding:44px 24px 28px;background:var(--white);
+  border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(74,124,89,0.06);}
+.header-flowers{font-size:22px;letter-spacing:6px;margin-bottom:10px;}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,34px);font-weight:600;color:var(--green);}
+header h1 em{font-style:italic;color:var(--rose);}
+.header-tagline{font-size:13px;color:var(--text-muted);margin-top:6px;letter-spacing:2px;text-transform:uppercase;font-weight:300;}
+
+/* ── WRAPPER ── */
+#main-wrap{max-width:620px;margin:0 auto;padding:32px 20px 60px;}
+
+/* ── ÉTATS ── */
+#loading{text-align:center;padding:80px 24px;color:var(--text-muted);}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--green);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── IDENTIFICATION ── */
+#etape-identite{display:none;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--green),var(--green-light),var(--rose));}
+.card-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--green);
+  margin-bottom:6px;text-align:center;}
+.card-subtitle{font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:22px;line-height:1.6;}
+
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.form-label span{font-weight:400;color:var(--text-muted);font-size:12px;}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:15px;color:var(--text);
+  background:var(--bg);transition:border-color .2s;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--green-light);
+  box-shadow:0 0 0 3px rgba(74,124,89,0.1);}
+.form-select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a7c59' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C%2Fsvg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;}
+.form-textarea{min-height:90px;resize:vertical;line-height:1.6;}
+
+.btn-primary{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),var(--green-light));
+  color:var(--white);border:none;border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.3px;}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+.btn-primary:disabled{opacity:.6;cursor:default;transform:none;}
+.btn-secondary{width:100%;padding:12px;background:transparent;color:var(--text-muted);
+  border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;
+  font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s;}
+.btn-secondary:hover{border-color:var(--rose);color:var(--rose);}
+
+/* ── FORMULAIRE PRINCIPAL ── */
+#etape-formulaire{display:none;}
+.soeur-banner{background:linear-gradient(135deg,var(--green-pale),rgba(201,145,58,0.08));
+  border:1.5px solid rgba(74,124,89,0.25);border-radius:14px;padding:16px 20px;
+  margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.soeur-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--green-pale),var(--rose-pale));
+  border:2px solid var(--green-light);display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:22px;color:var(--green);flex-shrink:0;}
+.soeur-info{flex:1;}
+.soeur-nom{font-family:'Playfair Display',serif;font-size:19px;color:var(--green);font-weight:600;}
+.soeur-email{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.btn-changer{font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border);
+  border-radius:20px;padding:4px 12px;cursor:pointer;transition:all .2s;}
+.btn-changer:hover{border-color:var(--rose);color:var(--rose);}
+
+.form-section{margin-bottom:24px;}
+.form-section-title{font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;
+  letter-spacing:.6px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--green-pale);
+  display:flex;align-items:center;gap:8px;}
+
+/* Stars rating */
+.stars-wrap{display:flex;flex-direction:column;gap:8px;}
+.stars-row{display:flex;gap:6px;}
+.star-btn{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--bg);font-size:20px;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;}
+.star-btn:hover,.star-btn.active{background:var(--gold-pale);border-color:var(--gold);}
+.stars-label{font-size:12px;color:var(--text-muted);text-align:center;}
+
+/* Choix boutons */
+.choices-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.choice-btn{padding:9px 16px;border-radius:30px;border:1.5px solid var(--border);
+  background:var(--bg);font-family:'Nunito',sans-serif;font-size:13.5px;font-weight:600;
+  color:var(--text-muted);cursor:pointer;transition:all .2s;}
+.choice-btn:hover{border-color:var(--green-light);color:var(--green);}
+.choice-btn.selected{background:var(--green-pale);border-color:var(--green);color:var(--green);}
+.choice-btn.selected-rose{background:var(--rose-pale);border-color:var(--rose);color:var(--rose);}
+
+/* Besoin cards */
+.besoin-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.besoin-card{padding:14px 12px;border-radius:14px;border:1.5px solid var(--border);
+  background:var(--bg);cursor:pointer;transition:all .2s;text-align:center;}
+.besoin-card:hover{border-color:var(--rose-light,#e8a0b0);background:var(--rose-pale);}
+.besoin-card.selected{background:var(--rose-pale);border-color:var(--rose);box-shadow:0 0 0 2px rgba(201,123,138,.15);}
+.besoin-emoji{font-size:24px;display:block;margin-bottom:6px;}
+.besoin-label{font-size:12.5px;font-weight:700;color:var(--text);display:block;}
+.besoin-desc{font-size:11px;color:var(--text-muted);line-height:1.4;margin-top:3px;display:block;}
+
+/* Message succès */
+#ecran-succes{display:none;text-align:center;padding:60px 20px;}
+.succes-icon{font-size:64px;margin-bottom:20px;}
+.succes-titre{font-family:'Playfair Display',serif;font-size:28px;color:var(--green);margin-bottom:12px;}
+.succes-texte{font-size:15px;color:var(--text-muted);line-height:1.8;max-width:360px;margin:0 auto 32px;}
+.btn-recommencer{padding:14px 32px;background:var(--green-pale);color:var(--green);
+  border:1.5px solid rgba(74,124,89,0.3);border-radius:40px;font-family:'Nunito',sans-serif;
+  font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-recommencer:hover{background:var(--green);color:var(--white);}
+
+.msg-erreur{padding:12px 16px;color:var(--red);font-size:13.5px;
+  background:var(--red-pale);border-radius:10px;margin-top:10px;display:none;line-height:1.5;}
+
+@media(max-width:480px){
+  #main-wrap{padding:20px 14px 60px;}
+  .besoin-grid{grid-template-columns:1fr;}
+  .card{padding:22px 18px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-flowers">🌸 🌿 🌸</div>
+  <h1>Jardin des <em>Lumières</em> 2026</h1>
+  <p class="header-tagline">Ma fiche de la semaine</p>
+</header>
+
+<div id="main-wrap">
+
+  <!-- Chargement -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Chargement des données…</p>
+  </div>
+
+  <!-- Étape 1 : identification -->
+  <div id="etape-identite">
+    <div class="card">
+      <div class="card-title">🌱 Bonjour !</div>
+      <p class="card-subtitle">Entre ton adresse e-mail pour accéder à ton formulaire.</p>
+
+      <div class="form-group">
+        <label class="form-label" for="f-email">Ton adresse e-mail</label>
+        <input type="email" id="f-email" class="form-input" placeholder="ton@email.com" autocomplete="email" inputmode="email">
+      </div>
+
+      <div id="msg-erreur-id" class="msg-erreur"></div>
+      <button class="btn-primary" onclick="identifierSoeur()">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- Étape 2 : formulaire semaine -->
+  <div id="etape-formulaire">
+
+    <div class="soeur-banner">
+      <div class="soeur-avatar" id="soeur-avatar"></div>
+      <div class="soeur-info">
+        <div class="soeur-nom" id="soeur-nom-banner"></div>
+        <div class="soeur-email" id="soeur-email-banner"></div>
+      </div>
+      <button class="btn-changer" onclick="changerSoeur()">Changer</button>
+    </div>
+
+    <!-- Section : Graine de la semaine -->
+    <div class="card">
+      <div class="form-section">
+        <div class="form-section-title">🌱 La graine de la semaine</div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-graine">Quelle était la graine de cette semaine ?</label>
+          <input type="text" id="f-graine" class="form-input" placeholder="ex : La patience, Le shukr, L'intention…">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Comment tu as appliqué ou vécu cette graine ? <span>(auto-évaluation)</span></label>
+          <div class="stars-wrap">
+            <div class="stars-row" id="stars-graine">
+              <button type="button" class="star-btn" data-val="1" onclick="setStars('graine',1)">🌱</button>
+              <button type="button" class="star-btn" data-val="2" onclick="setStars('graine',2)">🌿</button>
+              <button type="button" class="star-btn" data-val="3" onclick="setStars('graine',3)">🌸</button>
+              <button type="button" class="star-btn" data-val="4" onclick="setStars('graine',4)">🌺</button>
+              <button type="button" class="star-btn" data-val="5" onclick="setStars('graine',5)">🌟</button>
+            </div>
+            <div class="stars-label" id="stars-graine-label">Clique pour évaluer</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-graine-detail">Ce que tu as fait ou ressenti en lien avec cette graine <span>(optionnel)</span></label>
+          <textarea id="f-graine-detail" class="form-textarea" placeholder="Partage librement ce que tu as vécu, observé ou appliqué cette semaine…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section : Objectifs 2027 -->
+    <div class="card">
+      <div class="form-section">
+        <div class="form-section-title">🎯 Mes objectifs 2027</div>
+
+        <div class="form-group">
+          <label class="form-label">Comment avancent tes objectifs cette semaine ?</label>
+          <div class="choices-grid" id="choices-objectifs">
+            <button type="button" class="choice-btn" data-val="En bonne voie 🟢" onclick="selectChoice('objectifs',this)">En bonne voie 🟢</button>
+            <button type="button" class="choice-btn" data-val="Stagnation 🟡" onclick="selectChoice('objectifs',this)">Stagnation 🟡</button>
+            <button type="button" class="choice-btn" data-val="Difficultés 🔴" onclick="selectChoice('objectifs',this)">Difficultés 🔴</button>
+            <button type="button" class="choice-btn" data-val="Pas travaillés" onclick="selectChoice('objectifs',this)">Pas travaillés</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-objectifs-detail">Ce que tu as fait ou mentionné cette semaine <span>(optionnel)</span></label>
+          <textarea id="f-objectifs-detail" class="form-textarea" placeholder="Lecture Coran, sourates, autre…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section : Mon état et ma motivation -->
+    <div class="card">
+      <div class="form-section">
+        <div class="form-section-title">💚 Mon état & ma motivation</div>
+
+        <div class="form-group">
+          <label class="form-label">Mon niveau de motivation cette semaine</label>
+          <div class="stars-wrap">
+            <div class="stars-row" id="stars-motivation">
+              <button type="button" class="star-btn" data-val="1" onclick="setStars('motivation',1)">😔</button>
+              <button type="button" class="star-btn" data-val="2" onclick="setStars('motivation',2)">😕</button>
+              <button type="button" class="star-btn" data-val="3" onclick="setStars('motivation',3)">🙂</button>
+              <button type="button" class="star-btn" data-val="4" onclick="setStars('motivation',4)">😊</button>
+              <button type="button" class="star-btn" data-val="5" onclick="setStars('motivation',5)">🤩</button>
+            </div>
+            <div class="stars-label" id="stars-motivation-label">Clique pour évaluer</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Comment je me sens en ce moment ?</label>
+          <div class="choices-grid" id="choices-etat">
+            <button type="button" class="choice-btn" data-val="Épanouie 🌸" onclick="selectChoice('etat',this)">Épanouie 🌸</button>
+            <button type="button" class="choice-btn" data-val="Sereine 🕊️" onclick="selectChoice('etat',this)">Sereine 🕊️</button>
+            <button type="button" class="choice-btn" data-val="Fatiguée 😴" onclick="selectChoice('etat',this)">Fatiguée 😴</button>
+            <button type="button" class="choice-btn" data-val="Surchargée 😤" onclick="selectChoice('etat',this)">Surchargée 😤</button>
+            <button type="button" class="choice-btn" data-val="En questionnement 🤔" onclick="selectChoice('etat',this)">En questionnement 🤔</button>
+            <button type="button" class="choice-btn" data-val="Fragilisée 🌧️" onclick="selectChoice('etat',this)">Fragilisée 🌧️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section : Ce dont j'aurais besoin -->
+    <div class="card">
+      <div class="form-section">
+        <div class="form-section-title">🤲 Ce dont j'aurais besoin</div>
+
+        <div class="form-group">
+          <label class="form-label">Qu'est-ce qui t'aiderait le plus en ce moment ? <span>(tu peux choisir plusieurs)</span></label>
+          <div class="besoin-grid">
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-ecoute')">
+              <span class="besoin-emoji">👂</span>
+              <span class="besoin-label">Être écoutée</span>
+              <span class="besoin-desc">Partager, être entendue sans jugement</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-soutien')">
+              <span class="besoin-emoji">🤗</span>
+              <span class="besoin-label">Soutien & encouragements</span>
+              <span class="besoin-desc">Un peu de chaleur et de bienveillance</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-guidance')">
+              <span class="besoin-emoji">🧭</span>
+              <span class="besoin-label">Guidance spirituelle</span>
+              <span class="besoin-desc">Conseils, références, clarifications</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-espace')">
+              <span class="besoin-emoji">🌿</span>
+              <span class="besoin-label">Espace & légèreté</span>
+              <span class="besoin-desc">Pas de pression, juste de la douceur</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-rigueur')">
+              <span class="besoin-emoji">💪</span>
+              <span class="besoin-label">Un peu de rigueur</span>
+              <span class="besoin-desc">Me remotiver, me recadrer positivement</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-binome')">
+              <span class="besoin-emoji">🌸</span>
+              <span class="besoin-label">Contact avec mon binôme</span>
+              <span class="besoin-desc">On a besoin de se recontacter</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-rien')">
+              <span class="besoin-emoji">✨</span>
+              <span class="besoin-label">Tout va bien</span>
+              <span class="besoin-desc">Je n'ai pas de besoin particulier</span>
+            </div>
+            <div class="besoin-card" onclick="toggleBesoin(this,'besoin-autre')">
+              <span class="besoin-emoji">💬</span>
+              <span class="besoin-label">Autre</span>
+              <span class="besoin-desc">Je le précise ci-dessous</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="f-besoin-detail">Tu peux préciser si tu le souhaites <span>(optionnel)</span></label>
+          <textarea id="f-besoin-detail" class="form-textarea" placeholder="Dis-nous ce dont tu as besoin ou comment tu te sens vraiment…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Note libre -->
+    <div class="card">
+      <div class="form-section">
+        <div class="form-section-title">📝 Note libre</div>
+        <div class="form-group">
+          <label class="form-label" for="f-note">Un mot, une réflexion, quelque chose à partager… <span>(optionnel)</span></label>
+          <textarea id="f-note" class="form-textarea" style="min-height:110px;" placeholder="Tes pensées sont les bienvenues 🌸"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="msg-erreur-form" class="msg-erreur"></div>
+    <button class="btn-primary" id="btn-submit" onclick="soumettreFormulaire()">🌸 Envoyer ma fiche</button>
+  </div>
+
+  <!-- Écran de succès -->
+  <div id="ecran-succes">
+    <div class="succes-icon">🌸</div>
+    <div class="succes-titre">Fiche envoyée !</div>
+    <p class="succes-texte">Merci d'avoir pris le temps de te connecter à toi-même et au jardin. Ta fiche a bien été enregistrée.<br><br>بارك الله فيكِ 🌿</p>
+    <button class="btn-recommencer" onclick="recommencer()">Revenir au début</button>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<script>
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzH6nvS76Ey3BUkr48z8LD4ez8QgjcfCgx-gLXJ4rt97vBOb8rFiHumdCuIj02Yn-j4/exec";
+const CSV_FICHES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRl1SUzfflrE8nzY_z8oDGNSQJhV_wJyo-e4weu6T_lvcbxTmqFoDiYrx17qwtUQ5iEKyBNjzA3p7p6/pub?gid=10003594&single=true&output=csv";
+
+let participants = [];
+let currentSoeur = null;
+
+// Valeurs des sélections
+const selections = {
+  graine: 0,
+  motivation: 0,
+  objectifs: '',
+  etat: '',
+  besoins: new Set()
+};
+
+const starLabels = {
+  graine: ['','À peine effleurée 🌱','Un peu appliquée 🌿','Bien appliquée 🌸','Très bien appliquée 🌺','Pleinement vécue 🌟'],
+  motivation: ['','Très basse 😔','Basse 😕','Modérée 🙂','Bonne 😊','Excellente 🤩']
+};
+
+// ── UTILS CSV ──
+function parseCSV(text) {
+  const lines = text.split('\n');
+  if (!lines.length) return [];
+  const headers = splitCSVLine(lines[0]);
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const vals = splitCSVLine(lines[i]);
+    const obj = {};
+    headers.forEach((h,j) => { obj[h.trim()] = (vals[j]||'').trim(); });
+    result.push(obj);
+  }
+  return result;
+}
+
+function splitCSVLine(line) {
+  const result = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else { inQ=!inQ; } }
+    else if (c === ',' && !inQ) { result.push(cur); cur=''; }
+    else { cur += c; }
+  }
+  result.push(cur);
+  return result;
+}
+
+// ── INIT ──
+async function init() {
+  try {
+    const r = await fetch(CSV_FICHES);
+    const t = await r.text();
+    participants = parseCSV(t).filter(p => p['Prénom'] && p['Prénom'].trim() && p['Téléphone']);
+  } catch(e) {
+    participants = [];
+  }
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('etape-identite').style.display = 'block';
+}
+
+// ── IDENTIFICATION ──
+function identifierSoeur() {
+  const email = document.getElementById('f-email').value.trim().toLowerCase();
+  const errDiv = document.getElementById('msg-erreur-id');
+  errDiv.style.display = 'none';
+
+  if (!email) {
+    errDiv.textContent = '⚠️ Merci d\'entrer ton adresse e-mail.';
+    errDiv.style.display = 'block';
+    return;
+  }
+
+  // Cherche dans les participants (colonne Téléphone utilisée comme email ou chercher dans toutes les colonnes)
+  let soeur = participants.find(p => {
+    return Object.values(p).some(v => v.trim().toLowerCase() === email);
+  });
+
+  // Si pas trouvée mais l'email est valide, essayer avec juste le prénom si email contient le prénom
+  if (!soeur) {
+    // Accepter même si l'e-mail n'est pas dans la liste : identifier par l'email directement
+    // On crée un objet minimal pour qu'elle puisse quand même remplir la fiche
+    if (/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+      // Email valide mais pas dans la liste : on continue quand même
+      soeur = { 'Prénom': email.split('@')[0], 'email_brut': email, '_inconnu': true };
+    } else {
+      errDiv.textContent = '⚠️ Adresse e-mail invalide. Vérifie le format.';
+      errDiv.style.display = 'block';
+      return;
+    }
+  }
+
+  currentSoeur = soeur;
+  afficherFormulaire();
+}
+
+function afficherFormulaire() {
+  const prenom = currentSoeur['Prénom'] || '';
+  const email = document.getElementById('f-email').value.trim();
+
+  // Banner
+  document.getElementById('soeur-avatar').textContent = prenom.charAt(0).toUpperCase();
+  document.getElementById('soeur-nom-banner').textContent = prenom;
+  document.getElementById('soeur-email-banner').textContent = email;
+
+  document.getElementById('etape-identite').style.display = 'none';
+  document.getElementById('etape-formulaire').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function changerSoeur() {
+  document.getElementById('etape-formulaire').style.display = 'none';
+  document.getElementById('etape-identite').style.display = 'block';
+  currentSoeur = null;
+  document.getElementById('f-email').value = '';
+  window.scrollTo(0, 0);
+}
+
+// ── ÉTOILES ──
+function setStars(key, val) {
+  selections[key] = val;
+  const container = document.getElementById('stars-' + key);
+  container.querySelectorAll('.star-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.val) <= val);
+  });
+  const lbl = document.getElementById('stars-' + key + '-label');
+  if (lbl && starLabels[key]) lbl.textContent = starLabels[key][val] || '';
+}
+
+// ── CHOIX BOUTONS ──
+function selectChoice(key, btn) {
+  selections[key] = btn.dataset.val;
+  const container = document.getElementById('choices-' + key);
+  container.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+// ── BESOINS ──
+function toggleBesoin(card, key) {
+  if (selections.besoins.has(key)) {
+    selections.besoins.delete(key);
+    card.classList.remove('selected');
+  } else {
+    selections.besoins.add(key);
+    card.classList.add('selected');
+  }
+}
+
+// ── SOUMISSION ──
+async function soumettreFormulaire() {
+  const btn = document.getElementById('btn-submit');
+  const errDiv = document.getElementById('msg-erreur-form');
+  errDiv.style.display = 'none';
+
+  const email = document.getElementById('f-email').value.trim();
+  const prenom = currentSoeur['Prénom'] || email;
+  const graine = document.getElementById('f-graine').value.trim();
+  const grainDetail = document.getElementById('f-graine-detail').value.trim();
+  const objectifsDetail = document.getElementById('f-objectifs-detail').value.trim();
+  const besoinDetail = document.getElementById('f-besoin-detail').value.trim();
+  const note = document.getElementById('f-note').value.trim();
+
+  if (!graine) {
+    errDiv.textContent = '⚠️ Merci d\'indiquer la graine de la semaine.';
+    errDiv.style.display = 'block';
+    window.scrollTo(0, 200);
+    return;
+  }
+
+  // Map des besoins en texte lisible
+  const besoinMap = {
+    'besoin-ecoute': 'Être écoutée',
+    'besoin-soutien': 'Soutien & encouragements',
+    'besoin-guidance': 'Guidance spirituelle',
+    'besoin-espace': 'Espace & légèreté',
+    'besoin-rigueur': 'Un peu de rigueur',
+    'besoin-binome': 'Contact avec mon binôme',
+    'besoin-rien': 'Tout va bien',
+    'besoin-autre': 'Autre'
+  };
+  const besoinsTexte = [...selections.besoins].map(k => besoinMap[k] || k).join(', ');
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('fr-FR');
+
+  const data = {
+    "Date du suivi": dateStr,
+    "Jardinière en chef": "Auto-déclaration sœur",
+    "Graine de la semaine": graine,
+    "Prénom de la sœur": prenom,
+    "Prénom du binôme": "",
+    "Présence": "",
+    "AR (accusés de réception)": "",
+    "Appropriation de la graine (1-5)": selections.graine || "",
+    "Avancement objectifs": selections.objectifs || "",
+    "État du binôme": "",
+    "Observation binôme": "",
+    "Motivation (1-5)": selections.motivation || "",
+    "Tendance motivation": "",
+    "État général": selections.etat || "",
+    "Signaux observés": besoinsTexte || "",
+    "Priorité semaine prochaine": "",
+    "Actions prévues": "",
+    "Note libre": [
+      grainDetail ? "🌱 Graine : " + grainDetail : "",
+      objectifsDetail ? "🎯 Objectifs : " + objectifsDetail : "",
+      besoinDetail ? "🤲 Besoin : " + besoinDetail : "",
+      note ? "📝 Note : " + note : "",
+      "📧 Email : " + email
+    ].filter(Boolean).join("\n\n")
+  };
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Envoi en cours…';
+
+  try {
+    await fetch(WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    document.getElementById('etape-formulaire').style.display = 'none';
+    document.getElementById('ecran-succes').style.display = 'block';
+    window.scrollTo(0, 0);
+  } catch(err) {
+    errDiv.textContent = '❌ Erreur d\'envoi. Vérifie ta connexion internet et réessaie.';
+    errDiv.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = '🌸 Envoyer ma fiche';
+  }
+}
+
+function recommencer() {
+  currentSoeur = null;
+  selections.graine = 0;
+  selections.motivation = 0;
+  selections.objectifs = '';
+  selections.etat = '';
+  selections.besoins = new Set();
+
+  // Reset visuels
+  ['graine','motivation'].forEach(k => {
+    const container = document.getElementById('stars-' + k);
+    if (container) container.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    const lbl = document.getElementById('stars-' + k + '-label');
+    if (lbl) lbl.textContent = 'Clique pour évaluer';
+  });
+  ['choices-objectifs','choices-etat'].forEach(id => {
+    const c = document.getElementById(id);
+    if (c) c.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  });
+  document.querySelectorAll('.besoin-card').forEach(b => b.classList.remove('selected'));
+  ['f-email','f-graine','f-graine-detail','f-objectifs-detail','f-besoin-detail','f-note'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+
+  const btn = document.getElementById('btn-submit');
+  if (btn) { btn.disabled = false; btn.textContent = '🌸 Envoyer ma fiche'; }
+
+  document.getElementById('ecran-succes').style.display = 'none';
+  document.getElementById('etape-identite').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// ── ENTER sur email ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('f-email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') identifierSoeur();
+  });
+  init();
+});
+</script>
+</body>
+</html>

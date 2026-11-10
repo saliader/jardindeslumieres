@@ -89,9 +89,6 @@ header h1 em{font-style:italic;color:var(--rose);}
 .soeur-info{flex:1;}
 .soeur-nom{font-family:'Playfair Display',serif;font-size:19px;color:var(--green);font-weight:600;}
 .soeur-email{font-size:12px;color:var(--text-muted);margin-top:2px;}
-.btn-changer{font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border);
-  border-radius:20px;padding:4px 12px;cursor:pointer;transition:all .2s;}
-.btn-changer:hover{border-color:var(--rose);color:var(--rose);}
 
 /* SECTION TITRES */
 .form-section{margin-bottom:24px;}
@@ -204,7 +201,7 @@ header h1 em{font-style:italic;color:var(--rose);}
         <div class="soeur-nom" id="soeur-nom-banner"></div>
         <div class="soeur-email" id="soeur-email-banner">🌸 Jardin des Lumières</div>
       </div>
-      <button class="btn-changer" onclick="changerSoeur()">Changer</button>
+      
     </div>
 
     <!-- Graine -->
@@ -562,13 +559,6 @@ function onGraineChange() {
   }
 }
 
-function changerSoeur() {
-  document.getElementById('etape-formulaire').style.display = 'none';
-  document.getElementById('etape-identite').style.display   = 'block';
-  currentSoeur = null;
-  document.getElementById('f-tel').value = '';
-  window.scrollTo(0, 0);
-}
 
 // ── ÉTOILES ──────────────────────────────────────────────────
 function setStars(key, val) {

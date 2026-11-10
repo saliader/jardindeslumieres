@@ -150,9 +150,6 @@ header h1 em{font-style:italic;color:var(--rose);}
 .msg-erreur{padding:12px 16px;color:var(--red);font-size:13.5px;
   background:var(--red-pale);border-radius:10px;margin-top:10px;display:none;line-height:1.5;}
 
-/* DEBUG (masqué en prod) */
-.debug-box{background:#f0f0f0;border:1px solid #ccc;border-radius:8px;padding:12px;
-  font-size:11px;font-family:monospace;color:#333;margin-bottom:12px;display:none;word-break:break-all;}
 
 #etape-identite{display:none;}
 #etape-formulaire{display:none;}
@@ -189,8 +186,6 @@ header h1 em{font-style:italic;color:var(--rose);}
         <input type="tel" id="f-tel" class="form-input" placeholder="06 12 34 56 78" autocomplete="tel" inputmode="tel">
       </div>
       <div id="msg-erreur-id" class="msg-erreur"></div>
-      <!-- debug box (affichée seulement si erreur) -->
-      <div id="debug-box" class="debug-box"></div>
       <button class="btn-primary" onclick="identifierSoeur()">Continuer →</button>
     </div>
   </div>
@@ -438,9 +433,7 @@ async function init() {
 function identifierSoeur() {
   const raw    = document.getElementById('f-tel').value.trim();
   const errDiv = document.getElementById('msg-erreur-id');
-  const dbgBox = document.getElementById('debug-box');
   errDiv.style.display = 'none';
-  dbgBox.style.display = 'none';
 
   if (!raw) {
     errDiv.textContent   = '⚠️ Merci d\'entrer ton numéro de téléphone.';
@@ -462,15 +455,8 @@ function identifierSoeur() {
   if (!soeur) {
     errDiv.textContent   = '⚠️ Numéro non reconnu. Vérifie ou contacte Sali.';
     errDiv.style.display = 'block';
-
-    // Aide au débogage : affiche ce qui a été reçu vs ce qui a été saisi
-    if (participants.length === 0) {
-      dbgBox.textContent   = '⚙️ Debug : aucune sœur chargée depuis la Web App. Vérifie que le script Apps Script est bien déployé avec le nouveau doGet().';
-      dbgBox.style.display = 'block';
-    } else {
-      dbgBox.textContent   = '⚙️ Debug : ' + participants.length + ' sœurs chargées. Numéro saisi normalisé : "' + telNorm + '". Premier numéro en base : "' + normaliser(participants[0].tel) + '"';
-      dbgBox.style.display = 'block';
-    }
+    // Aide au débogage visible uniquement dans la console du navigateur (pas pour les sœurs)
+    console.warn('Numéro non reconnu —', participants.length, 'sœurs chargées, saisi normalisé :', telNorm);
     return;
   }
 
@@ -706,7 +692,6 @@ function recommencer() {
   if (btn) { btn.disabled = false; btn.textContent = '🌸 Envoyer ma fiche'; }
 
   document.getElementById('msg-erreur-id').style.display   = 'none';
-  document.getElementById('debug-box').style.display        = 'none';
   document.getElementById('ecran-succes').style.display     = 'none';
   document.getElementById('etape-identite').style.display   = 'block';
   window.scrollTo(0, 0);

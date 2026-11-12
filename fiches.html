@@ -1025,11 +1025,8 @@ async function loadData() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
 
-    // Participants : liste des sœurs depuis l'onglet Réponses
+    // Participants : liste des sœurs depuis l'onglet Réponses (toutes les colonnes)
     participants = (data.soeurs || []).filter(p => p.prenom && p.prenom.trim());
-
-    // Convertir le format {prenom, tel} en objet compatible avec l'affichage des fiches
-    participants = participants.map(p => ({ 'Prénom': p.prenom }));
 
     // Suivi : toutes les lignes de suivi (saisies jardinières + auto-déclarations)
     const suiviRaw = (data.autoDecls || []).filter(l => l['Prénom de la sœur'] || l['Prénom']);

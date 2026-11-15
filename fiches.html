@@ -1026,7 +1026,7 @@ async function loadData() {
     const data = await res.json();
 
     // Participants : liste des sœurs depuis l'onglet Réponses (toutes les colonnes)
-    participants = (data.soeurs || []).filter(p => p.prenom && p.prenom.trim());
+    participants = (data.soeurs || []).filter(p => (p['Prénom'] || p.prenom || '').trim());
 
     // Suivi : toutes les lignes de suivi (saisies jardinières + auto-déclarations)
     const suiviRaw = (data.autoDecls || []).filter(l => l['Prénom de la sœur'] || l['Prénom']);

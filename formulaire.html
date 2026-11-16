@@ -480,7 +480,7 @@ function calcGrainesDispos(prenom) {
 
 // ── AFFICHAGE DU FORMULAIRE ───────────────────────────────────
 function afficherFormulaire() {
-  const prenom = currentSoeur.prenom || '';
+ const prenom = currentSoeur.prenom || currentSoeur['Prénom'] || '';
 
   document.getElementById('soeur-avatar').textContent     = prenom.charAt(0).toUpperCase();
   document.getElementById('soeur-nom-banner').textContent = prenom;
